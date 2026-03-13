@@ -7,6 +7,7 @@ interface FooterProps {
 }
 
 const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
+  const [isHovered, setIsHovered] = React.useState(false);
   return (
     <footer className="container" style={{ padding: 'var(--spacing-xxl) 0 var(--spacing-xl) 0' }}>
       <motion.div
@@ -48,11 +49,13 @@ const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
         <div style={{ display: 'flex', justifyContent: 'center', gap: 'var(--spacing-sm)', flexWrap: 'wrap' }}>
           <button 
             onClick={onContactClick}
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
             style={{ 
               padding: 'clamp(12px, 2vw, 14px) clamp(24px, 4vw, 32px)', 
               borderRadius: '100px',
               textDecoration: 'none',
-              color: 'var(--text-main)',
+              color: isHovered ? 'transparent' : 'var(--text-main)',
               fontSize: 'clamp(13px, 2vw, 15px)',
               fontWeight: 700,
               display: 'flex',
@@ -65,16 +68,11 @@ const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
               fontFamily: 'inherit',
               whiteSpace: 'nowrap'
             }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(0,0,0,0.05)';
-              e.currentTarget.style.transform = 'translateY(-2px)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(0,0,0,0.02)';
-              e.currentTarget.style.transform = 'translateY(0)';
-            }}
           >
-            <Mail size={18} /> Get In Touch (I respond faster than a GPU)
+            <div className={isHovered ? "animate-flag-text" : ""} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Mail size={18} color={isHovered ? "var(--nepal-blue)" : "currentColor"} /> 
+              Get In Touch (I respond faster than a GPU)
+            </div>
           </button>
         </div>
       </motion.div>
@@ -93,7 +91,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
         opacity: 0.8
       }} className="mono-text">
         <div style={{ flex: '1 1 auto', textAlign: 'left' }}>
-          <p>© 2026 KRITISH DHITAL — FULL STACK AI/ML DEVELOPER</p>
+          <p style={{ fontWeight: 800 }}>© 2026 KRITISH DHITAL — FULL STACK AI/ML DEVELOPER</p>
           <p style={{ fontSize: '7px', marginTop: '4px', opacity: 0.5, letterSpacing: '0.05em' }}>
             PROPRIETARY_PLATFORM // PRIVATE_LICENSE_ALL_RIGHTS_RESERVED
           </p>

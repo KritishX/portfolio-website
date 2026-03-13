@@ -111,7 +111,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
             maxWidth: '100%'
           }}
         >
-          <span style={{ width: '5px', height: '6px', background: 'var(--nepal-crimson)', borderRadius: '50%', boxShadow: '0 0 10px var(--nepal-crimson)', flexShrink: 0 }}></span>
+          <span style={{ width: '6px', height: '6px', background: 'var(--neon-green)', borderRadius: '50%', boxShadow: '0 0 10px var(--neon-green)', flexShrink: 0 }}></span>
           <span style={{ fontSize: 'clamp(7px, 2vw, 9px)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>SYSTEM_READY: FULL_STACK_AI_ML_DEVELOPER</span>
         </motion.div>
 

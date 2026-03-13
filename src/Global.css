@@ -340,15 +340,28 @@ h1, h2, h3 {
   :root { --section-padding: 100px; }
 }
 
-@keyframes flagGradient {
-  0% { color: var(--nepal-blue); }
-  50% { color: var(--nepal-crimson); }
-  100% { color: var(--nepal-blue); }
+@keyframes flowLiquid {
+  0% { background-position: 100% 50%; }
+  50% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
 }
 
 .animate-flag-text {
-  animation: flagGradient 4s ease-in-out infinite;
+  background: linear-gradient(
+    135deg, 
+    var(--nepal-blue) 0%, 
+    var(--nepal-blue) 25%, 
+    var(--nepal-crimson) 50%, 
+    var(--nepal-blue) 75%, 
+    var(--nepal-blue) 100%
+  );
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: flowLiquid 12s ease-in-out infinite;
   font-weight: 800;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: inline-block;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
+  will-change: background-position;
 }

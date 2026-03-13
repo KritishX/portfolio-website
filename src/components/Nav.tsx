@@ -18,15 +18,13 @@ const Nav: React.FC<NavProps> = ({ onContactClick, onWorkClick }) => {
         {/* Left-aligned Identity Group */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-md)' }}>
           <NepalFlag size={32} />
-          <div style={{ 
-            fontWeight: 800, 
+          <div className="animate-flag-text" style={{ 
             fontSize: '14px', 
             letterSpacing: '0.05em', 
             fontFamily: 'var(--font-mono)',
-            textTransform: 'uppercase',
-            color: 'var(--text-main)'
+            paddingTop: '2px' // Subtle offset for visual symmetry with flag height
           }}>
-            KRITISH DHITAL
+            ReticleX
           </div>
         </div>
 
