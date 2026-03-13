@@ -1,5 +1,4 @@
 import React from 'react';
-import { motion } from 'framer-motion';
 import flagGif from '../assets/nepal-flag.gif';
 
 const NepalFlag: React.FC<{ size?: number }> = ({ size = 42 }) => {
@@ -8,18 +7,16 @@ const NepalFlag: React.FC<{ size?: number }> = ({ size = 42 }) => {
   const height = size * 1.22;
 
   return (
-    <motion.div 
+    <div 
       className="flag-container"
       role="img"
       aria-label="National Flag of Nepal"
-      whileHover={{ scale: 1.1, rotate: 5 }}
       style={{ 
         width: width, 
         height: height, 
         display: 'inline-flex',
         position: 'relative',
-        overflow: 'hidden',
-        cursor: 'pointer'
+        overflow: 'hidden'
       }}
     >
       <img 
@@ -32,7 +29,7 @@ const NepalFlag: React.FC<{ size?: number }> = ({ size = 42 }) => {
           filter: 'drop-shadow(0 4px 8px rgba(0,0,0,0.15))'
         }} 
       />
-    </motion.div>
+    </div>
   );
 };
 

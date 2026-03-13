@@ -6,98 +6,170 @@ class Particle {
   vx: number;
   vy: number;
   size: number;
-  hue: number;
+  color: string;
+  angle: number;
 
   constructor(width: number, height: number) {
     this.x = Math.random() * width;
     this.y = Math.random() * height;
-    this.vx = (Math.random() - 0.5) * 0.15; // Slowed down for smoothness
-    this.vy = (Math.random() - 0.5) * 0.15; // Slowed down for smoothness
-    this.size = Math.random() * 1.5 + 1; // Smaller dots
-    this.hue = Math.random() * 360;
+    this.vx = (Math.random() - 0.5) * 0.12;
+    this.vy = (Math.random() - 0.5) * 0.12;
+    this.size = Math.random() * 1.2 + 0.8;
+    this.color = Math.random() > 0.6 ? '#DC143C' : '#003893';
+    this.angle = Math.random() * Math.PI * 2;
   }
 
-  update(width: number, height: number) {
+  update(width: number, height: number, mouse: { x: number, y: number, radius: number }, particles: Particle[]) {
+    this.angle += 0.01;
+    this.vx += Math.cos(this.angle) * 0.002;
+    this.vy += Math.sin(this.angle) * 0.002;
+
+    const dx = mouse.x - this.x;
+    const dy = mouse.y - this.y;
+    const distToMouse = Math.sqrt(dx * dx + dy * dy);
+    
+    if (distToMouse < mouse.radius) {
+      const force = (mouse.radius - distToMouse) / mouse.radius;
+      this.vx += (dx / distToMouse) * force * 0.025;
+      this.vy += (dy / distToMouse) * force * 0.025;
+    }
+
+    const repulsionMultiplier = Math.min(1, Math.max(0, (distToMouse - mouse.radius * 0.3) / (mouse.radius * 0.7)));
+
+    if (repulsionMultiplier > 0) {
+      for (let i = 0; i < particles.length; i++) {
+        const p2 = particles[i];
+        if (p2 === this) continue;
+        const rdx = this.x - p2.x;
+        const rdy = this.y - p2.y;
+        const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+        const minSep = 100; 
+        if (rdist < minSep) {
+          const rf = (minSep - rdist) / minSep;
+          this.vx += (rdx / rdist) * rf * 0.04 * repulsionMultiplier; 
+          this.vy += (rdy / rdist) * rf * 0.04 * repulsionMultiplier;
+        }
+      }
+    }
+
     this.x += this.vx;
     this.y += this.vy;
-    if (this.x < 0 || this.x > width) this.vx *= -1;
-    if (this.y < 0 || this.y > height) this.vy *= -1;
+    this.vx *= 0.985;
+    this.vy *= 0.985;
+
+    if (this.x < 0 || this.x > width) this.vx *= -0.8;
+    if (this.y < 0 || this.y > height) this.vy *= -0.8;
   }
 
-  draw(ctx: CanvasRenderingContext2D) {
+  draw(ctx: CanvasRenderingContext2D, parallaxOffset: number) {
+    const drawY = (this.y - parallaxOffset + ctx.canvas.height) % ctx.canvas.height;
     ctx.beginPath();
-    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = 'rgba(0, 0, 0, 0.08)'; // Even lighter nodes
+    ctx.arc(this.x, drawY, this.size, 0, Math.PI * 2);
+    ctx.fillStyle = this.color === '#DC143C' ? 'rgba(220, 20, 60, 0.3)' : 'rgba(0, 56, 147, 0.3)';
     ctx.fill();
   }
 }
 
 const NeuralBackground: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const scrollRef = useRef(0);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
-    let animationFrameId: number;
     let particles: Particle[] = [];
-    const connectionDistance = 140;
-    const mouse = { x: -1000, y: -1000, radius: 280 };
+    let animationId: number;
+    let time = 0;
+    
+    const isMobile = window.innerWidth < 768;
+    const mouse = { x: -1000, y: -1000, radius: isMobile ? 180 : 280 };
 
     const init = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       particles = [];
-      // Reduced density for mobile optimization
-      const particleCount = window.innerWidth < 768 ? 30 : 75; 
+      const particleCount = isMobile ? 20 : 45; 
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle(canvas.width, canvas.height));
       }
     };
 
-    const drawConnections = () => {
+    const handleScroll = () => {
+      scrollRef.current = window.scrollY;
+    };
+
+    const drawConnections = (parallaxOffset: number) => {
+      time += 0.005;
+      const breathing = 0.9 + Math.sin(time) * 0.1;
+      const screenDiag = Math.sqrt(canvas.width**2 + canvas.height**2);
+
       for (let i = 0; i < particles.length; i++) {
-        // Subtle base lines
+        const y1 = (particles[i].y - parallaxOffset + canvas.height) % canvas.height;
+
+        // 1. ALL-TO-ALL CONNECTIONS
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
+          const y2 = (particles[j].y - parallaxOffset + canvas.height) % canvas.height;
+          const dy = y1 - y2;
           const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < connectionDistance) {
-            ctx!.beginPath();
-            ctx!.strokeStyle = `rgba(0, 56, 147, ${(1 - dist/connectionDistance) * 0.04})`; // Subtle Nepal Blue
-            ctx!.lineWidth = 0.3;
-            ctx!.moveTo(particles[i].x, particles[i].y);
-            ctx!.lineTo(particles[j].x, particles[j].y);
-            ctx!.stroke();
-          }
+          
+          const proximity = 1 - dist / screenDiag;
+          const organicOpacity = Math.pow(proximity, 6) * 0.22 * breathing;
+          
+          if (organicOpacity < 0.005) continue;
+
+          const color = particles[i].color === particles[j].color ? 
+                        particles[i].color : '#4a3a6b';
+          
+          const r = parseInt(color.slice(1, 3), 16);
+          const g = parseInt(color.slice(3, 5), 16);
+          const b = parseInt(color.slice(5, 7), 16);
+
+          ctx!.beginPath();
+          ctx!.strokeStyle = `rgba(${r}, ${g}, ${b}, ${Math.min(0.3, organicOpacity)})`;
+          ctx!.lineWidth = 0.35;
+          ctx!.moveTo(particles[i].x, y1);
+          ctx!.lineTo(particles[j].x, y2);
+          ctx!.stroke();
         }
 
-        // Subtler User Interaction
-        const mdx = particles[i].x - mouse.x;
-        const mdy = particles[i].y - mouse.y;
-        const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
-        if (mdist < mouse.radius) {
-          ctx!.beginPath();
-          ctx!.strokeStyle = 'rgba(0, 56, 147, 0.15)'; // Restrained Nepal Blue
-          ctx!.lineWidth = 0.8;
-          ctx!.moveTo(particles[i].x, particles[i].y);
-          ctx!.lineTo(mouse.x, mouse.y);
-          ctx!.stroke();
+        // 2. DIRECT CURSOR CONNECTIONS (The "Touch" Effect)
+        if (mouse.x > 0) {
+          const mdx = mouse.x - particles[i].x;
+          const mdy = mouse.y - y1;
+          const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+          
+          // All particles connect to cursor, but opacity fades with distance
+          const mProximity = 1 - mdist / screenDiag;
+          const mOpacity = Math.pow(mProximity, 4) * 0.35 * breathing;
+
+          if (mOpacity > 0.01) {
+            const pCol = particles[i].color === '#DC143C' ? '220, 20, 60' : '0, 56, 147';
+            ctx!.beginPath();
+            ctx!.strokeStyle = `rgba(${pCol}, ${mOpacity})`;
+            ctx!.lineWidth = 0.6;
+            ctx!.moveTo(particles[i].x, y1);
+            ctx!.lineTo(mouse.x, mouse.y);
+            ctx!.stroke();
+          }
         }
       }
     };
 
     const animate = () => {
       ctx!.clearRect(0, 0, canvas.width, canvas.height);
+      const scrollY = scrollRef.current;
+      const parallaxOffset = (scrollY * (isMobile ? 0.08 : 0.15)) % canvas.height;
+
       particles.forEach(p => {
-        p.update(canvas.width, canvas.height);
-        p.draw(ctx!);
+        p.update(canvas.width, canvas.height, mouse, particles);
+        p.draw(ctx!, parallaxOffset);
       });
-      drawConnections();
-      animationFrameId = requestAnimationFrame(animate);
+      drawConnections(parallaxOffset);
+      animationId = requestAnimationFrame(animate);
     };
 
     const handleMouseMove = (e: MouseEvent) => {
@@ -105,21 +177,7 @@ const NeuralBackground: React.FC = () => {
       mouse.y = e.clientY;
     };
 
-    const handleTouchMove = (e: TouchEvent) => {
-      if (e.touches.length > 0) {
-        mouse.x = e.touches[0].clientX;
-        mouse.y = e.touches[0].clientY;
-      }
-    };
-
-    const handleScroll = () => {
-      // Create a "pulse" effect at the current mouse/touch position on scroll
-      mouse.radius = 350;
-      setTimeout(() => { mouse.radius = 280; }, 150);
-    };
-
     window.addEventListener('mousemove', handleMouseMove);
-    window.addEventListener('touchmove', handleTouchMove, { passive: true });
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', init);
     init();
@@ -127,10 +185,9 @@ const NeuralBackground: React.FC = () => {
 
     return () => {
       window.removeEventListener('mousemove', handleMouseMove);
-      window.removeEventListener('touchmove', handleTouchMove);
       window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', init);
-      cancelAnimationFrame(animationFrameId);
+      cancelAnimationFrame(animationId);
     };
   }, []);
 

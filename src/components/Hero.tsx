@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
 import SystemInsights from './SystemInsights';
 import profileImage from '../assets/profile.jpg';
+import MagneticButton from './MagneticButton';
 
 interface HeroProps {
   onContactClick: () => void;
@@ -11,6 +12,31 @@ interface HeroProps {
 const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
   const [computedText, setComputedText] = useState("");
   const fullText = "Kritish Dhital.";
+
+  // 3D Tilt Logic
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  const mouseXSpring = useSpring(x);
+  const mouseYSpring = useSpring(y);
+  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
+  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    const xPct = (mouseX / width) - 0.5;
+    const yPct = (mouseY / height) - 0.5;
+    x.set(xPct);
+    y.set(yPct);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
   
   useEffect(() => {
     let currentText = "";
@@ -31,14 +57,16 @@ const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
     <section id="hero" className="container">
       <div style={{ maxWidth: '1000px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
         
-        {/* Profile Photo Integration */}
+        {/* Profile Photo Integration with 3D Tilt */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: "easeOut" }}
-          style={{ position: 'relative', marginBottom: 'var(--spacing-xl)' }}
+          style={{ position: 'relative', marginBottom: 'var(--spacing-xl)', perspective: '1000px' }}
+          onMouseMove={handleMouseMove}
+          onMouseLeave={handleMouseLeave}
         >
-          <div style={{ 
+          <motion.div style={{ 
             position: 'relative',
             width: 'clamp(180px, 40vw, 240px)',
             height: 'clamp(180px, 40vw, 240px)',
@@ -49,16 +77,12 @@ const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            transition: 'all 0.6s var(--ease-premium)'
+            rotateX,
+            rotateY,
+            transformStyle: 'preserve-3d',
+            transition: 'box-shadow 0.6s var(--ease-premium)'
           }}
-          onMouseEnter={(e) => {
-            e.currentTarget.style.transform = 'scale(1.05) rotate(2deg)';
-            e.currentTarget.style.boxShadow = 'var(--shadow-hover)';
-          }}
-          onMouseLeave={(e) => {
-            e.currentTarget.style.transform = 'scale(1) rotate(0deg)';
-            e.currentTarget.style.boxShadow = 'var(--shadow-3d)';
-          }}
+          whileHover={{ boxShadow: 'var(--shadow-hover)' }}
           >
             <img 
               src={profileImage} 
@@ -68,7 +92,8 @@ const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
                 height: '100%', 
                 objectFit: 'cover', 
                 borderRadius: '50%',
-                border: '4px solid #fff'
+                border: '4px solid #fff',
+                transform: 'translateZ(20px)'
               }} 
             />
             {/* Status indicator */}
@@ -83,12 +108,13 @@ const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
               display: 'flex',
               alignItems: 'center',
               gap: '6px',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)'
+              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+              transform: 'translateZ(30px)'
             }}>
               <span style={{ width: '8px', height: '8px', background: 'var(--neon-green)', borderRadius: '50%', boxShadow: '0 0 8px var(--neon-green)' }}></span>
               <span className="mono-text" style={{ fontSize: '9px', fontWeight: 800 }}>ACTIVE</span>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
 
         <motion.div
@@ -119,6 +145,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
         
         <h1
           aria-label="Kritish Dhital"
+          className="stagger-in"
           style={{ 
             fontSize: 'clamp(38px, 7vw, 84px)', 
             fontWeight: 800, 
@@ -139,20 +166,20 @@ const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
+          className="stagger-in"
           style={{ 
             fontSize: 'clamp(15px, 1.8vw, 18px)', 
             color: 'var(--text-muted)', 
             marginBottom: 'var(--spacing-xl)', 
-            maxWidth: '650px', 
+            maxWidth: '700px', 
             lineHeight: 1.5, 
             fontWeight: 400, 
             letterSpacing: '-0.01em',
             textAlign: 'center'
           }}
         >
-          Scaling neural architectures with the ambition of the Himalayas and deploying full-stack ecosystems with the warmth and focus of a traditional chiya session. Engineering production-ready AI solutions from Nepal that bridge the gap between deep research and global industrial impact.
+          Redlining intelligence from the heart of the Himalayas. Whether I'm fine-tuning neural networks or hitting the apex on my 400cc machine, I build full-stack AI ecosystems with the clarity of a prime lens and the robustness of a well-tuned gearbox. Made in Nepal for the world—no lag, just pure logic.
         </motion.p>
-
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -160,36 +187,42 @@ const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
           style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}
         >
-          <button 
-            onClick={onWorkClick}
-            className="btn-primary" 
-            style={{ 
-              background: 'var(--nepal-blue)', 
-              padding: '12px 40px', 
-              fontSize: '13px',
-              borderRadius: '100px',
-              border: 'none',
-              cursor: 'pointer'
-            }}
-          >
-            Initialize_Work
-          </button>
-          <button 
-            onClick={onContactClick}
-            className="btn-secondary mono-text"
-            style={{ 
-              cursor: 'pointer', 
-              borderColor: 'var(--nepal-crimson)', 
-              color: 'var(--nepal-crimson)',
-              borderWidth: '1.5px',
-              padding: '12px 40px',
-              fontSize: '10px',
-              borderRadius: '100px',
-              background: 'transparent'
-            }}
-          >
-            &gt; collaborator_uplink
-          </button>
+          <MagneticButton>
+            <button 
+              onClick={onWorkClick}
+              className="btn-primary" 
+              style={{ 
+                background: 'var(--nepal-blue)', 
+                padding: '12px 40px', 
+                fontSize: '13px',
+                borderRadius: '100px',
+                border: 'none',
+                cursor: 'pointer'
+              }}
+            >
+              LAUNCH_SYSTEM
+            </button>
+          </MagneticButton>
+
+          <MagneticButton>
+            <button 
+              onClick={onContactClick}
+              className="btn-secondary mono-text"
+              style={{ 
+                cursor: 'pointer', 
+                borderColor: 'var(--nepal-crimson)', 
+                color: 'var(--nepal-crimson)',
+                borderWidth: '1.5px',
+                padding: '12px 40px',
+                fontSize: '10px',
+                borderRadius: '100px',
+                background: 'transparent',
+                width: '100%'
+              }}
+            >
+              &gt; ESTABLISH_UPLINK
+            </button>
+          </MagneticButton>
         </motion.div>
       </div>
     </section>

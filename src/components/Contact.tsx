@@ -25,7 +25,7 @@ const Contact: React.FC<ContactProps> = ({ onClose }) => {
           width: '95%',
           maxWidth: '500px',
           maxHeight: '85vh',
-          background: 'var(--glass-bg)',
+          background: window.innerWidth < 768 ? 'rgba(255, 255, 255, 0.98)' : 'var(--glass-bg)',
           border: '1px solid var(--glass-border)',
           borderRadius: '24px',
           boxShadow: 'var(--glass-shadow)',
@@ -37,6 +37,8 @@ const Contact: React.FC<ContactProps> = ({ onClose }) => {
         }}
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="glass-flare"></div>
+
         {/* Header */}
         <div style={{ 
           padding: '16px 24px', 
@@ -88,7 +90,7 @@ const Contact: React.FC<ContactProps> = ({ onClose }) => {
           {/* Action Channels (Humorous) */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
             {[
-              { label: "UPLINK_VIA_MAIL", value: "Husqprofound@gmail.com", href: "mailto:Husqprofound@gmail.com", icon: <Mail size={16} color="var(--nepal-blue)" /> },
+              { label: "UPLINK_VIA_MAIL", value: "kritishdhital@gmail.com", href: "mailto:kritishdhital@gmail.com", icon: <Mail size={16} color="var(--nepal-blue)" /> },
               { label: "DECRYPT_SOURCE", value: "github.com/KritishX", href: "https://github.com/KritishX", icon: <Github size={16} /> },
               { label: "NODE_NETWORK", value: "LinkedIn Profile", href: "https://www.linkedin.com/in/kritish-dhital-8a5787340/", icon: <Linkedin size={16} color="#0077b5" /> }
             ].map((item) => (
@@ -136,7 +138,7 @@ const Contact: React.FC<ContactProps> = ({ onClose }) => {
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Clock size={10} opacity={0.5} />
-            <span className="mono-text" style={{ fontSize: '8px' }}>CHIYA_TIME: 09:00 — 18:00 (NPT)</span>
+            <span className="mono-text" style={{ fontSize: '8px' }}>Work Time: 9am to 18pm Nepal Time</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Calendar size={10} opacity={0.5} />

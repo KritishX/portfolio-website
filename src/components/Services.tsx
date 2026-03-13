@@ -13,8 +13,8 @@ const Services: React.FC<ServicesProps> = ({ onViewClick }) => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="light-box-3d"
+      viewport={{ once: true, amount: 0.2 }}
+      className="light-box-3d float-animation"
       style={{ 
         padding: 'var(--spacing-xl)',
         width: '100%',
@@ -43,7 +43,7 @@ const Services: React.FC<ServicesProps> = ({ onViewClick }) => {
         lineHeight: 1.6,
         letterSpacing: '0.01em'
       }}>
-        Architecting full-stack AI solutions that stay up longer than a chiya-fueled hackathon. From neural research to production code—delivering intelligence that scales higher than the hills of Chandragiri.
+        Overclocking AI solutions that stay cooler than a Pokhara lakeside breeze. From deep research to deployment—building intelligence that climbs steeper than a 400cc bike on a mountain pass.
       </p>
       
       <div style={{ 
@@ -56,7 +56,7 @@ const Services: React.FC<ServicesProps> = ({ onViewClick }) => {
         fontWeight: 800,
         fontSize: '10px'
       }} className="mono-text">
-        INITIALIZE_FULL_VIEW <ArrowRight size={14} />
+        FETCH_SERVICES_CORE <ArrowRight size={14} />
       </div>
     </motion.div>
   );

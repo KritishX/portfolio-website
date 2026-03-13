@@ -142,7 +142,7 @@ const ProjectsModal: React.FC<ProjectsModalProps> = ({ onClose }) => {
           width: '95%',
           maxWidth: '1000px',
           maxHeight: '85vh',
-          background: 'var(--glass-bg)',
+          background: window.innerWidth < 768 ? 'rgba(255, 255, 255, 0.98)' : 'var(--glass-bg)', // Less transparent on mobile
           border: '1px solid var(--glass-border)',
           borderRadius: '24px',
           boxShadow: 'var(--glass-shadow)',
@@ -154,6 +154,8 @@ const ProjectsModal: React.FC<ProjectsModalProps> = ({ onClose }) => {
         }}
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="glass-flare"></div>
+
         {/* Stationary Close Button */}
         <button
           onClick={onClose}

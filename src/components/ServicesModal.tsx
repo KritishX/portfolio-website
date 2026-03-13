@@ -11,40 +11,40 @@ interface Service {
 
 const services: Service[] = [
   {
-    title: "AI & Machine Learning",
-    description: "Training neural networks to be smarter than us (hopefully). Models so sharp they could navigate Kathmandu's traffic without a GPS.",
+    title: "Autonomous Agents",
+    description: "Engineering AI agents that navigate data with more agility than my Triumph 400cc through KTM rush hour. No 'BSOD' lag allowed under my watch.",
     icon: <Brain size={32} />,
-    tags: ["PyTorch", "TensorFlow", "Computer Vision", "NLP"]
+    tags: ["Agentic AI", "LLM Orchestration", "RL", "Automation"]
   },
   {
-    title: "Full-Stack Development",
-    description: "Building scalable apps that stay up longer than a chiya-fueled coding session. Frontends that sparkle, backends that behave.",
+    title: "Full-Stack Mechatronics",
+    description: "Bridging software and hardware with mechanical precision. Building interfaces so smooth they feel like gaming at 144Hz with zero jitter.",
     icon: <Globe size={32} />,
-    tags: ["React", "TypeScript", "Node.js", "FastAPI"]
+    tags: ["React", "Node.js", ".NET", "Electrical Design"]
   },
   {
-    title: "MLOps & Infrastructure",
-    description: "Automating the boring stuff so you can focus on your momo. Because manual deployments are as slow as a load-shedding schedule.",
+    title: "High-Fidelity AI",
+    description: "Deploying intelligence with the clarity of a lossless FLAC file. Fine-tuning neural outputs until every frequency of data is pitch-perfect.",
     icon: <Cpu size={32} />,
-    tags: ["Docker", "Kubernetes", "AWS", "CI/CD"]
+    tags: ["Audiophile Tech", "Model Tuning", "Precision AI"]
   },
   {
-    title: "Advanced Data Science",
-    description: "Torturing data until it confesses. Turning 'I think' into 'I know' with statistical rigor and more precision than a master momo wrapper.",
+    title: "High-Aperture Data",
+    description: "Focusing on the sharpest insights. Capturing data breakthroughs with more clarity than a wide-angle lens at the top of a mountain pass.",
     icon: <Terminal size={32} />,
-    tags: ["Pandas", "Scikit-Learn", "Feature Engineering"]
+    tags: ["Pandas", "Scikit-Learn", "NumPy", "Photography Tech"]
   },
   {
-    title: "API Design & Integration",
-    description: "Building APIs that developers actually enjoy using. Seamless communication for machines (and humans) across the Himalayas.",
+    title: "Industrial MLOps",
+    description: "Maintaining model health like I maintain my bike—with regular tuning and rigorous mechanical-grade testing environments.",
     icon: <Code size={32} />,
-    tags: ["Microservices", "WebSockets", "FastAPI"]
+    tags: ["Docker", "Git", "Azure", "CI/CD"]
   },
   {
-    title: "AI Integration",
-    description: "Sprinkling a little AI magic on boring legacy software. Turning 'dumb' apps into geniuses faster than a local tea shop serves chiya.",
+    title: "Global AI Integration",
+    description: "Deploying intelligence made in Nepal for everyone. Production-ready software that's more stable than a well-greased sprocket chain.",
     icon: <Smartphone size={32} />,
-    tags: ["LLM Orchestration", "Prompt Engineering"]
+    tags: ["Hugging Face", "FastAPI", "Transformers"]
   }
 ];
 
@@ -119,7 +119,7 @@ const ServicesModal: React.FC<ServicesModalProps> = ({ onClose }) => {
           width: '95%',
           maxWidth: '1000px',
           maxHeight: '85vh',
-          background: 'var(--glass-bg)',
+          background: window.innerWidth < 768 ? 'rgba(255, 255, 255, 0.98)' : 'var(--glass-bg)', // Less transparent on mobile
           border: '1px solid var(--glass-border)',
           borderRadius: '24px',
           boxShadow: 'var(--glass-shadow)',
@@ -131,6 +131,8 @@ const ServicesModal: React.FC<ServicesModalProps> = ({ onClose }) => {
         }}
         onClick={(e) => e.stopPropagation()}
       >
+        <div className="glass-flare"></div>
+
         {/* Stationary Close Button */}
         <button
           onClick={onClose}

@@ -13,8 +13,8 @@ const Projects: React.FC<ProjectsProps> = ({ onViewClick }) => {
     <motion.div 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className="light-box-3d"
+      viewport={{ once: true, amount: 0.2 }}
+      className="light-box-3d float-animation"
       style={{ 
         padding: 'var(--spacing-xl)',
         width: '100%',
@@ -43,7 +43,7 @@ const Projects: React.FC<ProjectsProps> = ({ onViewClick }) => {
         lineHeight: 1.6,
         letterSpacing: '0.01em'
       }}>
-        Forging high-precision AI for heavy-duty industrial systems. Delivering production-ready neural architectures that are more robust than a Himalayan suspension bridge and handle edge-cases better than a Kathmandu tempo driver.
+        Forging AI with more technical torque than a quick-shifter on an open highway. Building neural architectures that handle edge-cases with high-FPS focus and 0ms lag.
       </p>
 
       <div style={{ 
@@ -56,7 +56,7 @@ const Projects: React.FC<ProjectsProps> = ({ onViewClick }) => {
         fontWeight: 800,
         fontSize: '10px'
       }} className="mono-text">
-        EXPLORE_ARCHITECTURES <ArrowRight size={14} />
+        BOOT_PROJECT_SCHEMAS <ArrowRight size={14} />
       </div>
     </motion.div>
   );
