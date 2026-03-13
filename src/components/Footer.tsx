@@ -25,22 +25,22 @@ const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
         }}
       >
         <h2 style={{ 
-          fontSize: 'clamp(24px, 5vw, 48px)', 
+          fontSize: 'clamp(18px, 3.5vw, 32px)', 
           fontWeight: 800, 
           marginBottom: 'var(--spacing-md)', 
           letterSpacing: '-0.04em', 
           color: 'var(--text-main)',
-          lineHeight: 1.1
+          lineHeight: 1.15
         }}>
           Let's compile the next industrial revolution <br /> (and hope the AI doesn't start <br /> demanding its own plate of momo).
         </h2>
         <p style={{ 
           color: 'var(--text-muted)', 
-          marginBottom: 'var(--spacing-xl)', 
-          fontSize: 'clamp(14px, 2.5vw, 18px)', 
-          maxWidth: '600px', 
-          margin: '0 auto var(--spacing-xl) auto', 
-          lineHeight: 1.6 
+          marginBottom: 'var(--spacing-lg)', 
+          fontSize: 'clamp(13px, 2vw, 16px)', 
+          maxWidth: '550px', 
+          margin: '0 auto var(--spacing-lg) auto', 
+          lineHeight: 1.5 
         }}>
           Currently architecting high-fidelity AI/ML ecosystems from Nepal that are engineered for resilience and global scale. Available for technical breakthroughs, research sprints, and industrial-grade collaborations.
         </p>
@@ -83,19 +83,24 @@ const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
         marginTop: 'var(--spacing-xxl)', 
         display: 'flex', 
         justifyContent: 'space-between', 
-        alignItems: 'center', 
+        alignItems: 'flex-end', 
         color: 'var(--text-secondary)', 
-        fontSize: 'clamp(9px, 1.5vw, 11px)', 
+        fontSize: 'clamp(8px, 1.2vw, 10px)', 
         fontWeight: 700,
         gap: '24px',
         flexWrap: 'wrap',
-        width: '100%'
+        width: '100%',
+        opacity: 0.8
       }} className="mono-text">
         <div style={{ flex: '1 1 auto', textAlign: 'left' }}>
           <p>© 2026 KRITISH DHITAL — FULL STACK AI/ML DEVELOPER</p>
-          <p style={{ fontSize: '8px', marginTop: '4px', opacity: 0.6 }}>PROPRIETARY_PLATFORM // PRIVATE_LICENSE_ALL_RIGHTS_RESERVED</p>
+          <p style={{ fontSize: '7px', marginTop: '4px', opacity: 0.5, letterSpacing: '0.05em' }}>
+            PROPRIETARY_PLATFORM // PRIVATE_LICENSE_ALL_RIGHTS_RESERVED
+          </p>
         </div>
-        <p style={{ flex: '1 1 auto', textAlign: 'right' }}>PROUDLY BUILT IN NEPAL</p>
+        <p style={{ flex: '1 1 auto', textAlign: 'right' }} className="animate-flag-text">
+          PROUDLY BUILT IN NEPAL
+        </p>
       </div>
     </footer>
   );

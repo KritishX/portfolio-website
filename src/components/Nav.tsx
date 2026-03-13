@@ -3,9 +3,10 @@ import NepalFlag from './NepalFlag';
 
 interface NavProps {
   onContactClick: () => void;
+  onWorkClick: () => void; // Added work click handler
 }
 
-const Nav: React.FC<NavProps> = ({ onContactClick }) => {
+const Nav: React.FC<NavProps> = ({ onContactClick, onWorkClick }) => {
   return (
     <nav style={{ 
       background: 'var(--glass-bg)', 
@@ -16,12 +17,12 @@ const Nav: React.FC<NavProps> = ({ onContactClick }) => {
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Left-aligned Identity Group */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--spacing-md)' }}>
-          <NepalFlag size={42} />
+          <NepalFlag size={32} />
           <div style={{ 
             fontWeight: 800, 
-            fontSize: '18px', 
-            letterSpacing: '-0.04em', 
-            fontFamily: 'var(--font-display)',
+            fontSize: '14px', 
+            letterSpacing: '0.05em', 
+            fontFamily: 'var(--font-mono)',
             textTransform: 'uppercase',
             color: 'var(--text-main)'
           }}>
@@ -36,39 +37,57 @@ const Nav: React.FC<NavProps> = ({ onContactClick }) => {
           fontSize: '11px', 
           fontWeight: 700
         }}>
-          <a 
-            href="#projects" 
+          <button 
+            onClick={onWorkClick}
             style={{ 
               color: 'var(--text-main)', 
               textDecoration: 'none', 
               opacity: 0.8, 
-              borderBottom: '1.5px solid var(--text-main)',
+              border: 'none',
+              background: 'transparent',
+              borderBottom: '1.5px solid transparent', 
               paddingBottom: '2px',
-              transition: 'opacity 0.3s var(--ease-premium)' 
+              cursor: 'pointer',
+              fontSize: '11px',
+              fontWeight: 700,
+              fontFamily: 'inherit',
+              transition: 'all 0.3s var(--ease-premium)' 
             }} 
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '1'} 
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '0.8'}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.borderBottomColor = 'var(--text-main)';
+            }} 
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.8';
+              e.currentTarget.style.borderBottomColor = 'transparent';
+            }}
           >
             01_WORK
-          </a>
+          </button>
           <button 
             onClick={onContactClick}
             style={{ 
               color: 'var(--text-main)', 
               textDecoration: 'none', 
               border: 'none',
-              borderBottom: '1.5px solid var(--text-main)', 
+              borderBottom: '1.5px solid transparent', 
               paddingBottom: '2px',
               background: 'transparent',
               cursor: 'pointer',
               fontSize: '11px',
               fontWeight: 700,
               fontFamily: 'inherit',
-              transition: 'opacity 0.3s var(--ease-premium)',
+              transition: 'all 0.3s var(--ease-premium)',
               opacity: 0.8
             }}
-            onMouseEnter={(e) => e.currentTarget.style.opacity = '1'} 
-            onMouseLeave={(e) => e.currentTarget.style.opacity = '0.8'}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.borderBottomColor = 'var(--text-main)';
+            }} 
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.8';
+              e.currentTarget.style.borderBottomColor = 'transparent';
+            }}
           >
             02_CONTACT
           </button>

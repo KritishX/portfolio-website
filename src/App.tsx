@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import './Global.css';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
@@ -12,10 +12,11 @@ import ProjectsModal from './components/ProjectsModal';
 import NeuralBackground from './components/NeuralBackground';
 import VoidShader from './components/VoidShader';
 import CustomCursor from './components/CustomCursor';
-import { motion, useScroll, useSpring } from 'framer-motion';
+import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
   const [activeModal, setActiveModal] = useState<'contact' | 'services' | 'projects' | null>(null);
+  const workSectionRef = useRef<HTMLDivElement>(null);
   
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {
@@ -25,6 +26,10 @@ const App: React.FC = () => {
   });
 
   const closeModals = () => setActiveModal(null);
+
+  const scrollToWork = () => {
+    workSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   // Deep Bug Fix: Prevent background scroll when modal is open
   React.useEffect(() => {
@@ -60,20 +65,35 @@ const App: React.FC = () => {
 
       {/* UI Content Layer */}
       <div id="ui-root">
-        <Nav onContactClick={() => setActiveModal('contact')} />
+        <Nav 
+          onContactClick={() => setActiveModal('contact')} 
+          onWorkClick={scrollToWork} 
+        />
         <main>
-          <Hero onContactClick={() => setActiveModal('contact')} />
+          <Hero 
+            onContactClick={() => setActiveModal('contact')} 
+            onWorkClick={scrollToWork} 
+          />
           <TechStack />
-          <Services onViewClick={() => setActiveModal('services')} />
-          <Projects onViewClick={() => setActiveModal('projects')} />
+          <div ref={workSectionRef} className="container" style={{ 
+            display: 'grid', 
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(300px, 100%), 1fr))', 
+            gap: 'var(--spacing-lg)',
+            padding: 'var(--spacing-huge) 0'
+          }}>
+            <Services onViewClick={() => setActiveModal('services')} />
+            <Projects onViewClick={() => setActiveModal('projects')} />
+          </div>
         </main>
         <Footer onContactClick={() => setActiveModal('contact')} />
       </div>
 
-      {/* Modals */}
-      <Contact isOpen={activeModal === 'contact'} onClose={closeModals} />
-      <ServicesModal isOpen={activeModal === 'services'} onClose={closeModals} />
-      <ProjectsModal isOpen={activeModal === 'projects'} onClose={closeModals} />
+      {/* Modals wrapped in AnimatePresence for reliability */}
+      <AnimatePresence>
+        {activeModal === 'contact' && <Contact onClose={closeModals} />}
+        {activeModal === 'services' && <ServicesModal onClose={closeModals} />}
+        {activeModal === 'projects' && <ProjectsModal onClose={closeModals} />}
+      </AnimatePresence>
     </div>
   );
 };

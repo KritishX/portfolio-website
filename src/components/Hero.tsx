@@ -5,9 +5,10 @@ import profileImage from '../assets/profile.jpg';
 
 interface HeroProps {
   onContactClick: () => void;
+  onWorkClick: () => void;
 }
 
-const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
+const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
   const [computedText, setComputedText] = useState("");
   const fullText = "Kritish Dhital.";
   
@@ -119,11 +120,11 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         <h1
           aria-label="Kritish Dhital"
           style={{ 
-            fontSize: 'clamp(42px, 8vw, 96px)', 
+            fontSize: 'clamp(38px, 7vw, 84px)', 
             fontWeight: 800, 
-            lineHeight: 0.95, 
-            marginBottom: 'var(--spacing-xl)', 
-            letterSpacing: '-0.06em',
+            lineHeight: 1, 
+            marginBottom: 'var(--spacing-lg)', 
+            letterSpacing: '-0.04em',
             color: 'var(--text-main)',
             wordBreak: 'break-word',
             textAlign: 'center'
@@ -139,10 +140,10 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
           style={{ 
-            fontSize: 'clamp(16px, 2vw, 22px)', 
+            fontSize: 'clamp(15px, 1.8vw, 18px)', 
             color: 'var(--text-muted)', 
-            marginBottom: 'var(--spacing-xxl)', 
-            maxWidth: '750px', 
+            marginBottom: 'var(--spacing-xl)', 
+            maxWidth: '650px', 
             lineHeight: 1.5, 
             fontWeight: 400, 
             letterSpacing: '-0.01em',
@@ -157,11 +158,22 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-          style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap', justifyContent: 'center' }}
+          style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}
         >
-          <a href="#projects" className="btn-primary" style={{ background: 'var(--nepal-blue)', padding: 'clamp(14px, 3vw, 20px) clamp(32px, 6vw, 56px)' }}>
+          <button 
+            onClick={onWorkClick}
+            className="btn-primary" 
+            style={{ 
+              background: 'var(--nepal-blue)', 
+              padding: '12px 40px', 
+              fontSize: '13px',
+              borderRadius: '100px',
+              border: 'none',
+              cursor: 'pointer'
+            }}
+          >
             Initialize_Work
-          </a>
+          </button>
           <button 
             onClick={onContactClick}
             className="btn-secondary mono-text"
@@ -169,8 +181,11 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
               cursor: 'pointer', 
               borderColor: 'var(--nepal-crimson)', 
               color: 'var(--nepal-crimson)',
-              borderWidth: '2px',
-              padding: 'clamp(14px, 3vw, 20px) clamp(32px, 6vw, 56px)'
+              borderWidth: '1.5px',
+              padding: '12px 40px',
+              fontSize: '10px',
+              borderRadius: '100px',
+              background: 'transparent'
             }}
           >
             &gt; collaborator_uplink
