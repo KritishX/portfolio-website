@@ -2,11 +2,10 @@ import React from 'react';
 import NepalFlag from './NepalFlag';
 
 interface NavProps {
-  onContactClick: () => void;
   onWorkClick: () => void; // Added work click handler
 }
 
-const Nav: React.FC<NavProps> = ({ onContactClick, onWorkClick }) => {
+const Nav: React.FC<NavProps> = ({ onWorkClick }) => {
   return (
     <nav style={{ 
       background: 'var(--glass-bg)', 

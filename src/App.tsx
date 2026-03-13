@@ -65,16 +65,15 @@ const App: React.FC = () => {
       <NeuralBackground />
       <CustomCursor />
       
-      {/* Temporarily removed scroll bar for debugging */}
-      {/* <motion.div 
+      {/* Scroll Progress Bar */}
+      <motion.div 
         className="scroll-progress-bar"
         style={{ scaleX }} 
-      /> */}
+      />
 
       {/* UI Content Layer */}
       <div id="ui-root">
         <Nav 
-          onContactClick={() => setActiveModal('contact')} 
           onWorkClick={scrollToWork} 
         />
         <main>

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, FileText, ShieldAlert, Activity } from 'lucide-react';
+import { Mail, FileText, ShieldAlert } from 'lucide-react';
 
 const NetworkMonitor: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
