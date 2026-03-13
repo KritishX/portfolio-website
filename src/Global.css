@@ -17,12 +17,13 @@
   --teal: #50e3c2;
 
   /* macOS Liquid Glass Material System */
-  --glass-bg: rgba(255, 255, 255, 0.45);
-  --glass-border: rgba(255, 255, 255, 0.7);
-  --glass-blur: blur(25px);
-  --glass-shadow: 
-    0 8px 32px 0 rgba(31, 38, 135, 0.04),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.4);
+    --glass-bg: rgba(255, 255, 255, 0.85); /* Significantly less transparent */
+    --glass-border: rgba(255, 255, 255, 0.9);
+    --glass-blur: blur(30px);
+    --glass-shadow: 
+      0 8px 32px 0 rgba(31, 38, 135, 0.06),
+      inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+
   
   /* Polished 3D Material System - Liquid Glass Update */
   --card-bg: var(--glass-bg);

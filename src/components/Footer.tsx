@@ -32,7 +32,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick }) => {
           color: 'var(--text-main)',
           lineHeight: 1.1
         }}>
-          Let's compile the next industrial revolution <br /> (and hope the AI doesn't start <br /> demanding its own plate of momos).
+          Let's compile the next industrial revolution <br /> (and hope the AI doesn't start <br /> demanding its own plate of momo).
         </h2>
         <p style={{ 
           color: 'var(--text-muted)', 

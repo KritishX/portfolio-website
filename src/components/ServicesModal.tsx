@@ -24,7 +24,7 @@ const services: Service[] = [
   },
   {
     title: "MLOps & Infrastructure",
-    description: "Automating the boring stuff so you can focus on your momos. Because manual deployments are as slow as a load-shedding schedule.",
+    description: "Automating the boring stuff so you can focus on your momo. Because manual deployments are as slow as a load-shedding schedule.",
     icon: <Cpu size={32} />,
     tags: ["Docker", "Kubernetes", "AWS", "CI/CD"]
   },
