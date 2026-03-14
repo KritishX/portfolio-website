@@ -1,16 +1,15 @@
-# Website Portfolio | Kritish Dhital
+# KritishX | Website Portfolio
 
-An ultra-refined, architectural portfolio for a Full Stack AI/ML Developer. Designed with a focus on depth, precision, and modern aesthetics, this project showcases end-to-end AI/ML ecosystems through a sophisticated, 3D-inspired interface.
+An ultra-refined, high-fidelity architectural portfolio for a Full Stack AI/ML Developer. Designed with a focus on depth, precision, and "Hyper Alive" aesthetics, this project showcases end-to-end AI/ML ecosystems through a sophisticated, 3D-inspired interface grounded in Nepalese culture.
 
 ## 🚀 Key Features
 
-- **Architectural Design**: A clean, light-mode palette inspired by premium industrial design (Apple-style aesthetics).
-- **3D Material System**: Interactive project cards with glassmorphism, depth-of-field effects, and multi-layered shadows.
-- **Background Engine**:
-  - **Void Shader**: A custom GLSL-powered background for deep atmospheric texture.
-  - **Neural Network Canvas**: Interactive particle system representing neural pathways.
-- **Custom Interaction**: Minimalist custom cursor with mix-blend-mode for precision navigation.
-- **Responsive Core**: Fully adaptive layout utilizing a flexible spacing system and clamped typography for all screen sizes.
+- **Hyper Alive System**: A high-tech loading sequence featuring intricate, sacred geometry Mandalas and majestic Mt. Everest silhouettes that initialize the "KritishX_OS" environment.
+- **Interconnected Neural Mesh**: A sophisticated "All-to-All" particle network that reacts dynamically to cursor movements with magnetic attraction and organic, distance-based connection materialization.
+- **System Status HUD**: A real-time diagnostic widget displaying precise cursor coordinates, local Kathmandu (KTM) timestamp, and uplink synchronization status.
+- **Himalayan Data Streams**: Subtle falling binary code drifts reflecting the digital pulse of high-altitude engineering.
+- **macOS Material System**: High-end glassmorphism using fluid materials, 40px blurs, and architectural spacing systems.
+- **Responsive Core**: Fully optimized for both laptop and mobile, featuring adaptive layouts and device-specific performance tuning for background animations.
 
 ## 🛠 Tech Stack
 
@@ -19,56 +18,54 @@ An ultra-refined, architectural portfolio for a Full Stack AI/ML Developer. Desi
 - **Animation**: [Framer Motion](https://www.framer.com/motion/)
 - **Icons**: [Lucide React](https://lucide.dev/)
 - **Build Tool**: [Vite 8](https://vitejs.dev/)
-- **Styling**: Vanilla CSS with a centralized variable system.
+- **Styling**: Vanilla CSS with a centralized liquid material variable system.
 
 ## 📁 Project Structure
 
 ```text
 src/
-├── components/          # Reusable UI modules
-│   ├── CustomCursor.tsx # Precision cursor system
-│   ├── Hero.tsx         # Typing effect & landing introduction
-│   ├── Projects.tsx     # 3D Material-based project showcase
-│   ├── Nav.tsx          # Glass-blurred navigation
-│   └── Footer.tsx       # Collaborative uplink & contact portal
-├── Global.css           # Design system variables & architectural styles
-└── App.tsx              # Application layout & scroll orchestration
+├── components/          # High-fidelity UI modules
+│   ├── BootSequence.tsx # Mandala & Everest initialization
+│   ├── NeuralBackground.tsx # All-to-All interconnected mesh
+│   ├── SystemStatus.tsx # Real-time HUD diagnostics
+│   ├── DataStream.tsx   # Himalayan binary pulse
+│   ├── TechStack.tsx    # Marquee-based skill inventory
+│   ├── TechStackModal.tsx # Full-stack diagnostic inventory
+│   ├── Nav.tsx          # Glass-blurred navigation architecture
+│   └── Footer.tsx       # Live uplink & network monitor
+├── Global.css           # Architectural material system & design tokens
+└── App.tsx              # Root OS orchestration & state management
 ```
 
 ## ⚙️ Getting Started
 
 ### 1. Prerequisites
-Ensure you have [Node.js](https://nodejs.org/) installed on your machine.
+Ensure you have [Node.js](https://nodejs.org/) installed.
 
 ### 2. Installation
-Clone the repository and install the dependencies:
 ```bash
 npm install
 ```
 
 ### 3. Development
-Start the development server:
 ```bash
 npm run dev
 ```
-The application will be available at `http://localhost:5173`.
 
 ### 4. Production Build
-To create an optimized production build:
 ```bash
 npm run build
 ```
-The output will be generated in the `dist/` directory.
 
 ## 🎨 Design Philosophy
 
-This portfolio follows a **"Code-First, Aesthetic-Second"** philosophy. Every interaction is designed to reflect the precision required in AI engineering. 
+This portfolio follows a **"Hyper-Realism & Cultural Integrity"** philosophy. Every interaction is designed to feel alive, reflecting the precision required in AI engineering while honoring the heritage of Nepal.
 
-- **Spacing**: Rigid 8px/4px based system (`--spacing-sm` through `--spacing-xxl`).
-- **Typography**: High-end font selection using **Syne** for display and **Space Grotesk** for body, balanced with **JetBrains Mono** for technical data.
-- **Feedback**: Immediate, tactile response on all interactive elements via Framer Motion.
+- **Typography**: Optimized for clarity and impact using **Inter Tight** for high-end architectural display and **JetBrains Mono** for technical telemetry.
+- **Motion**: Physics-based friction and easing curves (`--ease-premium`) ensure that every transition feels weighted and intentional.
+- **Density**: Adaptive particle and connection counts ensure a "Full Mesh" visual experience across all hardware categories.
 
 ## 📜 License
-© 2026 KRITISH DHITAL. Proudly Built in Nepal.
+© 2026 KRITISH DHITAL. Made in Nepal for Everyone.
 
-**PRIVATE_LICENSE**: This project is proprietary. All rights reserved. Unauthorized copying, modification, or distribution of this code via any medium is strictly prohibited. For inquiries regarding use or collaboration, please use the contact uplink provided in the platform.
+**PRIVATE_LICENSE**: This project is proprietary. All rights reserved. Unauthorized cloning, reverse-engineering, or distribution of this code is strictly prohibited.
