@@ -40,7 +40,7 @@ const NetworkMonitor: React.FC = () => {
       ctx.fill();
 
       ctx.beginPath();
-      ctx.strokeStyle = 'rgba(0, 56, 147, 0.15)';
+      ctx.strokeStyle = 'rgba(0, 56, 147, 0.12)';
       ctx.lineWidth = 1;
       for (let i = 0; i < pointsSecondary.length; i++) {
         const x = (i / (pointsSecondary.length - 1)) * canvas.width;
@@ -50,7 +50,7 @@ const NetworkMonitor: React.FC = () => {
 
       ctx.beginPath();
       ctx.strokeStyle = 'var(--nepal-blue)';
-      ctx.lineWidth = 1.5;
+      ctx.lineWidth = 1.2;
       ctx.lineJoin = 'round';
       for (let i = 0; i < points.length; i++) {
         const x = (i / (points.length - 1)) * canvas.width;
@@ -64,6 +64,7 @@ const NetworkMonitor: React.FC = () => {
       ctx.fillStyle = 'var(--nepal-crimson)';
       ctx.arc(headX, headY, 2, 0, Math.PI * 2);
       ctx.fill();
+      ctx.closePath();
 
       animationId = requestAnimationFrame(animate);
     };
@@ -89,9 +90,9 @@ const NetworkMonitor: React.FC = () => {
       </div>
       <canvas 
         ref={canvasRef} 
-        width={100} 
-        height={30} 
-        style={{ width: '100px', height: '30px', borderLeft: '1px solid var(--border-line)' }} 
+        width={80} 
+        height={25} 
+        style={{ width: '80px', height: '25px', borderLeft: '1px solid var(--border-line)' }} 
       />
     </div>
   );
@@ -115,14 +116,14 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onTermsClick, onPrivacy
   }, []);
 
   return (
-    <footer className="container" style={{ padding: 'var(--spacing-xxl) 0 var(--spacing-xl) 0' }}>
+    <footer className="container" style={{ padding: 'var(--spacing-xxl) 0 var(--spacing-xl) 0', position: 'relative', zIndex: 50 }}>
       <motion.div
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         style={{ 
           background: 'var(--glass-bg)', 
-          borderRadius: '24px', 
+          borderRadius: '32px', 
           padding: isMobile ? '40px 24px' : 'var(--spacing-xxl) var(--spacing-xl)', 
           textAlign: 'center',
           border: '1px solid var(--border-line)',
@@ -132,7 +133,7 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onTermsClick, onPrivacy
         }}
       >
         <h2 className="stagger-in" style={{ 
-          fontSize: 'clamp(20px, 4vw, 32px)', 
+          fontSize: 'clamp(20px, 4.5vw, 36px)', 
           fontWeight: 800, 
           marginBottom: 'var(--spacing-md)', 
           letterSpacing: '-0.04em', 
@@ -152,24 +153,24 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onTermsClick, onPrivacy
           Engineering AI ecosystems from Nepal that scale globally. Available for high-impact research and industrial deployments.
         </p>
         
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '16px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '20px' }}>
           <button 
             onClick={onContactClick}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             style={{ 
-              padding: '14px 44px', 
+              padding: '16px 48px', 
               borderRadius: '100px',
               textDecoration: 'none',
               color: isHovered ? 'transparent' : 'var(--text-main)',
-              fontSize: '14px',
+              fontSize: '15px',
               fontWeight: 700,
               display: 'flex',
               alignItems: 'center',
               gap: '12px',
-              background: 'rgba(0,0,0,0.02)',
+              background: 'rgba(0,0,0,0.03)',
               border: '1px solid var(--border-line)',
-              transition: 'all 0.3s var(--ease-premium)',
+              transition: 'all 0.4s var(--ease-premium)',
               cursor: 'pointer',
               fontFamily: 'inherit',
               whiteSpace: 'nowrap'
@@ -177,11 +178,11 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onTermsClick, onPrivacy
           >
             <div className={isHovered ? "animate-flag-text" : ""} style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
               <Mail size={18} color={isHovered ? "var(--nepal-blue)" : "currentColor"} /> 
-              Get In Touch
+              GET_IN_TOUCH_ [REPLY_SPEED: &gt; GPU]
             </div>
           </button>
 
-          <div style={{ display: 'flex', gap: '20px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '8px' }}>
+          <div style={{ display: 'flex', gap: '24px', flexWrap: 'wrap', justifyContent: 'center', marginTop: '8px' }}>
             <button 
               onClick={onTermsClick}
               className="mono-text"
@@ -190,11 +191,12 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onTermsClick, onPrivacy
                 border: 'none', 
                 cursor: 'pointer', 
                 fontSize: '9px', 
-                color: 'var(--text-secondary)',
+                color: 'var(--text-main)',
+                fontWeight: 800,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
-                opacity: 0.7
+                opacity: 0.8
               }}
             >
               <FileText size={12} /> TERMS
@@ -207,11 +209,12 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onTermsClick, onPrivacy
                 border: 'none', 
                 cursor: 'pointer', 
                 fontSize: '9px', 
-                color: 'var(--text-secondary)',
+                color: 'var(--text-main)',
+                fontWeight: 800,
                 display: 'flex',
                 alignItems: 'center',
                 gap: '6px',
-                opacity: 0.7
+                opacity: 0.8
               }}
             >
               <ShieldAlert size={12} /> PRIVACY
@@ -220,36 +223,39 @@ const Footer: React.FC<FooterProps> = ({ onContactClick, onTermsClick, onPrivacy
         </div>
       </motion.div>
       
+      {/* Refined Mobile Footer: Left & Right Balanced */}
       <div style={{ 
         marginTop: 'var(--spacing-xxl)', 
         display: 'flex', 
-        flexDirection: isMobile ? 'column' : 'row',
+        flexDirection: isMobile ? 'row' : 'row', // Force row on mobile too
         justifyContent: 'space-between', 
-        alignItems: isMobile ? 'flex-start' : 'flex-end', 
+        alignItems: 'flex-end', 
         color: 'var(--text-secondary)', 
         fontSize: '10px', 
         fontWeight: 700,
-        gap: isMobile ? '24px' : '20px',
         width: '100%',
         opacity: 0.8,
         position: 'relative',
         zIndex: 100,
-        textAlign: 'left' // Always left aligned
+        textAlign: 'left'
       }} className="mono-text">
-        <div style={{ display: 'flex', flexDirection: isMobile ? 'column' : 'row', alignItems: isMobile ? 'flex-start' : 'flex-end', gap: isMobile ? '16px' : '32px' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '6px', maxWidth: isMobile ? '65%' : 'auto' }}>
           <div className="easter-egg-trigger" style={{ cursor: 'pointer' }}>
-            <p style={{ fontWeight: 800, fontSize: '11px', display: 'flex', alignItems: 'center', gap: '6px', justifyContent: 'flex-start', color: 'var(--text-main)' }}>
-              <span style={{ fontSize: '16px', lineHeight: 1 }}>©</span> 2026 <span className="hover-highlight">Kritish Dhital</span>
+            <p style={{ fontWeight: 900, fontSize: isMobile ? '10px' : '12px', display: 'flex', alignItems: 'center', gap: '6px', color: 'var(--text-main)', letterSpacing: '0.05em' }}>
+              <span style={{ fontSize: isMobile ? '14px' : '18px', lineHeight: 1 }}>©</span> 2026 KRITISH DHITAL
             </p>
-            <p style={{ fontSize: '8px', marginTop: '6px', opacity: 0.6, letterSpacing: '0.08em' }}>
+            <p style={{ fontSize: '7px', marginTop: '4px', opacity: 0.6, letterSpacing: '0.05em' }}>
               MADE IN NEPAL FOR EVERYONE
             </p>
           </div>
+          <p style={{ opacity: 0.4, fontSize: '7px', letterSpacing: '0.08em' }}>
+            PROUDLY BUILT IN NEPAL
+          </p>
+        </div>
+
+        <div style={{ display: 'flex', alignItems: 'center', scale: isMobile ? '0.85' : '1', transformOrigin: 'right bottom' }}>
           <NetworkMonitor />
         </div>
-        <p style={{ opacity: 0.4, fontSize: '8px', letterSpacing: '0.1em' }}>
-          PROUDLY BUILT IN NEPAL
-        </p>
       </div>
     </footer>
   );

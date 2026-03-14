@@ -12,16 +12,16 @@ import ServicesModal from './components/ServicesModal';
 import ProjectsModal from './components/ProjectsModal';
 import TermsModal from './components/TermsModal';
 import PrivacyModal from './components/PrivacyModal';
+import TechStackModal from './components/TechStackModal';
 import NeuralBackground from './components/NeuralBackground';
 import VoidShader from './components/VoidShader';
-import CustomCursor from './components/CustomCursor';
 import BootSequence from './components/BootSequence';
 import SystemStatus from './components/SystemStatus';
 import DataStream from './components/DataStream';
-import { motion, useScroll, useSpring, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 const App: React.FC = () => {
-  const [activeModal, setActiveModal] = useState<'contact' | 'services' | 'projects' | 'terms' | 'privacy' | null>(null);
+  const [activeModal, setActiveModal] = useState<'contact' | 'services' | 'projects' | 'terms' | 'privacy' | 'techstack' | null>(null);
   const workSectionRef = useRef<HTMLDivElement>(null);
 
   // Hyper Alive: Single Static Tab Title
@@ -29,13 +29,6 @@ const App: React.FC = () => {
     document.title = "RETICLEX // KRITISH DHITAL";
   }, []);
   
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
   const closeModals = () => setActiveModal(null);
 
   const scrollToWork = () => {
@@ -63,25 +56,19 @@ const App: React.FC = () => {
       {/* Fixed Background Layers */}
       <VoidShader />
       <NeuralBackground />
-      <CustomCursor />
       
-      {/* Scroll Progress Bar */}
-      <motion.div 
-        className="scroll-progress-bar"
-        style={{ scaleX }} 
-      />
-
       {/* UI Content Layer */}
       <div id="ui-root">
         <Nav 
           onWorkClick={scrollToWork} 
+          onContactClick={() => setActiveModal('contact')}
         />
         <main>
           <Hero 
             onContactClick={() => setActiveModal('contact')} 
             onWorkClick={scrollToWork} 
           />
-          <TechStack />
+          <TechStack onViewFull={() => setActiveModal('techstack')} />
           <WhyChooseMe />
           
           <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-lg)' }}>
@@ -120,6 +107,7 @@ const App: React.FC = () => {
         {activeModal === 'projects' && <ProjectsModal onClose={closeModals} />}
         {activeModal === 'terms' && <TermsModal onClose={closeModals} />}
         {activeModal === 'privacy' && <PrivacyModal onClose={closeModals} />}
+        {activeModal === 'techstack' && <TechStackModal onClose={closeModals} />}
       </AnimatePresence>
     </div>
   );

@@ -25,7 +25,7 @@ const WhyChooseMe: React.FC = () => {
           // CORE_PHILOSOPHY
         </span>
         <h2 className="stagger-in" style={{ fontSize: 'clamp(24px, 4vw, 36px)', color: 'var(--text-main)', marginTop: 'var(--spacing-xs)' }}>
-          Why Collaborate with ReticleX?
+          Why Collaborate with KritishX?
         </h2>
       </div>
 

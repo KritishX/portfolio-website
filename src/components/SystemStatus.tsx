@@ -44,7 +44,7 @@ const SystemStatus: React.FC = () => {
         position: 'fixed',
         bottom: '24px',
         right: '24px',
-        zIndex: 5000,
+        zIndex: 4000,
         flexDirection: 'column',
         gap: '4px',
         pointerEvents: 'none',

@@ -111,7 +111,8 @@ nav {
   background: rgba(255, 255, 255, 0.7);
   backdrop-filter: var(--glass-blur);
   -webkit-backdrop-filter: var(--glass-blur);
-  border-bottom: 1px solid var(--border-line);
+  border: none !important;
+  box-shadow: none !important;
 }
 
 .container {
@@ -309,4 +310,52 @@ p {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
+}
+
+/* Scroll Progress Bar Styling */
+.scroll-progress-bar {
+  display: none !important;
+}
+
+.glass-flare {
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: skewX(-25deg);
+  transition: 0.75s;
+  pointer-events: none;
+}
+
+.light-box-3d:hover .glass-flare {
+  left: 200%;
+}
+
+/* Custom Cursor Styles */
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100002;
+}
+
+.cursor-glow {
+  position: fixed;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 100001;
+  filter: blur(80px);
 }

@@ -220,7 +220,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
                 width: '100%'
               }}
             >
-              &gt; ESTABLISH_UPLINK
+              &gt; GET_IN_TOUCH_ [REPLY_SPEED: &gt; GPU]
             </button>
           </MagneticButton>
         </motion.div>

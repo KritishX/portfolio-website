@@ -64,7 +64,7 @@ const TermsModal: React.FC<TermsModalProps> = ({ onClose }) => {
           <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', fontSize: '14px', lineHeight: 1.6 }}>
             <section>
               <h3 style={{ fontSize: '18px', marginBottom: '8px', color: 'var(--text-main)' }}>1. Protocol Initiation</h3>
-              <p>By establishing a connection to this platform (ReticleX / kritishdhital.com), you acknowledge and agree to these operational protocols. If you do not consent to these system rules, please terminate your session immediately.</p>
+              <p>By establishing a connection to this platform (KritishX / kritishdhital.com), you acknowledge and agree to these operational protocols. If you do not consent to these system rules, please terminate your session immediately.</p>
             </section>
 
             <section>
@@ -79,7 +79,7 @@ const TermsModal: React.FC<TermsModalProps> = ({ onClose }) => {
 
             <section>
               <h3 style={{ fontSize: '18px', marginBottom: '8px', color: 'var(--text-main)' }}>4. External Uplinks</h3>
-              <p>Our platform contains data-bridges to external nodes (GitHub, LinkedIn, etc.). Once you leave the ReticleX core system, I am no longer responsible for the safety protocols of those third-party environments.</p>
+              <p>Our platform contains data-bridges to external nodes (GitHub, LinkedIn, etc.). Once you leave the KritishX core system, I am no longer responsible for the safety protocols of those third-party environments.</p>
             </section>
 
             <section>
@@ -105,9 +105,10 @@ const TermsModal: React.FC<TermsModalProps> = ({ onClose }) => {
         </div>
 
         {/* Footer */}
-        <div style={{ padding: '16px 24px', background: 'rgba(0,0,0,0.02)', borderTop: '1px solid var(--border-line)', textAlign: 'center' }}>
-          <p className="mono-text" style={{ fontSize: '10px' }}>BY_USING_THIS_PLATFORM_YOU_AGREE_TO_THE_STATED_PROTOCOLS</p>
+        <div style={{ padding: '16px 20px', background: 'rgba(0,0,0,0.02)', borderTop: '1px solid var(--border-line)', textAlign: 'center' }}>
+          <p className="mono-text" style={{ fontSize: 'clamp(7px, 2vw, 9px)', lineHeight: 1.4, opacity: 0.6 }}>BY_USING_THIS_PLATFORM_YOU_AGREE_TO_THE_STATED_PROTOCOLS</p>
         </div>
+
       </motion.div>
     </motion.div>
   );

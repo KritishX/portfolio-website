@@ -74,7 +74,7 @@ const PrivacyModal: React.FC<PrivacyModalProps> = ({ onClose }) => {
 
             <section>
               <h3 style={{ fontSize: '18px', marginBottom: '8px', color: 'var(--text-main)' }}>3. Zero-Leak Policy</h3>
-              <p>I do not sell, trade, or leak your personal data packets to third-party commercial entities. Your information is treated as high-security intellectual property, accessible only by the ReticleX core system.</p>
+              <p>I do not sell, trade, or leak your personal data packets to third-party commercial entities. Your information is treated as high-security intellectual property, accessible only by the KritishX core system.</p>
             </section>
 
             <section>
@@ -84,12 +84,12 @@ const PrivacyModal: React.FC<PrivacyModalProps> = ({ onClose }) => {
 
             <section>
               <h3 style={{ fontSize: '18px', marginBottom: '8px', color: 'var(--text-main)' }}>5. External Node Privacy</h3>
-              <p>Links to GitHub, LinkedIn, or other professional nodes operate under their own privacy protocols. Once you bridge to these external platforms, the ReticleX privacy shield is no longer active.</p>
+              <p>Links to GitHub, LinkedIn, or other professional nodes operate under their own privacy protocols. Once you bridge to these external platforms, the KritishX privacy shield is no longer active.</p>
             </section>
 
             <section>
               <h3 style={{ fontSize: '18px', marginBottom: '8px', color: 'var(--text-main)' }}>6. User Rights & Access</h3>
-              <p>You maintain full ownership of your data packets. You have the right to request a complete data wipe or a summary of any information stored within the ReticleX node. To initiate this protocol, contact the developer directly.</p>
+              <p>You maintain full ownership of your data packets. You have the right to request a complete data wipe or a summary of any information stored within the KritishX node. To initiate this protocol, contact the developer directly.</p>
             </section>
 
             <section>
@@ -100,8 +100,8 @@ const PrivacyModal: React.FC<PrivacyModalProps> = ({ onClose }) => {
         </div>
 
         {/* Footer */}
-        <div style={{ padding: '16px 24px', background: 'rgba(0,0,0,0.02)', borderTop: '1px solid var(--border-line)', textAlign: 'center' }}>
-          <p className="mono-text" style={{ fontSize: '10px' }}>PROTECTING_YOUR_DIGITAL_IDENTITY_IS_MY_STANDARD</p>
+        <div style={{ padding: '16px 20px', background: 'rgba(0,0,0,0.02)', borderTop: '1px solid var(--border-line)', textAlign: 'center' }}>
+          <p className="mono-text" style={{ fontSize: 'clamp(7px, 2vw, 9px)', lineHeight: 1.4, opacity: 0.6 }}>PROTECTING_YOUR_DIGITAL_IDENTITY_IS_MY_STANDARD</p>
         </div>
       </motion.div>
     </motion.div>

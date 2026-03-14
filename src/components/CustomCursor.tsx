@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const CustomCursor: React.FC = () => {
-  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
@@ -17,29 +17,26 @@ const CustomCursor: React.FC = () => {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
+  const isVisible = position.x >= 0 && position.y >= 0;
+
+  if (!isVisible) return null;
+
   return (
-    <>
-      <div 
-        className="cursor-glow" 
-        style={{ 
-          left: `${position.x}px`, 
-          top: `${position.y}px`,
-          transform: `translate(-50%, -50%) scale(${isHovering ? 1.5 : 1})`,
-          opacity: isHovering ? 0.3 : 0.15,
-          background: isHovering ? 'var(--nepal-blue)' : 'var(--text-main)',
-          transition: 'transform 0.3s ease, background 0.3s ease, opacity 0.3s ease'
-        }} 
-      />
+    <div style={{ display: isVisible ? 'block' : 'none' }}>
       <div 
         className="custom-cursor" 
         style={{ 
-          transform: `translate(${position.x - 6}px, ${position.y - 6}px) scale(${isHovering ? 2.5 : 1})`,
-          border: isHovering ? '1.5px solid var(--nepal-crimson)' : 'none',
-          background: isHovering ? 'transparent' : 'var(--text-main)',
-          transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s, border 0.2s'
+          transform: `translate(${position.x - 3}px, ${position.y - 3}px) scale(${isHovering ? 2 : 1})`,
+          width: '6px',
+          height: '6px',
+          background: isHovering ? 'var(--nepal-crimson)' : 'var(--nepal-blue)',
+          borderRadius: '50%',
+          transition: 'transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), background 0.2s',
+          pointerEvents: 'none',
+          boxShadow: isHovering ? '0 0 8px var(--nepal-crimson)' : 'none'
         }} 
       />
-    </>
+    </div>
   );
 };
 

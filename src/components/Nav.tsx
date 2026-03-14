@@ -2,18 +2,21 @@ import React from 'react';
 import NepalFlag from './NepalFlag';
 
 interface NavProps {
-  onWorkClick: () => void; // Added work click handler
+  onWorkClick: () => void; 
+  onContactClick: () => void;
 }
 
-const Nav: React.FC<NavProps> = ({ onWorkClick }) => {
+const Nav: React.FC<NavProps> = ({ onWorkClick, onContactClick }) => {
   return (
     <nav style={{ 
       background: 'var(--glass-bg)', 
       backdropFilter: 'var(--glass-blur)', 
       WebkitBackdropFilter: 'var(--glass-blur)',
-      borderBottom: '1px solid var(--border-line)',
+      borderBottom: 'none',
+      boxShadow: 'none', // Removed any potential shadow
       position: 'relative',
-      overflow: 'hidden'
+      overflow: 'hidden', // Contain the glass-flare
+      zIndex: 100000
     }}>
       <div className="glass-flare"></div>
       <div className="container" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
@@ -29,7 +32,7 @@ const Nav: React.FC<NavProps> = ({ onWorkClick }) => {
             fontFamily: 'var(--font-mono)',
             paddingTop: '2px' 
           }}>
-            ReticleX
+            KritishX
           </div>
         </div>
 
@@ -69,6 +72,37 @@ const Nav: React.FC<NavProps> = ({ onWorkClick }) => {
             }}
           >
             01_BLUEPRINT
+          </button>
+
+          <button 
+            onClick={(e) => {
+              e.stopPropagation();
+              onContactClick();
+            }}
+            style={{ 
+              color: 'var(--text-main)', 
+              textDecoration: 'none', 
+              opacity: 0.8, 
+              border: 'none',
+              background: 'transparent',
+              borderBottom: '1.5px solid transparent', 
+              paddingBottom: '2px',
+              cursor: 'pointer',
+              fontSize: '11px',
+              fontWeight: 700,
+              fontFamily: 'inherit',
+              transition: 'all 0.3s var(--ease-premium)' 
+            }} 
+            onMouseEnter={(e) => {
+              e.currentTarget.style.opacity = '1';
+              e.currentTarget.style.borderBottomColor = 'var(--text-main)';
+            }} 
+            onMouseLeave={(e) => {
+              e.currentTarget.style.opacity = '0.8';
+              e.currentTarget.style.borderBottomColor = 'transparent';
+            }}
+          >
+            02_CONNECT
           </button>
         </div>
       </div>

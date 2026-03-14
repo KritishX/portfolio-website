@@ -19,19 +19,21 @@ class Particle {
     this.angle = Math.random() * Math.PI * 2;
   }
 
-  update(width: number, height: number, mouse: { x: number, y: number, radius: number }, particles: Particle[]) {
+  update(width: number, height: number, mouse: { x: number, y: number, radius: number }, particles: Particle[], scrollY: number) {
     this.angle += 0.01;
     this.vx += Math.cos(this.angle) * 0.002;
     this.vy += Math.sin(this.angle) * 0.002;
 
     const dx = mouse.x - this.x;
-    const dy = mouse.y - this.y;
+    // Factor in scrollY to maintain correct vertical cursor position relative to dots
+    const dy = (mouse.y + scrollY) - this.y;
     const distToMouse = Math.sqrt(dx * dx + dy * dy);
     
     if (distToMouse < mouse.radius) {
       const force = (mouse.radius - distToMouse) / mouse.radius;
-      this.vx += (dx / distToMouse) * force * 0.025;
-      this.vy += (dy / distToMouse) * force * 0.025;
+      // Reduced force from 0.025 to 0.012 for slower, smoother pull
+      this.vx += (dx / distToMouse) * force * 0.012;
+      this.vy += (dy / distToMouse) * force * 0.012;
     }
 
     const repulsionMultiplier = Math.min(1, Math.max(0, (distToMouse - mouse.radius * 0.3) / (mouse.radius * 0.7)));
@@ -85,13 +87,13 @@ const NeuralBackground: React.FC = () => {
     let time = 0;
     
     const isMobile = window.innerWidth < 768;
-    const mouse = { x: -1000, y: -1000, radius: isMobile ? 180 : 280 };
+    const mouse = { x: -2000, y: -2000, radius: isMobile ? 180 : 280 };
 
     const init = () => {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
       particles = [];
-      const particleCount = isMobile ? 20 : 45; 
+      const particleCount = isMobile ? 22 : 75; 
       for (let i = 0; i < particleCount; i++) {
         particles.push(new Particle(canvas.width, canvas.height));
       }
@@ -106,51 +108,57 @@ const NeuralBackground: React.FC = () => {
       const breathing = 0.9 + Math.sin(time) * 0.1;
       const screenDiag = Math.sqrt(canvas.width**2 + canvas.height**2);
 
+      // Restore All-to-All for both desktop and mobile
+      const maxDist = screenDiag;
+
       for (let i = 0; i < particles.length; i++) {
         const y1 = (particles[i].y - parallaxOffset + canvas.height) % canvas.height;
 
-        // 1. ALL-TO-ALL CONNECTIONS
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const y2 = (particles[j].y - parallaxOffset + canvas.height) % canvas.height;
           const dy = y1 - y2;
           const dist = Math.sqrt(dx * dx + dy * dy);
           
-          const proximity = 1 - dist / screenDiag;
-          const organicOpacity = Math.pow(proximity, 6) * 0.22 * breathing;
-          
-          if (organicOpacity < 0.005) continue;
+          if (dist < maxDist) {
+            const proximity = 1 - dist / maxDist;
+            // Simplified power for mobile (3 instead of 4)
+            const organicOpacity = Math.pow(proximity, isMobile ? 3 : 4) * 0.22 * breathing;
+            
+            if (organicOpacity < 0.01) continue;
 
-          const color = particles[i].color === particles[j].color ? 
-                        particles[i].color : '#4a3a6b';
-          
-          const r = parseInt(color.slice(1, 3), 16);
-          const g = parseInt(color.slice(3, 5), 16);
-          const b = parseInt(color.slice(5, 7), 16);
+            const color = particles[i].color === particles[j].color ? 
+                          particles[i].color : '#4a3a6b';
+            
+            const r = parseInt(color.slice(1, 3), 16);
+            const g = parseInt(color.slice(3, 5), 16);
+            const b = parseInt(color.slice(5, 7), 16);
 
-          ctx!.beginPath();
-          ctx!.strokeStyle = `rgba(${r}, ${g}, ${b}, ${Math.min(0.3, organicOpacity)})`;
-          ctx!.lineWidth = 0.35;
-          ctx!.moveTo(particles[i].x, y1);
-          ctx!.lineTo(particles[j].x, y2);
-          ctx!.stroke();
+            ctx!.beginPath();
+            ctx!.strokeStyle = `rgba(${r}, ${g}, ${b}, ${Math.min(0.35, organicOpacity)})`;
+            ctx!.lineWidth = isMobile ? 0.3 : 0.4;
+            ctx!.moveTo(particles[i].x, y1);
+            ctx!.lineTo(particles[j].x, y2);
+            ctx!.stroke();
+          }
         }
 
         // 2. DIRECT CURSOR CONNECTIONS (The "Touch" Effect)
-        if (mouse.x > 0) {
+        if (mouse.x > 0 && mouse.x < canvas.width && mouse.y > 0 && mouse.y < canvas.height) {
           const mdx = mouse.x - particles[i].x;
-          const mdy = mouse.y - y1;
+          const scrollY = scrollRef.current;
+          const mdy = (mouse.y + scrollY) - y1;
           const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
           
-          // All particles connect to cursor, but opacity fades with distance
           const mProximity = 1 - mdist / screenDiag;
-          const mOpacity = Math.pow(mProximity, 4) * 0.35 * breathing;
+          // Decreased cursor link opacity from 0.45 to 0.25
+          const mOpacity = Math.pow(mProximity, 4) * 0.25 * breathing;
 
-          if (mOpacity > 0.01) {
+          if (mOpacity > 0.005) {
             const pCol = particles[i].color === '#DC143C' ? '220, 20, 60' : '0, 56, 147';
             ctx!.beginPath();
             ctx!.strokeStyle = `rgba(${pCol}, ${mOpacity})`;
-            ctx!.lineWidth = 0.6;
+            ctx!.lineWidth = 0.5; // Thinner trail lines
             ctx!.moveTo(particles[i].x, y1);
             ctx!.lineTo(mouse.x, mouse.y);
             ctx!.stroke();
@@ -165,7 +173,7 @@ const NeuralBackground: React.FC = () => {
       const parallaxOffset = (scrollY * (isMobile ? 0.08 : 0.15)) % canvas.height;
 
       particles.forEach(p => {
-        p.update(canvas.width, canvas.height, mouse, particles);
+        p.update(canvas.width, canvas.height, mouse, particles, scrollY);
         p.draw(ctx!, parallaxOffset);
       });
       drawConnections(parallaxOffset);
