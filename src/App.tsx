@@ -26,7 +26,7 @@ const App: React.FC = () => {
 
   // Hyper Alive: Single Static Tab Title
   useEffect(() => {
-    document.title = "RETICLEX // KRITISH DHITAL";
+    document.title = "KRITISHX // PORTFOLIO";
   }, []);
   
   const closeModals = () => setActiveModal(null);

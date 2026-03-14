@@ -6,15 +6,19 @@
     </linearGradient>
   </defs>
   
-  <!-- Outer Circular Reticle Frame -->
-  <circle cx="50" cy="50" r="45" fill="none" stroke="url(#g)" stroke-width="4" />
+  <!-- Outer Hexagonal Frame -->
+  <path d="M50 5 L90 25 L90 75 L50 95 L10 75 L10 25 Z" fill="none" stroke="url(#g)" stroke-width="4" stroke-linejoin="round" />
   
-  <!-- Crosshair Marks -->
-  <line x1="50" y1="5" x2="50" y2="15" stroke="url(#g)" stroke-width="4" />
-  <line x1="50" y1="85" x2="50" y2="95" stroke="url(#g)" stroke-width="4" />
-  <line x1="5" y1="50" x2="15" y2="50" stroke="url(#g)" stroke-width="4" />
-  <line x1="85" y1="50" x2="95" y2="50" stroke="url(#g)" stroke-width="4" />
+  <!-- Stylized KX Text -->
+  <g fill="url(#g)">
+    <!-- K -->
+    <path d="M30 30 L30 70 M30 50 L45 30 M30 50 L45 70" stroke="url(#g)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    <!-- X -->
+    <path d="M55 30 L75 70 M75 30 L55 70" stroke="url(#g)" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+  </g>
   
-  <!-- Central X Geometry -->
-  <path d="M35 35 L65 65 M65 35 L35 65" fill="none" stroke="url(#g)" stroke-width="10" stroke-linecap="round" />
+  <!-- Status Dot -->
+  <circle cx="80" cy="20" r="5" fill="#34c759">
+    <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite" />
+  </circle>
 </svg>
