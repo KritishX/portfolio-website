@@ -97,21 +97,28 @@
 
 /* Contact Map */
 .contact-map {
-  margin-top: var(--space-lg);
-  width: 100px;
-  opacity: 0.6;
-  transition: all var(--duration-normal);
-  filter: grayscale(20%);
+  margin-top: var(--space-xl);
+  width: 110px;
+  opacity: 0.85;
+  transition: all 0.5s var(--ease-out-expo);
 }
 
 .contact-map:hover {
-  opacity: 0.9;
-  transform: scale(1.04);
+  opacity: 1;
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 16px rgba(196, 30, 58, 0.3));
 }
 
 .contact-map img {
   width: 100%;
   height: auto;
+}
+
+@media (min-width: 1024px) {
+  .contact-map {
+    width: 150px;
+    margin-top: var(--space-2xl);
+  }
 }
 
 @media (max-width: 768px) {
