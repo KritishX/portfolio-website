@@ -36,7 +36,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="hero-overline-dot" />
-          Computer Engineer &amp; AI/ML Developer
+          Full Stack AI/ML Developer &amp; Computer Engineer
         </motion.div>
 
         {/* Name — two lines with stagger reveal */}
@@ -99,20 +99,20 @@ export default function Hero() {
             LinkedIn
           </a>
         </motion.div>
-
-        {/* Scroll indicator — inline with content */}
-        <motion.div
-          className="hero-bottom-stack"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.6, duration: 1 }}
-        >
-          <div className="hero-scroll">
-            <span className="hero-scroll-text">Scroll</span>
-            <span className="hero-scroll-line" />
-          </div>
-        </motion.div>
       </div>
+
+      {/* Scroll indicator — anchored to bottom of section */}
+      <motion.div
+        className="hero-bottom-stack"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.8, duration: 1.2 }}
+      >
+        <div className="hero-scroll">
+          <span className="hero-scroll-text">Scroll</span>
+          <span className="hero-scroll-line" />
+        </div>
+      </motion.div>
     </section>
   )
 }

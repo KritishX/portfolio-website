@@ -25,8 +25,17 @@
   font-size: 0.62rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  opacity: 0.5;
+  background: linear-gradient(90deg, var(--crimson-bright), var(--gold), var(--text-muted), var(--crimson-bright));
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-flow 5s linear infinite;
+}
+
+@keyframes gradient-flow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
 }
 
 .footer-copy {
