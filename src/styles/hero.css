@@ -127,11 +127,19 @@
 }
 
 @keyframes pulse-dot {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.3); }
+
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
 }
 
-/* Name */
 .hero-name {
   font-family: var(--font-display);
   font-size: clamp(3rem, 8vw, 7.5rem);
@@ -139,27 +147,35 @@
   line-height: 1;
   letter-spacing: -0.02em;
   background: linear-gradient(
-    110deg, 
+    -45deg, 
     #ffffff 0%, 
-    #ffffff 40%, 
-    var(--crimson-bright) 50%, 
-    #ffffff 60%, 
+    #ffffff 42%, 
+    var(--crimson) 50%, 
+    #ffffff 58%, 
     #ffffff 100%
   );
-  background-size: 200% auto;
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
-  animation: subtle-drift 12s ease-in-out infinite;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.12));
+  animation: molten-flow 20s ease infinite;
   margin-bottom: var(--space-xl);
   text-align: center;
 }
 
-@keyframes subtle-drift {
-  0% { background-position: -50% center; }
-  50% { background-position: 50% center; }
-  100% { background-position: -50% center; }
+@keyframes molten-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .hero-name-line {
@@ -303,15 +319,14 @@
   letter-spacing: 0.4em;
   text-transform: uppercase;
   writing-mode: vertical-rl;
-  
+
   /* Text masking for smooth glow transition */
-  background: linear-gradient(180deg, 
-    var(--text-muted) 35%, 
-    #ff4b4b 47%, 
-    #ffffff 50%, 
-    #9b1b30 53%, 
-    var(--text-muted) 65%
-  );
+  background: linear-gradient(180deg,
+      var(--text-muted) 35%,
+      #ff4b4b 47%,
+      #ffffff 50%,
+      #9b1b30 53%,
+      var(--text-muted) 65%);
   background-size: 100% 300%;
   background-position: 0% 100%;
   -webkit-background-clip: text;
@@ -321,9 +336,21 @@
 }
 
 @keyframes scroll-text-shimmer {
-  0% { background-position: 0% 100%; } /* Glow is above text */
-  25% { background-position: 0% 0%; }  /* Glow passes through to bottom */
-  100% { background-position: 0% 0%; } /* Wait for line animation */
+  0% {
+    background-position: 0% 100%;
+  }
+
+  /* Glow is above text */
+  25% {
+    background-position: 0% 0%;
+  }
+
+  /* Glow passes through to bottom */
+  100% {
+    background-position: 0% 0%;
+  }
+
+  /* Wait for line animation */
 }
 
 .hero-scroll-line {
@@ -349,11 +376,31 @@
 }
 
 @keyframes scroll-line-drop {
-  0% { top: -50%; opacity: 0; }
-  22% { top: -30%; opacity: 0; }
-  25% { top: -10%; opacity: 1; } /* Glow transfers from text to line */
-  60% { top: 100%; opacity: 0; }
-  100% { top: 100%; opacity: 0; }
+  0% {
+    top: -50%;
+    opacity: 0;
+  }
+
+  22% {
+    top: -30%;
+    opacity: 0;
+  }
+
+  25% {
+    top: -10%;
+    opacity: 1;
+  }
+
+  /* Glow transfers from text to line */
+  60% {
+    top: 100%;
+    opacity: 0;
+  }
+
+  100% {
+    top: 100%;
+    opacity: 0;
+  }
 }
 
 @media (max-width: 768px) {
