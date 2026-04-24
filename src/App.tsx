@@ -1,18 +1,18 @@
 import { useState, useCallback, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Lenis from 'lenis'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import LoadingScreen from './components/LoadingScreen'
 import Navigation from './components/Navigation'
-import Hero from './components/Hero'
-import Projects from './components/Projects'
-import Skills from './components/Skills'
-import About from './components/About'
-import Contact from './components/Contact'
 import Footer from './components/Footer'
 import SacredGeometry from './components/SacredGeometry'
+import Home from './pages/Home'
+import Terms from './pages/Terms'
+import Privacy from './pages/Privacy'
 
 export default function App() {
   const [loading, setLoading] = useState(true)
+  const location = useLocation()
 
   useEffect(() => {
     // Initialize Lenis for 120Hz/90Hz ultra-smooth scrolling
@@ -40,6 +40,12 @@ export default function App() {
     }
   }, [])
 
+  // Sync Lenis with route changes
+  useEffect(() => {
+    window.scrollTo(0, 0)
+    ;(window as any).lenis?.scrollTo(0, { immediate: true })
+  }, [location.pathname])
+
   const handleLoadComplete = useCallback(() => {
     setLoading(false)
   }, [])
@@ -62,11 +68,11 @@ export default function App() {
           >
             <Navigation />
             <main>
-              <Hero />
-              <Projects />
-              <Skills />
-              <About />
-              <Contact />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/terms" element={<Terms />} />
+                <Route path="/privacy" element={<Privacy />} />
+              </Routes>
             </main>
             <Footer />
           </motion.div>

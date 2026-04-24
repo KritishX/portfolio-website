@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { MapPin } from 'lucide-react'
 import profileImg from '../assets/profile.jpg'
 
 export default function About() {
@@ -54,12 +53,6 @@ export default function About() {
               constraints — limited resources, diverse languages, and the relentless pursuit
               of making AI that actually works for the people who need it most.
             </p>
-
-            {/* Nepal tag */}
-            <div className="about-nepal-tag">
-              <MapPin size={16} color="var(--crimson-bright)" />
-              Proudly Built in Nepal
-            </div>
 
             {/* Stats */}
             <div className="about-stats">

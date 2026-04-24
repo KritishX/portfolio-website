@@ -1,109 +1,66 @@
-/* Legal Modal Styles */
-.legal-modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.8);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  z-index: 9999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-xl);
-}
-
-.legal-modal-content {
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  width: 100%;
-  max-width: 600px;
-  max-height: 80vh;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4);
-}
-
-.legal-modal-close {
-  position: absolute;
-  top: var(--space-lg);
-  right: var(--space-lg);
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-subtle);
+/* Legal Page Styles */
+.legal-page {
+  padding-top: 120px;
+  padding-bottom: var(--space-5xl);
+  min-height: 100vh;
+  background: var(--bg-primary);
   color: var(--text-secondary);
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  display: flex;
+}
+
+.legal-back {
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all var(--duration-fast);
-  z-index: 2;
+  gap: var(--space-sm);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: var(--space-2xl);
+  transition: color var(--duration-fast);
 }
 
-.legal-modal-close:hover {
-  background: var(--crimson);
-  color: var(--text-primary);
-  border-color: var(--crimson);
-  transform: rotate(90deg);
+.legal-back:hover {
+  color: var(--crimson);
 }
 
-.legal-modal-title {
+.legal-title {
   font-family: var(--font-display);
-  font-size: 1.5rem;
+  font-size: clamp(2.5rem, 6vw, 4rem);
   color: var(--text-primary);
-  padding: var(--space-xl) var(--space-xl) var(--space-md);
-  border-bottom: 1px solid var(--border-subtle);
-  margin: 0;
+  margin-bottom: var(--space-3xl);
+  line-height: 1.1;
 }
 
-.legal-modal-body {
-  padding: var(--space-xl);
-  overflow-y: auto;
-  color: var(--text-secondary);
-  font-family: var(--font-body);
-  font-size: 0.9rem;
-  line-height: 1.8;
-}
-
-.legal-modal-body h3 {
+.legal-content h3 {
   color: var(--text-primary);
   font-family: var(--font-display);
-  margin-top: var(--space-xl);
-  margin-bottom: var(--space-sm);
-  font-size: 1.1rem;
-}
-
-.legal-modal-body h3:first-child {
-  margin-top: 0;
-}
-
-.legal-modal-body p {
+  font-size: 1.4rem;
+  margin-top: var(--space-3xl);
   margin-bottom: var(--space-md);
 }
 
-.legal-modal-body a {
-  color: var(--crimson);
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  transition: text-decoration-color var(--duration-fast);
-}
-
-.legal-modal-body a:hover {
-  text-decoration-color: var(--crimson);
+.legal-content p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  margin-bottom: var(--space-lg);
+  max-width: 70ch;
 }
 
 @media (max-width: 768px) {
-  .legal-modal-backdrop {
-    padding: var(--space-md);
+  .legal-page {
+    padding-top: 100px;
   }
-  .legal-modal-content {
-    max-height: 90vh;
+  .legal-title {
+    font-size: 2.5rem;
   }
-  .legal-modal-title {
-    font-size: 1.3rem;
+  .legal-content h3 {
+    font-size: 1.2rem;
+  }
+  .legal-content p {
+    font-size: 1rem;
   }
 }
+
+/* Keep old modal styles if still needed for transition, but they can be removed later */
+
