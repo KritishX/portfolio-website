@@ -73,8 +73,8 @@ export default function Hero() {
           animate="visible"
           custom={0}
         >
-          Building <strong>intelligent systems</strong> at the intersection of
-          machine learning, computer vision, and full-stack engineering.
+          Architecting <strong>intelligent systems</strong> at the convergence of
+          Machine Learning, Computer Vision, and scalable Full-Stack engineering.
         </motion.p>
 
         {/* CTAs */}
