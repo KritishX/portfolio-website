@@ -1,0 +1,169 @@
+/* ============================================
+   LOADING SCREEN — Cinematic OS Boot
+   ============================================ */
+
+.loading-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.loading-screen::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: 
+    radial-gradient(ellipse 60% 40% at 50% 50%, var(--crimson-glow), transparent),
+    radial-gradient(ellipse 40% 60% at 30% 70%, var(--sapphire-glow), transparent);
+  opacity: 0.5;
+}
+
+/* Sacred geometry mandala */
+.loading-mandala {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: var(--space-xl);
+}
+
+.loading-mandala svg {
+  width: 100%;
+  height: 100%;
+}
+
+.mandala-ring {
+  fill: none;
+  stroke-width: 0.8;
+  stroke-linecap: round;
+  transform-origin: center;
+}
+
+.mandala-ring--outer {
+  stroke: var(--crimson);
+  stroke-dasharray: 380;
+  stroke-dashoffset: 380;
+  animation: mandala-draw 1.8s var(--ease-out-expo) forwards;
+}
+
+.mandala-ring--inner {
+  stroke: var(--sapphire-light);
+  stroke-dasharray: 250;
+  stroke-dashoffset: 250;
+  animation: mandala-draw 1.8s var(--ease-out-expo) 0.2s forwards;
+}
+
+.mandala-triangle {
+  fill: none;
+  stroke: var(--crimson-bright);
+  stroke-width: 0.6;
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: mandala-draw 1.4s var(--ease-out-expo) 0.4s forwards;
+}
+
+.mandala-triangle--inv {
+  stroke: var(--gold);
+  animation-delay: 0.6s;
+}
+
+.mandala-dot {
+  fill: var(--crimson-bright);
+  opacity: 0;
+  animation: mandala-dot-in 0.5s var(--ease-out-expo) 1s forwards;
+}
+
+@keyframes mandala-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes mandala-dot-in {
+  to {
+    opacity: 1;
+  }
+}
+
+/* Loading text */
+.loading-text {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  overflow: hidden;
+}
+
+.loading-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.2rem, 3vw, 1.8rem);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-sm);
+  overflow: hidden;
+}
+
+/* Progress line */
+.loading-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--border-subtle);
+  overflow: hidden;
+}
+
+.loading-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--crimson), var(--gold));
+  transform-origin: left;
+}
+
+/* Mountain silhouette at bottom of loading */
+.loading-mountain {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 80px;
+  opacity: 0.08;
+}
+
+.loading-mountain svg {
+  width: 100%;
+  height: 100%;
+}
+
+/* Location tag */
+.loading-location {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  color: var(--text-muted);
+  margin-top: var(--space-md);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.loading-location::before {
+  content: '';
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--crimson);
+  animation: pulse-dot 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.3); }
+}

@@ -1,116 +1,73 @@
-import React, { useState, useRef, useEffect } from 'react';
-import './Global.css';
-import Nav from './components/Nav';
-import Hero from './components/Hero';
-import TechStack from './components/TechStack';
-import Services from './components/Services';
-import Projects from './components/Projects';
-import WhyChooseMe from './components/WhyChooseMe';
-import Footer from './components/Footer';
-import Contact from './components/Contact';
-import ServicesModal from './components/ServicesModal';
-import ProjectsModal from './components/ProjectsModal';
-import TermsModal from './components/TermsModal';
-import PrivacyModal from './components/PrivacyModal';
-import TechStackModal from './components/TechStackModal';
-import NeuralBackground from './components/NeuralBackground';
-import VoidShader from './components/VoidShader';
-import BootSequence from './components/BootSequence';
-import SystemStatus from './components/SystemStatus';
-import DataStream from './components/DataStream';
-import { AnimatePresence } from 'framer-motion';
+import { useState, useCallback, useEffect } from 'react'
+import { AnimatePresence, motion } from 'framer-motion'
+import Lenis from 'lenis'
+import LoadingScreen from './components/LoadingScreen'
+import Navigation from './components/Navigation'
+import Hero from './components/Hero'
+import Projects from './components/Projects'
+import Skills from './components/Skills'
+import About from './components/About'
+import Contact from './components/Contact'
+import Footer from './components/Footer'
+import SacredGeometry from './components/SacredGeometry'
 
-const App: React.FC = () => {
-  const [activeModal, setActiveModal] = useState<'contact' | 'services' | 'projects' | 'terms' | 'privacy' | 'techstack' | null>(null);
-  const workSectionRef = useRef<HTMLDivElement>(null);
+export default function App() {
+  const [loading, setLoading] = useState(true)
 
-  // Hyper Alive: Single Static Tab Title
   useEffect(() => {
-    document.title = "KRITISHX // PORTFOLIO";
-  }, []);
-  
-  const closeModals = () => setActiveModal(null);
+    // Initialize Lenis for 120Hz/90Hz ultra-smooth scrolling
+    const lenis = new Lenis({
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 2,
+    })
 
-  const scrollToWork = () => {
-    workSectionRef.current?.scrollIntoView({ behavior: 'smooth' });
-  };
-
-  // Deep Bug Fix: Prevent background scroll when modal is open
-  React.useEffect(() => {
-    if (activeModal) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
+    function raf(time: number) {
+      lenis.raf(time)
+      requestAnimationFrame(raf)
     }
-    return () => { document.body.style.overflow = 'unset'; };
-  }, [activeModal]);
+
+    requestAnimationFrame(raf)
+
+    return () => lenis.destroy()
+  }, [])
+
+  const handleLoadComplete = useCallback(() => {
+    setLoading(false)
+  }, [])
 
   return (
-    <div style={{ overflowX: 'hidden', position: 'relative' }}>
-      <div className="noise-overlay" />
-      <div className="tech-grid" />
-      <DataStream />
-      <BootSequence />
-      <SystemStatus />
-      
-      {/* Fixed Background Layers */}
-      <VoidShader />
-      <NeuralBackground />
-      
-      {/* UI Content Layer */}
-      <div id="ui-root">
-        <Nav 
-          onWorkClick={scrollToWork} 
-          onContactClick={() => setActiveModal('contact')}
-        />
-        <main>
-          <Hero 
-            onContactClick={() => setActiveModal('contact')} 
-            onWorkClick={scrollToWork} 
-          />
-          <TechStack onViewFull={() => setActiveModal('techstack')} />
-          <WhyChooseMe />
-          
-          <div style={{ textAlign: 'center', marginBottom: 'var(--spacing-lg)' }}>
-            <span className="mono-text" style={{ color: 'var(--nepal-crimson)', fontWeight: 700, fontSize: '10px' }}>
-              // NEURAL_TORQUE_DIAGNOSTICS
-            </span>
-            <h2 className="stagger-in" style={{ fontSize: 'clamp(24px, 4vw, 36px)', color: 'var(--text-main)', marginTop: 'var(--spacing-xs)' }}>
-              The High-Fidelity Build Log
-            </h2>
-            <p className="mono-text" style={{ fontSize: '11px', color: 'var(--text-muted)', marginTop: '8px' }}>
-              Compiling raw ambition into production-ready reality (without the mechanical lag).
-            </p>
-          </div>
-
-          <div ref={workSectionRef} className="container" style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', 
-            gap: 'var(--spacing-lg)',
-            padding: 'var(--spacing-xl) 0'
-          }}>
-            <Services onViewClick={() => setActiveModal('services')} />
-            <Projects onViewClick={() => setActiveModal('projects')} />
-          </div>
-        </main>
-        <Footer 
-          onContactClick={() => setActiveModal('contact')} 
-          onTermsClick={() => setActiveModal('terms')}
-          onPrivacyClick={() => setActiveModal('privacy')}
-        />
-      </div>
-
-      {/* Modals wrapped in AnimatePresence for reliability */}
+    <>
       <AnimatePresence mode="wait">
-        {activeModal === 'contact' && <Contact onClose={closeModals} />}
-        {activeModal === 'services' && <ServicesModal onClose={closeModals} />}
-        {activeModal === 'projects' && <ProjectsModal onClose={closeModals} />}
-        {activeModal === 'terms' && <TermsModal onClose={closeModals} />}
-        {activeModal === 'privacy' && <PrivacyModal onClose={closeModals} />}
-        {activeModal === 'techstack' && <TechStackModal onClose={closeModals} />}
+        {loading && <LoadingScreen key="loader" onComplete={handleLoadComplete} />}
       </AnimatePresence>
-    </div>
-  );
-};
 
-export default App;
+      {!loading && (
+        <>
+          <SacredGeometry />
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            style={{ position: 'relative', zIndex: 1 }}
+          >
+            <Navigation />
+            <main>
+              <Hero />
+              <Projects />
+              <Skills />
+              <About />
+              <Contact />
+            </main>
+            <Footer />
+          </motion.div>
+        </>
+      )}
+    </>
+  )
+}

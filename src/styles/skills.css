@@ -1,0 +1,153 @@
+/* ============================================
+   SKILLS — Editorial Marquee Ticker
+   ============================================ */
+.skills {
+  padding-block: var(--space-4xl);
+  overflow: hidden;
+  position: relative;
+}
+
+.skills-header {
+  padding-inline: var(--gutter);
+  max-width: var(--container-max);
+  margin-inline: auto;
+  margin-bottom: var(--space-3xl);
+}
+
+.skills-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+}
+
+/* Marquee container */
+.skills-marquee-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.skills-marquee {
+  display: flex;
+  width: max-content;
+  gap: var(--space-xl);
+  animation: marquee-scroll 35s linear infinite;
+}
+
+.skills-marquee--reverse {
+  animation-direction: reverse;
+  animation-duration: 40s;
+}
+
+.skills-marquee:hover {
+  animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Skill pill */
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md) var(--space-xl);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  white-space: nowrap;
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  cursor: default;
+  flex-shrink: 0;
+}
+
+.skill-pill:hover {
+  border-color: var(--crimson);
+  background: var(--crimson-glow);
+  transform: translateY(-2px);
+}
+
+.skill-pill-icon {
+  width: 18px;
+  height: 18px;
+  color: var(--crimson-bright);
+  flex-shrink: 0;
+}
+
+.skill-pill-name {
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.skill-pill-category {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-left: var(--space-xs);
+}
+
+/* Category divider in marquee */
+.skill-divider {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0 var(--space-md);
+  flex-shrink: 0;
+}
+
+.skill-divider-dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--crimson);
+}
+
+.skill-divider-text {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* Fade edges */
+.skills-marquee-wrap::before,
+.skills-marquee-wrap::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.skills-marquee-wrap::before {
+  left: 0;
+  background: linear-gradient(90deg, var(--bg-primary), transparent);
+}
+
+.skills-marquee-wrap::after {
+  right: 0;
+  background: linear-gradient(270deg, var(--bg-primary), transparent);
+}
+
+@media (max-width: 768px) {
+  .skill-pill {
+    padding: var(--space-sm) var(--space-lg);
+  }
+  .skill-pill-category {
+    display: none;
+  }
+  .skills-marquee-wrap::before,
+  .skills-marquee-wrap::after {
+    width: 40px;
+  }
+}

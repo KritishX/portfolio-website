@@ -1,0 +1,213 @@
+/* ============================================
+   PROJECTS — Spatial Interactive Showcase
+   ============================================ */
+.projects {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.projects-header {
+  margin-bottom: var(--space-xl);
+}
+
+.projects-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.projects-subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  margin-top: var(--space-md);
+  max-width: 480px;
+}
+
+.projects-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.project-item {
+  border-top: 1px solid var(--border-subtle);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-item:last-child {
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.project-item-inner {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: var(--space-xl);
+  padding: var(--space-xl) 0;
+  transition: padding var(--duration-normal) var(--ease-out-expo);
+}
+
+.project-item:hover .project-item-inner {
+  padding-left: var(--space-md);
+}
+
+.project-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  min-width: 32px;
+}
+
+.project-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.project-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  transition: color var(--duration-fast);
+}
+
+.project-item:hover .project-name {
+  color: var(--crimson-bright);
+}
+
+.project-tags {
+  display: flex;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.project-tag {
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+}
+
+.project-arrow {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 1px solid var(--border-medium);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--duration-normal) var(--ease-out-expo);
+  flex-shrink: 0;
+}
+
+.project-arrow svg {
+  width: 16px;
+  height: 16px;
+  color: var(--text-muted);
+  transition: all var(--duration-normal) var(--ease-out-expo);
+}
+
+.project-item:hover .project-arrow {
+  background: var(--crimson);
+  border-color: var(--crimson);
+  transform: rotate(-45deg);
+}
+
+.project-item:hover .project-arrow svg {
+  color: var(--text-primary);
+}
+
+.project-item::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, var(--crimson-glow), transparent);
+  transform: translateX(-100%);
+  transition: transform var(--duration-slow) var(--ease-out-expo);
+  pointer-events: none;
+}
+
+.project-item:hover::before {
+  transform: translateX(0);
+}
+
+.project-expanded {
+  overflow: hidden;
+  background: var(--bg-elevated);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--space-md);
+}
+
+.project-expanded-inner {
+  padding: var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xl);
+}
+
+.project-expanded-desc {
+  font-size: 1rem;
+  line-height: 1.8;
+  color: var(--text-secondary);
+}
+
+.project-expanded-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.project-expanded-stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.project-expanded-stat-value {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: var(--crimson-bright);
+}
+
+.project-expanded-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.project-expanded-tech-item {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  padding: 4px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .project-item-inner {
+    grid-template-columns: auto 1fr auto;
+    gap: var(--space-md);
+    padding: var(--space-lg) 0;
+  }
+  .project-expanded-inner {
+    grid-template-columns: 1fr;
+    padding: var(--space-lg);
+  }
+  .project-tags { display: none; }
+}

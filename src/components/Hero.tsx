@@ -1,232 +1,120 @@
-import React, { useEffect, useState } from 'react';
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
-import SystemInsights from './SystemInsights';
-import profileImage from '../assets/profile.jpg';
-import MagneticButton from './MagneticButton';
+import { motion } from 'framer-motion'
+import { ArrowRight, Linkedin } from 'lucide-react'
 
-interface HeroProps {
-  onContactClick: () => void;
-  onWorkClick: () => void;
+const lineVariants = {
+  hidden: { y: '110%' },
+  visible: (i: number) => ({
+    y: 0,
+    transition: { duration: 0.9, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] }
+  })
 }
 
-const Hero: React.FC<HeroProps> = ({ onContactClick, onWorkClick }) => {
-  const [computedText, setComputedText] = useState("");
-  const fullText = "Kritish Dhital.";
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: (i: number) => ({
+    opacity: 1, y: 0,
+    transition: { duration: 0.7, delay: 0.5 + i * 0.15, ease: [0.16, 1, 0.3, 1] }
+  })
+}
 
-  // 3D Tilt Logic
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
-  const mouseXSpring = useSpring(x);
-  const mouseYSpring = useSpring(y);
-  const rotateX = useTransform(mouseYSpring, [-0.5, 0.5], ["10deg", "-10deg"]);
-  const rotateY = useTransform(mouseXSpring, [-0.5, 0.5], ["-10deg", "10deg"]);
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const width = rect.width;
-    const height = rect.height;
-    const mouseX = e.clientX - rect.left;
-    const mouseY = e.clientY - rect.top;
-    const xPct = (mouseX / width) - 0.5;
-    const yPct = (mouseY / height) - 0.5;
-    x.set(xPct);
-    y.set(yPct);
-  };
-
-  const handleMouseLeave = () => {
-    x.set(0);
-    y.set(0);
-  };
-  
-  useEffect(() => {
-    let currentText = "";
-    let i = 0;
-    const interval = setInterval(() => {
-      if (i < fullText.length) {
-        currentText += fullText[i];
-        setComputedText(currentText);
-        i++;
-      } else {
-        clearInterval(interval);
-      }
-    }, 100);
-    return () => clearInterval(interval);
-  }, []);
-
+export default function Hero() {
   return (
-    <section id="hero" className="container">
-      <div style={{ maxWidth: '1000px', width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center' }}>
-        
-        {/* Profile Photo Integration with 3D Tilt */}
+    <section className="hero" id="hero">
+      {/* Ambient background */}
+      <div className="hero-ambient">
+        <div className="hero-ambient-orb hero-ambient-orb--crimson" />
+        <div className="hero-ambient-orb hero-ambient-orb--sapphire" />
+        <div className="hero-grid" />
+      </div>
+
+      <div className="hero-content hero-content--centered">
+        {/* Overline */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          style={{ position: 'relative', marginBottom: 'var(--spacing-xl)', perspective: '1000px' }}
-          onMouseMove={handleMouseMove}
-          onMouseLeave={handleMouseLeave}
+          className="hero-overline"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
-          <motion.div style={{ 
-            position: 'relative',
-            width: 'clamp(180px, 40vw, 240px)',
-            height: 'clamp(180px, 40vw, 240px)',
-            borderRadius: '50%',
-            padding: '8px',
-            background: 'linear-gradient(135deg, var(--nepal-blue) 0%, var(--nepal-crimson) 100%)',
-            boxShadow: 'var(--shadow-3d)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            rotateX,
-            rotateY,
-            transformStyle: 'preserve-3d',
-            transition: 'box-shadow 0.6s var(--ease-premium)'
-          }}
-          whileHover={{ boxShadow: 'var(--shadow-hover)' }}
-          >
-            <img 
-              src={profileImage} 
-              alt="Kritish Dhital" 
-              style={{ 
-                width: '100%', 
-                height: '100%', 
-                objectFit: 'cover', 
-                borderRadius: '50%',
-                border: '4px solid #fff',
-                transform: 'translateZ(20px)'
-              }} 
-            />
-            {/* Status indicator */}
-            <div style={{ 
-              position: 'absolute', 
-              bottom: '10px', 
-              right: '10px',
-              background: '#fff',
-              padding: '6px 12px',
-              borderRadius: '100px',
-              border: '1px solid var(--border-line)',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '6px',
-              boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
-              transform: 'translateZ(30px)'
-            }}>
-              <span style={{ width: '8px', height: '8px', background: 'var(--neon-green)', borderRadius: '50%', boxShadow: '0 0 8px var(--neon-green)' }}></span>
-              <span className="mono-text" style={{ fontSize: '9px', fontWeight: 800 }}>ACTIVE</span>
-            </div>
-          </motion.div>
+          <span className="hero-overline-dot" />
+          Full Stack AI/ML Developer
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, ease: "easeOut" }}
-          className="mono-text"
-          style={{ 
-            display: 'flex', 
-            alignItems: 'center', 
-            gap: '10px', 
-            background: 'rgba(0,0,0,0.02)', 
-            padding: '8px 16px', 
-            borderRadius: '100px', 
-            marginBottom: 'var(--spacing-lg)', 
-            border: '1px solid var(--border-line)',
-            fontWeight: 600,
-            color: 'var(--text-main)',
-            boxShadow: '0 2px 4px rgba(0,0,0,0.02)',
-            maxWidth: '100%'
-          }}
-        >
-          <span style={{ width: '6px', height: '6px', background: 'var(--neon-green)', borderRadius: '50%', boxShadow: '0 0 10px var(--neon-green)', flexShrink: 0 }}></span>
-          <span style={{ fontSize: 'clamp(7px, 2vw, 9px)', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>SYSTEM_READY: FULL_STACK_AI_ML_DEVELOPER</span>
-        </motion.div>
-
-        <SystemInsights />
-        
-        <h1
-          aria-label="Kritish Dhital"
-          className="stagger-in"
-          style={{ 
-            fontSize: 'clamp(38px, 7vw, 84px)', 
-            fontWeight: 800, 
-            lineHeight: 1, 
-            marginBottom: 'var(--spacing-lg)', 
-            letterSpacing: '-0.04em',
-            color: 'var(--text-main)',
-            wordBreak: 'break-word',
-            textAlign: 'center'
-          }}
-        >
-          <span aria-hidden="true" style={{ background: 'linear-gradient(90deg, var(--text-main) 0%, var(--nepal-blue) 100%)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>
-            {computedText}
+        {/* Name — two lines with stagger reveal */}
+        <h1 className="hero-name">
+          <span className="hero-name-line">
+            <motion.span
+              style={{ display: 'inline-block' }}
+              variants={lineVariants}
+              initial="hidden"
+              animate="visible"
+              custom={0}
+            >
+              Kritish
+            </motion.span>
+          </span>
+          <span className="hero-name-line">
+            <motion.span
+              style={{ display: 'inline-block' }}
+              variants={lineVariants}
+              initial="hidden"
+              animate="visible"
+              custom={1}
+            >
+              <em>Dhital</em>
+            </motion.span>
           </span>
         </h1>
 
+        {/* Role description */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5, ease: "easeOut" }}
-          className="stagger-in"
-          style={{ 
-            fontSize: 'clamp(15px, 1.8vw, 18px)', 
-            color: 'var(--text-muted)', 
-            marginBottom: 'var(--spacing-xl)', 
-            maxWidth: '700px', 
-            lineHeight: 1.5, 
-            fontWeight: 400, 
-            letterSpacing: '-0.01em',
-            textAlign: 'center'
-          }}
+          className="hero-role"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={0}
         >
-          Redlining intelligence from the heart of the Himalayas. Whether I'm fine-tuning neural networks or hitting the apex on my 400cc machine, I build full-stack AI ecosystems with the clarity of a prime lens and the robustness of a well-tuned gearbox. Made in Nepal for the world—no lag, just pure logic.
+          Building <strong>intelligent systems</strong> at the intersection of machine learning,
+          computer vision, and full-stack engineering.
         </motion.p>
 
+        {/* CTAs */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.8, ease: "easeOut" }}
-          style={{ display: 'flex', gap: 'var(--spacing-md)', flexWrap: 'wrap', justifyContent: 'center', alignItems: 'center' }}
+          className="hero-cta-row"
+          variants={fadeUp}
+          initial="hidden"
+          animate="visible"
+          custom={1}
         >
-          <MagneticButton>
-            <button 
-              onClick={onWorkClick}
-              className="btn-primary" 
-              style={{ 
-                background: 'var(--nepal-blue)', 
-                padding: '12px 40px', 
-                fontSize: '13px',
-                borderRadius: '100px',
-                border: 'none',
-                cursor: 'pointer'
-              }}
-            >
-              LAUNCH_SYSTEM
-            </button>
-          </MagneticButton>
+          <a href="#contact" className="hero-cta-primary">
+            Get in Touch
+            <ArrowRight />
+          </a>
+          <a
+            href="https://www.linkedin.com/in/kritish-dhital123"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-cta-secondary"
+          >
+            <Linkedin />
+            LinkedIn
+          </a>
+        </motion.div>
+      </div>
 
-          <MagneticButton>
-            <button 
-              onClick={onContactClick}
-              className="btn-secondary mono-text"
-              style={{ 
-                cursor: 'pointer', 
-                borderColor: 'var(--nepal-crimson)', 
-                color: 'var(--nepal-crimson)',
-                borderWidth: '1.5px',
-                padding: '12px 40px',
-                fontSize: '10px',
-                borderRadius: '100px',
-                background: 'transparent',
-                width: '100%'
-              }}
-            >
-              &gt; GET_IN_TOUCH_ [REPLY_SPEED: &gt; GPU]
-            </button>
-          </MagneticButton>
+      {/* Bottom Stack */}
+      <div className="hero-bottom-stack">
+        {/* Scroll indicator */}
+        {/* Scroll indicator */}
+        <motion.div
+          className="hero-scroll"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5, duration: 0.8 }}
+        >
+          <span className="hero-scroll-text">Scroll</span>
+          <span className="hero-scroll-line" />
         </motion.div>
       </div>
     </section>
-  );
-};
-
-export default Hero;
+  )
+}
