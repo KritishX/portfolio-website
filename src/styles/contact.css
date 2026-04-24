@@ -51,9 +51,11 @@
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  padding: 0.85rem var(--space-2xl);
+  padding: 0.85rem var(--space-xl);
+  min-width: 200px;
+  justify-content: center;
   border-radius: var(--radius-full);
   transition: all var(--duration-normal) var(--ease-out-expo);
 }
@@ -63,17 +65,50 @@
   height: 14px;
 }
 
+.contact-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(196, 30, 58, 0.25), transparent 75%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.contact-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
+.contact-link:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6),
+              0 0 25px rgba(196, 30, 58, 0.15);
+}
+
+.contact-link:hover::before {
+  opacity: 1;
+}
+
 .contact-link--primary {
   background: linear-gradient(135deg, #ff4b4b, #c41e3a);
   color: var(--text-primary);
   border: 1px solid rgba(255, 75, 75, 0.3);
   box-shadow: 0 4px 20px rgba(196, 30, 58, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  position: relative;
+  overflow: hidden;
 }
 
 .contact-link--primary:hover {
   background: linear-gradient(135deg, #ff5c5c, #de2242);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(196, 30, 58, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.35);
 }
 
 .contact-link--secondary {
@@ -81,10 +116,12 @@
   background: rgba(255, 255, 255, 0.02);
   backdrop-filter: blur(10px);
   color: var(--text-muted);
+  position: relative;
+  overflow: hidden;
 }
 
 .contact-link--secondary:hover {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgba(196, 30, 58, 0.4);
   background: rgba(255, 255, 255, 0.05);
   color: var(--text-primary);
 }

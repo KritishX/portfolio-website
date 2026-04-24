@@ -14,8 +14,11 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const location = useLocation()
 
-  useEffect(() => {
-    // Initialize Lenis for purely physics-based, refresh-rate independent ultra-smooth scrolling
+    // Prevent browser from jumping on back/forward gestures to let Lenis handle it
+    if ('scrollRestoration' in window.history) {
+      window.history.scrollRestoration = 'manual'
+    }
+
     const lenis = new Lenis({
       lerp: 0.05, // Slower, more cinematic interpolation
       smoothWheel: true,
