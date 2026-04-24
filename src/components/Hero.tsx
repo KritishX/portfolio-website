@@ -73,7 +73,7 @@ export default function Hero() {
           animate="visible"
           custom={0}
         >
-          Architecting <strong>intelligent systems</strong> at the convergence of
+          Architecting <strong>AI-driven intelligent systems</strong> at the convergence of
           Machine Learning, Computer Vision, and scalable Full-Stack engineering.
         </motion.p>
 
