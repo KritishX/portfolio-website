@@ -7,8 +7,8 @@
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1.1fr;
-  gap: var(--space-4xl);
+  grid-template-columns: 0.85fr 1.15fr; /* Made image slightly smaller */
+  gap: var(--space-3xl); /* Reduced gap */
   align-items: center;
 }
 
@@ -69,7 +69,7 @@
 .about-content {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-md); /* Tighter text gap */
 }
 
 .about-heading {
@@ -96,10 +96,10 @@
 .about-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-xl);
-  padding-top: var(--space-xl);
-  border-top: 1px solid var(--border-subtle);
+  gap: var(--space-md);
+  padding-top: var(--space-md);
   margin-top: var(--space-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .about-stat {
