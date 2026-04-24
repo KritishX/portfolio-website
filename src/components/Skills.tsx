@@ -45,7 +45,7 @@ const skillsRow2: Skill[] = [
 
 const allSkills = [...skillsRow1, ...skillsRow2]
 
-function MarqueeRow({ skills, reverse, isGrid }: { skills: Skill[]; reverse?: boolean; isGrid: boolean }) {
+function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean }) {
   // Duplicate for seamless loop
   const doubled = [...skills, ...skills]
 
@@ -137,8 +137,8 @@ export default function Skills() {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.4 }}
             >
-              <MarqueeRow skills={skillsRow1} isGrid={isGrid} />
-              <MarqueeRow skills={skillsRow2} reverse isGrid={isGrid} />
+              <MarqueeRow skills={skillsRow1} />
+              <MarqueeRow skills={skillsRow2} reverse />
             </motion.div>
           )}
         </AnimatePresence>
