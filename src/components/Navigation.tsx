@@ -6,9 +6,15 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40)
-    window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    const lenis = (window as any).lenis
+    if (!lenis) return
+
+    const handleScroll = () => {
+      setScrolled(lenis.scroll > 40)
+    }
+
+    lenis.on('scroll', handleScroll)
+    return () => lenis.off('scroll', handleScroll)
   }, [])
 
   useEffect(() => {
@@ -18,8 +24,14 @@ export default function Navigation() {
 
   const scrollTo = (id: string) => {
     setMobileOpen(false)
+    const lenis = (window as any).lenis
     const el = document.getElementById(id)
-    if (el) el.scrollIntoView({ behavior: 'smooth' })
+    
+    if (lenis && el) {
+      lenis.scrollTo(el)
+    } else if (el) {
+      el.scrollIntoView({ behavior: 'smooth' })
+    }
   }
 
   const links = [
@@ -38,7 +50,7 @@ export default function Navigation() {
       >
         <div className="nav-inner">
           {/* Brand */}
-          <button className="nav-brand" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <button className="nav-brand" onClick={() => (window as any).lenis?.scrollTo(0)}>
             <div className="nav-brand-mark">
               <svg viewBox="0 0 32 32" fill="none">
                 <polygon points="16,2 28,26 4,26" stroke="var(--crimson)" strokeWidth="1.5" fill="none" />
