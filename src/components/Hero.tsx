@@ -25,6 +25,22 @@ export default function Hero() {
         <div className="hero-ambient-orb hero-ambient-orb--crimson" />
         <div className="hero-ambient-orb hero-ambient-orb--sapphire" />
         <div className="hero-grid" />
+        
+        {/* Integrated Reticle-Mandala HUD */}
+        <motion.div 
+          className="hero-hud-mandala"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
+        >
+          <svg viewBox="0 0 100 100" fill="none">
+            <circle cx="50" cy="50" r="48" stroke="currentColor" strokeWidth="0.15" strokeDasharray="1 3" className="hud-ring-outer" />
+            <circle cx="50" cy="50" r="38" stroke="currentColor" strokeWidth="0.2" strokeDasharray="8 6" className="hud-ring-mid" />
+            <circle cx="50" cy="50" r="28" stroke="currentColor" strokeWidth="0.1" opacity="0.4" />
+            <path d="M50 5 L50 15 M50 85 L50 95 M5 50 L15 50 M85 50 L95 50" stroke="currentColor" strokeWidth="0.3" opacity="0.5" />
+            <path d="M35 35 L38 38 M62 62 L65 65 M35 65 L38 62 M62 35 L65 38" stroke="currentColor" strokeWidth="0.2" opacity="0.3" />
+          </svg>
+        </motion.div>
       </div>
 
       <div className="hero-content hero-content--centered">

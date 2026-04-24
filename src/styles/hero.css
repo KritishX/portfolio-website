@@ -46,6 +46,30 @@
   opacity: 0.04;
 }
 
+/* HUD Mandala Background */
+.hero-hud-mandala {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(85vh, 1000px);
+  height: min(85vh, 1000px);
+  color: var(--crimson);
+  opacity: 0.12;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hud-ring-outer {
+  transform-origin: 50px 50px;
+  animation: rotate-cw 80s linear infinite;
+}
+
+.hud-ring-mid {
+  transform-origin: 50px 50px;
+  animation: rotate-ccw 50s linear infinite;
+}
+
 /* Grid pattern */
 .hero-grid {
   position: absolute;

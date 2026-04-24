@@ -101,6 +101,48 @@ function StrangeMandala() {
       ctx.restore()
     }
 
+    const drawHUD = (alpha: number) => {
+      ctx.save()
+      ctx.strokeStyle = '#E8334D'
+      ctx.globalAlpha = alpha
+      ctx.lineWidth = 1
+      
+      const bSize = 20
+      const padding = 15
+      
+      // Top-Left Bracket
+      ctx.beginPath()
+      ctx.moveTo(padding, padding + bSize); ctx.lineTo(padding, padding); ctx.lineTo(padding + bSize, padding)
+      ctx.stroke()
+      
+      // Top-Right Bracket
+      ctx.beginPath()
+      ctx.moveTo(SIZE - padding, padding + bSize); ctx.lineTo(SIZE - padding, padding); ctx.lineTo(SIZE - padding - bSize, padding)
+      ctx.stroke()
+      
+      // Bottom-Left Bracket
+      ctx.beginPath()
+      ctx.moveTo(padding, SIZE - padding - bSize); ctx.lineTo(padding, SIZE - padding); ctx.lineTo(padding + bSize, SIZE - padding)
+      ctx.stroke()
+      
+      // Bottom-Right Bracket
+      ctx.beginPath()
+      ctx.moveTo(SIZE - padding, SIZE - padding - bSize); ctx.lineTo(SIZE - padding, SIZE - padding); ctx.lineTo(SIZE - padding - bSize, SIZE - padding)
+      ctx.stroke()
+      
+      // Center Crosshairs
+      const cLen = 10
+      const cGap = 40
+      ctx.beginPath()
+      ctx.moveTo(cx, cy - cGap - cLen); ctx.lineTo(cx, cy - cGap) // Top
+      ctx.moveTo(cx, cy + cGap); ctx.lineTo(cx, cy + cGap + cLen) // Bottom
+      ctx.moveTo(cx - cGap - cLen, cy); ctx.lineTo(cx - cGap, cy) // Left
+      ctx.moveTo(cx + cGap, cy); ctx.lineTo(cx + cGap + cLen, cy) // Right
+      ctx.stroke()
+      
+      ctx.restore()
+    }
+
     const drawSpokes = (count: number, innerR: number, outerR: number, angle: number, color: string, alpha: number) => {
       ctx.save()
       ctx.strokeStyle = color
@@ -167,6 +209,10 @@ function StrangeMandala() {
         ctx.fill()
         ctx.restore()
       })
+
+      // ---------- Reticle HUD — subtle pulsing ----------
+      const hudAlpha = 0.3 + 0.2 * Math.sin(t * 1.5)
+      drawHUD(hudAlpha)
 
       // ---------- Center dot ----------
       ctx.save()
@@ -250,7 +296,7 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.2 }}
           >
-            Full Stack AI/ML Developer
+            Full Stack AI/ML Developer & Computer Engineer
           </motion.p>
         </div>
 
