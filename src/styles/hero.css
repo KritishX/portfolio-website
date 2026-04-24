@@ -96,8 +96,8 @@
   width: 5px;
   height: 5px;
   border-radius: 50%;
-  background: var(--crimson-bright);
-  box-shadow: 0 0 10px var(--crimson);
+  background: #10b981;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.8);
   animation: pulse-dot 2.5s ease-in-out infinite;
 }
 
