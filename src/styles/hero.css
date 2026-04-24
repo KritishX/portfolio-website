@@ -279,6 +279,7 @@
   background-size: 100% 300%;
   background-position: 0% 100%;
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   animation: scroll-text-shimmer 3s ease-in-out infinite;
 }
