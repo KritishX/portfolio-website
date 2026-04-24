@@ -17,9 +17,12 @@ export default function App() {
   useEffect(() => {
     // Initialize Lenis for 120Hz/90Hz ultra-smooth scrolling
     const lenis = new Lenis({
-      lerp: 0.2,
-      duration: 1.0,
+      lerp: 0.15,
+      duration: 1.2,
       smoothWheel: true,
+      syncTouch: true,
+      touchMultiplier: 2,
+      wheelMultiplier: 1,
     })
 
     // Attach to window for access in other components
