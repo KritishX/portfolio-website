@@ -348,10 +348,21 @@
   .hero-name {
     flex-direction: column;
     gap: 0;
+    font-size: 3.4rem;
   }
 
-  .hero-role {
-    font-size: 1.05rem;
+  .hero-surname {
+    font-size: 4.2rem;
+    margin-top: -0.2rem;
+    display: block;
+  }
+
+  .hero-overline {
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    padding: 0.5rem 1rem;
+    max-width: 85vw;
+    line-height: 1.5;
   }
 
   .hero-cta-row {
@@ -359,7 +370,7 @@
     align-items: stretch;
     gap: var(--space-md);
     width: 100%;
-    max-width: 300px;
+    max-width: 280px;
     margin-inline: auto;
   }
 
@@ -367,9 +378,10 @@
   .hero-cta-secondary {
     width: 100%;
     justify-content: center;
+    font-size: 0.72rem;
   }
 
   .hero-bottom-stack {
-    bottom: 1.5rem;
+    bottom: 2rem;
   }
 }
