@@ -130,7 +130,7 @@ export default function Skills() {
                 />
 
                 <div className="skills-mosaic">
-                  {allSkills.map((skill, i) => (
+                  {allSkills.map((skill) => (
                     <motion.div 
                       key={skill.name} 
                       className="skill-pill"
