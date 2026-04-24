@@ -262,6 +262,12 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           </motion.p>
         </div>
 
+        {/* HUD Scanning Beam */}
+        <motion.div 
+          className="loading-scanner"
+          style={{ top: `${progress * 100}%` }}
+        />
+
         <div className="loading-mountain">
           <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
             <path
@@ -282,12 +288,16 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         </div>
 
         <motion.div
-          className="loading-percent"
+          className="loading-hud-bottom"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 0.3 }}
+          transition={{ delay: 0.5 }}
         >
-          {Math.round(progress * 100)}
+          <div className="loading-status">STATUS: INITIALIZING_SYSTEMS</div>
+          <div className="loading-percent">
+            {Math.round(progress * 100).toString().padStart(3, '0')}
+            <span className="loading-unit">%</span>
+          </div>
         </motion.div>
       </motion.div>
     </AnimatePresence>
