@@ -17,10 +17,10 @@ export default function App() {
   useEffect(() => {
     // Initialize Lenis for purely physics-based, refresh-rate independent ultra-smooth scrolling
     const lenis = new Lenis({
-      lerp: 0.08, // Buttery smooth interpolation
+      lerp: 0.05, // Slower, more cinematic interpolation
       smoothWheel: true,
-      wheelMultiplier: 1.1, // Slightly faster wheel
-      touchMultiplier: 2,
+      wheelMultiplier: 0.9, // Reduced multiplier for more controlled movement
+      touchMultiplier: 1.8,
     })
 
     // Attach to window for access in other components

@@ -38,7 +38,7 @@ function AnimatedStat({ value, label, suffix = '' }: { value: number; label: str
         className="about-stat-value"
         initial={{ opacity: 0, y: 16 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
       >
         {count}{suffix}
       </motion.span>
@@ -46,7 +46,7 @@ function AnimatedStat({ value, label, suffix = '' }: { value: number; label: str
         className="about-stat-label"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        transition={{ duration: 0.9, delay: 0.2 }}
       >
         {label}
       </motion.span>
@@ -63,7 +63,7 @@ export default function About() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true, margin: '-80px' }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 1.1 }}
         >
           {/* Image column */}
           <motion.div
@@ -71,7 +71,7 @@ export default function About() {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="about-image-wrap">
               <img src={profileImg} alt="Kritish Dhital" loading="lazy" />
@@ -85,7 +85,7 @@ export default function About() {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, margin: '-80px' }}
-            transition={{ duration: 0.8, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 1.2, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
             <span className="section-label">About</span>
 
