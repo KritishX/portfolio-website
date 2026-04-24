@@ -3,12 +3,13 @@
    ============================================ */
 .about {
   border-top: 1px solid var(--border-subtle);
+  padding-block: var(--space-2xl); /* Slightly smaller padding */
 }
 
 .about-grid {
   display: grid;
-  grid-template-columns: 0.85fr 1.15fr; /* Made image slightly smaller */
-  gap: var(--space-3xl); /* Reduced gap */
+  grid-template-columns: 0.8fr 1.2fr; /* Slightly more focused content column */
+  gap: var(--space-2xl); /* Tighter gap */
   align-items: center;
 }
 
@@ -21,7 +22,7 @@
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  aspect-ratio: 3/4;
+  aspect-ratio: 4/5; /* Slightly less vertical height */
 }
 
 .about-image-wrap img {
@@ -74,7 +75,7 @@
 
 .about-heading {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.5rem);
   font-weight: 500;
   line-height: 1.15;
   letter-spacing: -0.02em;
@@ -86,10 +87,10 @@
 }
 
 .about-text {
-  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
-  line-height: 1.9;
+  font-size: clamp(0.92rem, 1.1vw, 1.02rem);
+  line-height: 1.8;
   color: var(--text-muted);
-  max-width: 520px;
+  max-width: 480px;
 }
 
 /* Stats row */
