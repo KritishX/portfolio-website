@@ -14,8 +14,22 @@ interface Project {
 
 const projects: Project[] = [
   {
-    id: 'email-automator',
+    id: 'stock-prediction',
     number: '01',
+    name: 'Quantitative Momentum: Real-Time Stock Prediction',
+    tags: ['Time-Series', 'LSTM', 'Financial AI'],
+    description:
+      'A high-frequency trading simulation engine using stacked LSTM and Transformer networks to predict stock price movements. Integrates real-time data ingestion via Alpha Vantage API and features a comprehensive backtesting suite with Risk-Adjusted Return metrics.',
+    stats: [
+      { label: 'MAPE', value: '1.8%' },
+      { label: 'Backtest', value: '22% ROI' },
+      { label: 'Latency', value: '<50ms' },
+    ],
+    tech: ['TensorFlow', 'Keras', 'Pandas', 'Matplotlib', 'NumPy'],
+  },
+  {
+    id: 'email-automator',
+    number: '02',
     name: 'Email Automator: Advanced Security & Emotion AI',
     tags: ['NLP', 'Cybersecurity', 'Full Stack ML'],
     description:
@@ -28,23 +42,23 @@ const projects: Project[] = [
     tech: ['DistilBERT', 'XGBoost', 'LightGBM', 'RabbitMQ', 'PyTorch'],
   },
   {
-    id: 'self-parking',
-    number: '02',
-    name: 'Self-Parking Car — RL Agent',
-    tags: ['Reinforcement Learning', 'Simulation', 'Q-Learning'],
+    id: 'drone-navigation',
+    number: '03',
+    name: 'Autonomous Drone Navigation: Dynamic Pathfinding',
+    tags: ['Robotics', 'SLAM', 'Path Planning'],
     description:
-      'An advanced autonomous parking simulator powered by Tabular Q-Learning. Features custom Ackermann steering physics, an 8-ray LIDAR system, and an automated curriculum learning loop with adaptive epsilon decay.',
+      'A 3D navigation system for autonomous drones using Simultaneous Localization and Mapping (SLAM). Implements A* and Dijkstra algorithms for real-time trajectory optimization and obstacle avoidance in complex, dynamic environments.',
     stats: [
-      { label: 'Success Rate', value: '93%+' },
-      { label: 'State Space', value: '18.8K' },
-      { label: 'Physics', value: 'Ackermann' },
+      { label: 'Map Res', value: '0.1m' },
+      { label: 'Drift', value: '<0.5%' },
+      { label: 'Response', value: '15ms' },
     ],
-    tech: ['Python', 'NumPy', 'Pygame', 'Q-Learning', 'RL'],
+    tech: ['Python', 'Pybullet', 'OpenCV', 'ROS2', 'NumPy'],
   },
   {
     id: 'anomaly-detection',
-    number: '03',
-    name: 'Unsupervised Anomaly Detection',
+    number: '04',
+    name: 'Unsupervised Anomaly Detection (ViT-DINO)',
     tags: ['Computer Vision', 'ViT-DINO', 'Industrial AI'],
     description:
       'A high-performance defect detection pipeline using self-supervised Vision Transformers (DINO) on the MVTec dataset. Utilizes MiniBatchKMeans for memory bank coresets and generates Explainable AI (XAI) heatmaps for micro-crack localization.',
@@ -56,32 +70,18 @@ const projects: Project[] = [
     tech: ['PyTorch', 'Vision Transformer', 'scikit-learn', 'OpenCV'],
   },
   {
-    id: 'crack-analysis',
-    number: '04',
-    name: 'Concrete Crack Analysis',
-    tags: ['Deep Learning', 'Classification', 'ResNet18'],
-    description:
-      'A binary classification system for detecting cracks in concrete, pavements, and walls using a transfer-learning approach with ResNet18. Implements custom weighted loss functions to tackle extreme class imbalance in the SDNET2018 dataset.',
-    stats: [
-      { label: 'Dataset', value: 'SDNET2018' },
-      { label: 'Imbalance', value: '82% Skew' },
-      { label: 'Model', value: 'ResNet18' },
-    ],
-    tech: ['PyTorch', 'Torchvision', 'Pandas', 'Transfer Learning'],
-  },
-  {
-    id: 'cartoon-generator',
+    id: 'self-parking',
     number: '05',
-    name: 'Cartoonish Image Engine',
-    tags: ['Computer Vision', 'Image Processing', 'Filters'],
+    name: 'Self-Parking Car — RL Agent',
+    tags: ['Reinforcement Learning', 'Simulation', 'Q-Learning'],
     description:
-      'An advanced image processing pipeline that transforms standard photographs into vibrant, stylized cartoon artworks. Combines strong bilateral smoothing, Canny edge detection, and color quantization for clean, professional digital art.',
+      'An advanced autonomous parking simulator powered by Tabular Q-Learning. Features custom Ackermann steering physics, an 8-ray LIDAR system, and an automated curriculum learning loop with adaptive epsilon decay.',
     stats: [
-      { label: 'Smoothing', value: 'Bilateral' },
-      { label: 'Edges', value: 'Canny' },
-      { label: 'Colors', value: 'Quantized' },
+      { label: 'Success Rate', value: '93%+' },
+      { label: 'State Space', value: '18.8K' },
+      { label: 'Physics', value: 'Ackermann' },
     ],
-    tech: ['Python', 'OpenCV', 'NumPy', 'Image Processing'],
+    tech: ['Python', 'NumPy', 'Pygame', 'Q-Learning', 'RL'],
   },
 ]
 
