@@ -45,18 +45,23 @@ const skillsRow2: Skill[] = [
 
 const allSkills = [...skillsRow1, ...skillsRow2]
 
-function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean }) {
+function MarqueeRow({ skills, reverse, isGrid }: { skills: Skill[]; reverse?: boolean; isGrid: boolean }) {
   // Duplicate for seamless loop
   const doubled = [...skills, ...skills]
 
   return (
     <div className={`skills-marquee ${reverse ? 'skills-marquee--reverse' : ''}`}>
       {doubled.map((skill, i) => (
-        <div key={`${skill.name}-${i}`} className="skill-pill">
+        <motion.div 
+          key={`${skill.name}-${i}`} 
+          className="skill-pill"
+          layoutId={i < skills.length ? skill.name : undefined}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        >
           <skill.icon className="skill-pill-icon" />
           <span className="skill-pill-name">{skill.name}</span>
           <span className="skill-pill-category">{skill.category}</span>
-        </div>
+        </motion.div>
       ))}
     </div>
   )
@@ -100,23 +105,22 @@ export default function Skills() {
           </motion.button>
         </div>
 
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           {isGrid ? (
             <motion.div
               key="grid"
               className="skills-grid"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
             >
-              {allSkills.map((skill, i) => (
+              {allSkills.map((skill) => (
                 <motion.div 
                   key={skill.name} 
                   className="skill-pill"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: i * 0.02 }}
+                  layoutId={skill.name}
+                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <skill.icon className="skill-pill-icon" />
                   <span className="skill-pill-name">{skill.name}</span>
@@ -131,10 +135,10 @@ export default function Skills() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.4 }}
             >
-              <MarqueeRow skills={skillsRow1} />
-              <MarqueeRow skills={skillsRow2} reverse />
+              <MarqueeRow skills={skillsRow1} isGrid={isGrid} />
+              <MarqueeRow skills={skillsRow2} reverse isGrid={isGrid} />
             </motion.div>
           )}
         </AnimatePresence>
