@@ -68,10 +68,41 @@ export default function Navigation() {
         <div className="nav-inner">
           {/* Brand */}
           <button className="nav-brand" onClick={() => (window as any).lenis?.scrollTo(0)}>
+            <div className="nav-brand-mark">
+              <svg viewBox="0 0 32 32" fill="none">
+                <defs>
+                  <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="var(--crimson-bright)" />
+                    <stop offset="100%" stopColor="var(--gold)" />
+                  </linearGradient>
+                  <filter id="brandGlow">
+                    <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+                <polygon 
+                  points="16,4 28,26 4,26" 
+                  stroke="url(#brandGrad)" 
+                  strokeWidth="2" 
+                  strokeLinejoin="round"
+                  fill="rgba(196,30,58,0.06)" 
+                />
+                <circle 
+                  cx="16" 
+                  cy="19" 
+                  r="3.5" 
+                  fill="var(--crimson-bright)" 
+                  filter="url(#brandGlow)"
+                  className="nav-brand-dot"
+                />
+              </svg>
+            </div>
             <div className="nav-brand-logo">
               <span className="nav-logo-k">K</span>
               <span className="nav-logo-d">D</span>
-              <span className="nav-logo-dot">.</span>
             </div>
           </button>
 

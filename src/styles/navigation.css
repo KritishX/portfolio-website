@@ -42,6 +42,30 @@
   opacity: 0.75;
 }
 
+.nav-brand-mark {
+  width: 28px;
+  height: 28px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-brand-mark svg {
+  width: 100%;
+  height: 100%;
+}
+
+.nav-brand-dot {
+  transform-origin: 16px 19px;
+  animation: logo-pulse 3s ease-in-out infinite;
+}
+
+@keyframes logo-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+}
+
 .nav-brand-logo {
   font-family: var(--font-display);
   font-size: 1.45rem;
@@ -65,11 +89,7 @@
 }
 
 .nav-logo-dot {
-  color: var(--crimson-bright);
-  font-size: 1.8rem;
-  line-height: 0;
-  margin-left: 2px;
-  text-shadow: 0 0 12px var(--crimson);
+  display: none;
 }
 
 /* Nav Links */
