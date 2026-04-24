@@ -134,10 +134,10 @@
 /* Name */
 .hero-name {
   font-family: var(--font-display);
-  font-size: clamp(3.5rem, 11vw, 9.5rem);
+  font-size: clamp(3rem, 8vw, 7.5rem);
   font-weight: 600;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  line-height: 1;
+  letter-spacing: -0.02em;
   margin-bottom: var(--space-xl);
   color: var(--text-primary);
   text-align: center;
@@ -147,7 +147,10 @@
   display: inline-block;
   vertical-align: baseline;
   overflow: hidden;
-  padding-right: 0.02em;
+}
+
+.hero-name-line:first-child {
+  margin-right: 0.22em;
 }
 
 .hero-name em {
