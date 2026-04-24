@@ -68,7 +68,37 @@
 
 @keyframes logo-pulse {
   0%, 100% { transform: scale(1); opacity: 0.8; }
-  50% { transform: scale(1.2); opacity: 1; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.nav-ring-outer {
+  transform-origin: 16px 16px;
+  animation: rotate-cw 25s linear infinite;
+  transition: animation-duration 0.6s ease;
+}
+
+.nav-ring-mid {
+  transform-origin: 16px 16px;
+  animation: rotate-ccw 15s linear infinite;
+  transition: animation-duration 0.6s ease;
+}
+
+.nav-brand:hover .nav-ring-outer {
+  animation-duration: 5s;
+}
+
+.nav-brand:hover .nav-ring-mid {
+  animation-duration: 3s;
+}
+
+@keyframes rotate-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes rotate-ccw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
 }
 
 .nav-brand-logo {

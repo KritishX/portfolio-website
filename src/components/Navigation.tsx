@@ -76,7 +76,7 @@ export default function Navigation() {
                     <stop offset="100%" stopColor="#c41e3a" />
                   </linearGradient>
                   <filter id="brandGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                    <feGaussianBlur stdDeviation="1.2" result="coloredBlur"/>
                     <feMerge>
                       <feMergeNode in="coloredBlur"/>
                       <feMergeNode in="SourceGraphic"/>
@@ -84,20 +84,49 @@ export default function Navigation() {
                   </filter>
                 </defs>
                 
-                {/* Outer scope ring */}
-                <circle cx="16" cy="16" r="15" stroke="url(#brandGrad)" strokeWidth="1" opacity="0.3" strokeDasharray="3 4" />
+                {/* Outer static brackets */}
+                <path d="M4 12 L4 4 L12 4" stroke="url(#brandGrad)" strokeWidth="0.75" opacity="0.4" />
+                <path d="M28 12 L28 4 L20 4" stroke="url(#brandGrad)" strokeWidth="0.75" opacity="0.4" />
+                <path d="M4 20 L4 28 L12 28" stroke="url(#brandGrad)" strokeWidth="0.75" opacity="0.4" />
+                <path d="M28 20 L28 28 L20 28" stroke="url(#brandGrad)" strokeWidth="0.75" opacity="0.4" />
+
+                {/* Outer scope ring — Dashed */}
+                <circle 
+                  cx="16" cy="16" r="15.5" 
+                  stroke="url(#brandGrad)" 
+                  strokeWidth="0.8" 
+                  opacity="0.2" 
+                  strokeDasharray="2 4" 
+                  className="nav-ring-outer"
+                />
+                
+                {/* Middle Ring — Segmented */}
+                <circle 
+                  cx="16" cy="16" r="11" 
+                  stroke="url(#brandGrad)" 
+                  strokeWidth="1.2" 
+                  opacity="0.5" 
+                  strokeDasharray="10 7" 
+                  className="nav-ring-mid"
+                />
                 
                 {/* Precision crosshairs */}
-                <path d="M16 -2 L16 7 M16 25 L16 34 M-2 16 L7 16 M25 16 L34 16" stroke="url(#brandGrad)" strokeWidth="1.5" strokeLinecap="round" filter="url(#brandGlow)" />
+                <path 
+                  d="M16 2 L16 9 M16 23 L16 30 M2 16 L9 16 M23 16 L30 16" 
+                  stroke="url(#brandGrad)" 
+                  strokeWidth="1.5" 
+                  strokeLinecap="round" 
+                  filter="url(#brandGlow)" 
+                />
                 
                 {/* Inner focus ring */}
-                <circle cx="16" cy="16" r="8" stroke="url(#brandGrad)" strokeWidth="1.25" opacity="0.8" />
+                <circle cx="16" cy="16" r="6" stroke="url(#brandGrad)" strokeWidth="1" opacity="0.8" />
                 
                 {/* Pulsing core */}
                 <circle 
                   cx="16" 
                   cy="16" 
-                  r="2.5" 
+                  r="2" 
                   fill="#ff4b4b" 
                   filter="url(#brandGlow)"
                   className="nav-brand-dot"
