@@ -14,6 +14,7 @@ export default function App() {
   const [loading, setLoading] = useState(true)
   const location = useLocation()
 
+  useEffect(() => {
     // Prevent browser from jumping on back/forward gestures to let Lenis handle it
     if ('scrollRestoration' in window.history) {
       window.history.scrollRestoration = 'manual'
