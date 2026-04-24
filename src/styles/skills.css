@@ -21,23 +21,39 @@
   line-height: 1.1;
 }
 
-/* Marquee container */
+/* Marquee container with seamless masking */
 .skills-marquee-wrap {
   display: flex;
   flex-direction: column;
-  gap: var(--space-lg);
+  gap: var(--space-xl);
+  position: relative;
+  /* Use mask-image for high-end cinematic fading */
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 15%,
+    black 85%,
+    transparent 100%
+  );
 }
 
 .skills-marquee {
   display: flex;
   width: max-content;
   gap: var(--space-xl);
-  animation: marquee-scroll 35s linear infinite;
+  animation: marquee-scroll 45s linear infinite; /* Slower for more premium feel */
 }
 
 .skills-marquee--reverse {
   animation-direction: reverse;
-  animation-duration: 40s;
+  animation-duration: 50s;
 }
 
 .skills-marquee:hover {
@@ -49,48 +65,85 @@
   to { transform: translateX(-50%); }
 }
 
-/* Skill pill */
+/* High-Fidelity Glass Skill pill */
 .skill-pill {
   display: inline-flex;
   align-items: center;
-  gap: var(--space-sm);
-  padding: var(--space-md) var(--space-xl);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
+  gap: var(--space-md);
+  padding: 0.8rem 1.6rem;
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
   border-radius: var(--radius-full);
   white-space: nowrap;
-  transition: all var(--duration-normal) var(--ease-out-expo);
-  cursor: default;
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.skill-pill::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(196, 30, 58, 0.15), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
 }
 
 .skill-pill:hover {
-  border-color: var(--crimson);
-  background: var(--crimson-glow);
-  transform: translateY(-2px);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(196, 30, 58, 0.4);
+  transform: translateY(-4px) scale(1.05);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5),
+              0 0 20px rgba(196, 30, 58, 0.1);
+}
+
+.skill-pill:hover::before {
+  opacity: 1;
 }
 
 .skill-pill-icon {
-  width: 18px;
-  height: 18px;
-  color: var(--crimson-bright);
-  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  color: var(--text-muted);
+  transition: all 0.5s ease;
+  z-index: 1;
+}
+
+.skill-pill:hover .skill-pill-icon {
+  color: #ffffff;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
+  transform: rotate(5deg);
 }
 
 .skill-pill-name {
   font-family: var(--font-body);
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   font-weight: 500;
-  color: var(--text-primary);
+  color: rgba(255, 255, 255, 0.8);
+  transition: color 0.5s ease;
+  z-index: 1;
+}
+
+.skill-pill:hover .skill-pill-name {
+  color: #ffffff;
 }
 
 .skill-pill-category {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  letter-spacing: 0.1em;
+  font-size: 0.58rem;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--text-muted);
-  margin-left: var(--space-xs);
+  color: rgba(255, 255, 255, 0.3);
+  margin-left: 4px;
+  z-index: 1;
+}
+
+.skill-pill:hover .skill-pill-category {
+  color: rgba(196, 30, 58, 0.8);
 }
 
 /* Category divider in marquee */
@@ -117,27 +170,7 @@
   color: var(--text-muted);
 }
 
-/* Fade edges */
-.skills-marquee-wrap::before,
-.skills-marquee-wrap::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 120px;
-  z-index: 2;
-  pointer-events: none;
-}
-
-.skills-marquee-wrap::before {
-  left: 0;
-  background: linear-gradient(90deg, var(--bg-primary), transparent);
-}
-
-.skills-marquee-wrap::after {
-  right: 0;
-  background: linear-gradient(270deg, var(--bg-primary), transparent);
-}
+/* Fade edges handled by mask-image on wrap */
 
 @media (max-width: 768px) {
   .skill-pill {
@@ -145,9 +178,5 @@
   }
   .skill-pill-category {
     display: none;
-  }
-  .skills-marquee-wrap::before,
-  .skills-marquee-wrap::after {
-    width: 40px;
   }
 }
