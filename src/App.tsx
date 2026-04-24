@@ -15,14 +15,12 @@ export default function App() {
   const location = useLocation()
 
   useEffect(() => {
-    // Initialize Lenis for 120Hz/90Hz ultra-smooth scrolling
+    // Initialize Lenis for purely physics-based, refresh-rate independent ultra-smooth scrolling
     const lenis = new Lenis({
-      lerp: 0.15,
-      duration: 1.2,
+      lerp: 0.08, // Buttery smooth interpolation
       smoothWheel: true,
-      syncTouch: true,
+      wheelMultiplier: 1.1, // Slightly faster wheel
       touchMultiplier: 2,
-      wheelMultiplier: 1,
     })
 
     // Attach to window for access in other components

@@ -128,11 +128,14 @@
 }
 
 .hero-name em {
+  font-family: 'Playfair Display', serif;
   font-style: italic;
-  background: linear-gradient(135deg, var(--text-primary) 0%, var(--crimson-bright) 100%);
+  font-weight: 400;
+  background: linear-gradient(135deg, #ff4b4b 0%, #9b1b30 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  padding-right: 0.1em;
 }
 
 /* Role */
@@ -183,17 +186,18 @@
   letter-spacing: 0.14em;
   text-transform: uppercase;
   color: var(--text-primary);
-  background: var(--crimson);
+  background: linear-gradient(135deg, #ff4b4b, #c41e3a);
+  border: 1px solid rgba(255, 75, 75, 0.3);
   padding: 0.85rem var(--space-xl);
   border-radius: var(--radius-full);
-  transition: all var(--duration-normal) var(--ease-out-expo);
-  box-shadow: 0 4px 20px rgba(196, 30, 58, 0.25);
+  transition: all 0.4s var(--ease-out-expo);
+  box-shadow: 0 4px 20px rgba(196, 30, 58, 0.2), inset 0 1px 1px rgba(255, 255, 255, 0.25);
 }
 
 .hero-cta-primary:hover {
-  background: var(--crimson-bright);
+  background: linear-gradient(135deg, #ff5c5c, #de2242);
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(196, 30, 58, 0.4);
+  box-shadow: 0 8px 30px rgba(196, 30, 58, 0.35), inset 0 1px 1px rgba(255, 255, 255, 0.35);
 }
 
 .hero-cta-primary svg {
@@ -217,15 +221,17 @@
   text-transform: uppercase;
   color: var(--text-muted);
   padding: 0.85rem var(--space-xl);
-  border: 1px solid var(--border-subtle);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(10px);
   border-radius: var(--radius-full);
-  transition: all var(--duration-normal) var(--ease-out-expo);
+  transition: all 0.4s var(--ease-out-expo);
 }
 
 .hero-cta-secondary:hover {
   color: var(--text-primary);
-  border-color: var(--border-medium);
-  background: var(--bg-hover);
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.05);
 }
 
 .hero-cta-secondary svg {
