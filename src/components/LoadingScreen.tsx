@@ -262,12 +262,6 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           </motion.p>
         </div>
 
-        {/* HUD Scanning Beam */}
-        <motion.div 
-          className="loading-scanner"
-          style={{ top: `${progress * 100}%` }}
-        />
-
         <div className="loading-mountain">
           <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
             <path
