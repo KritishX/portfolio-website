@@ -139,27 +139,27 @@
   line-height: 1;
   letter-spacing: -0.02em;
   background: linear-gradient(
-    -45deg, 
-    var(--crimson-deep) 0%, 
-    var(--crimson) 25%, 
-    #ffffff 50%, 
-    var(--crimson) 75%, 
-    var(--crimson-deep) 100%
+    110deg, 
+    #ffffff 0%, 
+    #ffffff 40%, 
+    var(--crimson-bright) 50%, 
+    #ffffff 60%, 
+    #ffffff 100%
   );
-  background-size: 400% 400%;
+  background-size: 200% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 35px rgba(196, 30, 58, 0.5));
-  animation: molten-flow 15s ease infinite;
+  filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.15));
+  animation: subtle-drift 12s ease-in-out infinite;
   margin-bottom: var(--space-xl);
   text-align: center;
 }
 
-@keyframes molten-flow {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+@keyframes subtle-drift {
+  0% { background-position: -50% center; }
+  50% { background-position: 50% center; }
+  100% { background-position: -50% center; }
 }
 
 .hero-name-line {
