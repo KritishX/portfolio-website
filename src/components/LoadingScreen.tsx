@@ -45,26 +45,14 @@ function StrangeMandala() {
         ctx.strokeStyle = color
         ctx.globalAlpha = alpha
         ctx.lineWidth = 0.8
-        // Rune shape: small angular symbol
         const s = 4
         ctx.beginPath()
         if (i % 3 === 0) {
-          // Triangle rune
-          ctx.moveTo(0, -s)
-          ctx.lineTo(s * 0.866, s * 0.5)
-          ctx.lineTo(-s * 0.866, s * 0.5)
-          ctx.closePath()
+          ctx.moveTo(0, -s); ctx.lineTo(s * 0.866, s * 0.5); ctx.lineTo(-s * 0.866, s * 0.5); ctx.closePath()
         } else if (i % 3 === 1) {
-          // Cross rune
-          ctx.moveTo(-s, 0); ctx.lineTo(s, 0)
-          ctx.moveTo(0, -s); ctx.lineTo(0, s)
+          ctx.moveTo(-s, 0); ctx.lineTo(s, 0); ctx.moveTo(0, -s); ctx.lineTo(0, s)
         } else {
-          // Diamond rune
-          ctx.moveTo(0, -s)
-          ctx.lineTo(s * 0.6, 0)
-          ctx.lineTo(0, s)
-          ctx.lineTo(-s * 0.6, 0)
-          ctx.closePath()
+          ctx.moveTo(0, -s); ctx.lineTo(s * 0.6, 0); ctx.lineTo(0, s); ctx.lineTo(-s * 0.6, 0); ctx.closePath()
         }
         ctx.stroke()
         ctx.restore()
@@ -106,40 +94,21 @@ function StrangeMandala() {
       ctx.strokeStyle = '#E8334D'
       ctx.globalAlpha = alpha
       ctx.lineWidth = 1
-      
       const bSize = 20
       const padding = 15
       
-      // Top-Left Bracket
-      ctx.beginPath()
-      ctx.moveTo(padding, padding + bSize); ctx.lineTo(padding, padding); ctx.lineTo(padding + bSize, padding)
-      ctx.stroke()
+      // Brackets
+      ctx.beginPath(); ctx.moveTo(padding, padding + bSize); ctx.lineTo(padding, padding); ctx.lineTo(padding + bSize, padding); ctx.stroke()
+      ctx.beginPath(); ctx.moveTo(SIZE - padding, padding + bSize); ctx.lineTo(SIZE - padding, padding); ctx.lineTo(SIZE - padding - bSize, padding); ctx.stroke()
+      ctx.beginPath(); ctx.moveTo(padding, SIZE - padding - bSize); ctx.lineTo(padding, SIZE - padding); ctx.lineTo(padding + bSize, SIZE - padding); ctx.stroke()
+      ctx.beginPath(); ctx.moveTo(SIZE - padding, SIZE - padding - bSize); ctx.lineTo(SIZE - padding, SIZE - padding); ctx.lineTo(SIZE - padding - bSize, SIZE - padding); ctx.stroke()
       
-      // Top-Right Bracket
-      ctx.beginPath()
-      ctx.moveTo(SIZE - padding, padding + bSize); ctx.lineTo(SIZE - padding, padding); ctx.lineTo(SIZE - padding - bSize, padding)
-      ctx.stroke()
-      
-      // Bottom-Left Bracket
-      ctx.beginPath()
-      ctx.moveTo(padding, SIZE - padding - bSize); ctx.lineTo(padding, SIZE - padding); ctx.lineTo(padding + bSize, SIZE - padding)
-      ctx.stroke()
-      
-      // Bottom-Right Bracket
-      ctx.beginPath()
-      ctx.moveTo(SIZE - padding, SIZE - padding - bSize); ctx.lineTo(SIZE - padding, SIZE - padding); ctx.lineTo(SIZE - padding - bSize, SIZE - padding)
-      ctx.stroke()
-      
-      // Center Crosshairs
-      const cLen = 10
-      const cGap = 40
-      ctx.beginPath()
-      ctx.moveTo(cx, cy - cGap - cLen); ctx.lineTo(cx, cy - cGap) // Top
-      ctx.moveTo(cx, cy + cGap); ctx.lineTo(cx, cy + cGap + cLen) // Bottom
-      ctx.moveTo(cx - cGap - cLen, cy); ctx.lineTo(cx - cGap, cy) // Left
-      ctx.moveTo(cx + cGap, cy); ctx.lineTo(cx + cGap + cLen, cy) // Right
-      ctx.stroke()
-      
+      // Crosshairs
+      const cLen = 10; const cGap = 40
+      ctx.beginPath(); ctx.moveTo(cx, cy - cGap - cLen); ctx.lineTo(cx, cy - cGap); ctx.stroke()
+      ctx.beginPath(); ctx.moveTo(cx, cy + cGap); ctx.lineTo(cx, cy + cGap + cLen); ctx.stroke()
+      ctx.beginPath(); ctx.moveTo(cx - cGap - cLen, cy); ctx.lineTo(cx - cGap, cy); ctx.stroke()
+      ctx.beginPath(); ctx.moveTo(cx + cGap, cy); ctx.lineTo(cx + cGap + cLen, cy); ctx.stroke()
       ctx.restore()
     }
 
@@ -162,7 +131,7 @@ function StrangeMandala() {
       ctx.clearRect(0, 0, SIZE, SIZE)
       t += 0.012
 
-      // ---------- Glow layers ----------
+      // Glow layers
       const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, 140)
       grad.addColorStop(0, 'rgba(212, 168, 83, 0.06)')
       grad.addColorStop(0.5, 'rgba(196, 30, 58, 0.04)')
@@ -170,30 +139,30 @@ function StrangeMandala() {
       ctx.fillStyle = grad
       ctx.fillRect(0, 0, SIZE, SIZE)
 
-      // ---------- Ring 1 — innermost, fast CW ----------
+      // Ring 1
       drawGlowRing(32, '#E8334D', 0.9, 1.2)
       drawDashedRing(32, 12, 0.45, '#E8334D', 0.7, 1, t * 2.5)
       drawSpokes(12, 22, 42, t * 2.5, '#E8334D', 0.5)
 
-      // ---------- Ring 2 — CCW, runes ----------
+      // Ring 2
       drawGlowRing(58, '#D4A853', 0.65, 1)
       drawDashedRing(58, 24, 0.4, '#D4A853', 0.6, 0.8, -t * 1.8)
       drawRunes(58, 12, -t * 1.8, '#D4A853', 0.75)
       drawSpokes(24, 48, 68, -t * 1.8, '#D4A853', 0.25)
 
-      // ---------- Ring 3 — CW, segmented ----------
+      // Ring 3
       drawGlowRing(88, '#C41E3A', 0.55, 1)
       drawDashedRing(88, 36, 0.35, '#C41E3A', 0.55, 0.7, t * 1.2)
       drawRunes(88, 18, t * 1.2, '#C41E3A', 0.5)
 
-      // ---------- Ring 4 — outermost CCW ----------
+      // Ring 4
       drawGlowRing(118, '#D4A853', 0.3, 0.8)
       drawDashedRing(118, 48, 0.5, '#D4A853', 0.4, 0.6, -t * 0.7)
       drawDashedRing(124, 8, 0.3, '#E8334D', 0.35, 1.2, t * 0.7)
       drawRunes(118, 24, -t * 0.7, '#D4A853', 0.35)
       drawSpokes(48, 108, 128, -t * 0.7, '#D4A853', 0.12)
 
-      // ---------- Particles / sparks ----------
+      // Particles
       particles.forEach(p => {
         p.angle += p.speed
         const x = cx + Math.cos(p.angle) * p.radius
@@ -204,25 +173,21 @@ function StrangeMandala() {
         ctx.fillStyle = p.ring % 2 === 0 ? '#E8334D' : '#D4A853'
         ctx.shadowColor = p.ring % 2 === 0 ? '#E8334D' : '#D4A853'
         ctx.shadowBlur = 6
-        ctx.beginPath()
-        ctx.arc(x, y, p.size, 0, Math.PI * 2)
-        ctx.fill()
+        ctx.beginPath(); ctx.arc(x, y, p.size, 0, Math.PI * 2); ctx.fill()
         ctx.restore()
       })
 
-      // ---------- Reticle HUD — subtle pulsing ----------
+      // Reticle HUD
       const hudAlpha = 0.3 + 0.2 * Math.sin(t * 1.5)
       drawHUD(hudAlpha)
 
-      // ---------- Center dot ----------
+      // Center dot
       ctx.save()
       ctx.globalAlpha = 1
       ctx.fillStyle = '#E8334D'
       ctx.shadowColor = '#E8334D'
       ctx.shadowBlur = 16
-      ctx.beginPath()
-      ctx.arc(cx, cy, 3.5, 0, Math.PI * 2)
-      ctx.fill()
+      ctx.beginPath(); ctx.arc(cx, cy, 3.5, 0, Math.PI * 2); ctx.fill()
       ctx.restore()
 
       rafId = requestAnimationFrame(frame)
@@ -268,7 +233,6 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="loading-center">
-          {/* Doctor Strange style canvas mandala */}
           <motion.div
             className="loading-mandala-wrap"
             initial={{ opacity: 0, scale: 0.5, rotate: -30 }}
@@ -278,7 +242,6 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             <StrangeMandala />
           </motion.div>
 
-          {/* Name below mandala */}
           <motion.div
             className="loading-name"
             initial={{ opacity: 0, y: 20 }}
@@ -289,7 +252,6 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             <span className="loading-name-last">Dhital</span>
           </motion.div>
 
-          {/* Tagline below */}
           <motion.p
             className="loading-tagline"
             initial={{ opacity: 0, y: 10 }}
@@ -300,16 +262,13 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           </motion.p>
         </div>
 
-        {/* Mountain silhouette */}
         <div className="loading-mountain">
           <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
-            {/* Back range */}
             <path
               className="loading-mountain-back"
               d="M0,100 L0,70 L180,30 L360,60 L540,10 L720,50 L900,20 L1080,70 L1260,30 L1440,80 L1440,100 Z"
               fill="currentColor"
             />
-            {/* Front range */}
             <path
               className="loading-mountain-front"
               d="M0,100 L0,85 L120,55 L240,75 L360,40 L480,65 L600,30 L720,55 L840,40 L960,65 L1080,25 L1200,55 L1320,35 L1440,60 L1440,100 Z"
@@ -318,12 +277,10 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           </svg>
         </div>
 
-        {/* Progress bar */}
         <div className="loading-progress">
           <motion.div className="loading-progress-bar" style={{ scaleX: progress }} />
         </div>
 
-        {/* Progress counter */}
         <motion.div
           className="loading-percent"
           initial={{ opacity: 0 }}

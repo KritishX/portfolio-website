@@ -76,7 +76,7 @@ export default function Navigation() {
                     <stop offset="100%" stopColor="#c41e3a" />
                   </linearGradient>
                   <filter id="brandGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="1.2" result="coloredBlur"/>
+                    <feGaussianBlur stdDeviation="1" result="coloredBlur"/>
                     <feMerge>
                       <feMergeNode in="coloredBlur"/>
                       <feMergeNode in="SourceGraphic"/>
@@ -84,58 +84,37 @@ export default function Navigation() {
                   </filter>
                 </defs>
                 
-                {/* Outer static brackets */}
-                <path d="M4 12 L4 4 L12 4" stroke="url(#brandGrad)" strokeWidth="0.75" opacity="0.4" />
-                <path d="M28 12 L28 4 L20 4" stroke="url(#brandGrad)" strokeWidth="0.75" opacity="0.4" />
-                <path d="M4 20 L4 28 L12 28" stroke="url(#brandGrad)" strokeWidth="0.75" opacity="0.4" />
-                <path d="M28 20 L28 28 L20 28" stroke="url(#brandGrad)" strokeWidth="0.75" opacity="0.4" />
-
-                {/* Outer scope ring — Dashed */}
-                <circle 
-                  cx="16" cy="16" r="15.5" 
+                {/* Mandala-Reticle Fusion Geometry */}
+                <path 
+                  d="M16 2 L19.5 12.5 L30 16 L19.5 19.5 L16 30 L12.5 19.5 L2 16 L12.5 12.5 Z" 
                   stroke="url(#brandGrad)" 
-                  strokeWidth="0.8" 
-                  opacity="0.2" 
-                  strokeDasharray="2 4" 
+                  strokeWidth="0.5" 
+                  opacity="0.3" 
                   className="nav-ring-outer"
                 />
                 
-                {/* Middle Ring — Segmented */}
-                <circle 
-                  cx="16" cy="16" r="11" 
-                  stroke="url(#brandGrad)" 
-                  strokeWidth="1.2" 
-                  opacity="0.5" 
-                  strokeDasharray="10 7" 
-                  className="nav-ring-mid"
-                />
+                {/* Rotating Technical Rings */}
+                <circle cx="16" cy="16" r="15" stroke="url(#brandGrad)" strokeWidth="0.5" opacity="0.15" strokeDasharray="1 2" />
+                <circle cx="16" cy="16" r="11" stroke="url(#brandGrad)" strokeWidth="1" opacity="0.5" strokeDasharray="5 5" className="nav-ring-mid" />
+
+                {/* Reticle Crosshairs */}
+                <path d="M16 0 L16 7 M16 25 L16 32 M0 16 L7 16 M25 16 L32 16" stroke="url(#brandGrad)" strokeWidth="1.2" strokeLinecap="square" filter="url(#brandGlow)" />
+
+                {/* Central Identity - KD */}
+                <text 
+                  x="16" y="19" 
+                  fill="url(#brandGrad)" 
+                  fontSize="9" 
+                  fontWeight="700" 
+                  textAnchor="middle" 
+                  style={{ fontFamily: 'var(--font-display)', fontStyle: 'italic', filter: 'drop-shadow(0 0 2px rgba(196,30,58,0.5))' }}
+                >
+                  KD
+                </text>
                 
-                {/* Precision crosshairs */}
-                <path 
-                  d="M16 2 L16 9 M16 23 L16 30 M2 16 L9 16 M23 16 L30 16" 
-                  stroke="url(#brandGrad)" 
-                  strokeWidth="1.5" 
-                  strokeLinecap="round" 
-                  filter="url(#brandGlow)" 
-                />
-                
-                {/* Inner focus ring */}
-                <circle cx="16" cy="16" r="6" stroke="url(#brandGrad)" strokeWidth="1" opacity="0.8" />
-                
-                {/* Pulsing core */}
-                <circle 
-                  cx="16" 
-                  cy="16" 
-                  r="2" 
-                  fill="#ff4b4b" 
-                  filter="url(#brandGlow)"
-                  className="nav-brand-dot"
-                />
+                {/* Core pulse */}
+                <circle cx="16" cy="16" r="1.5" fill="#ff4b4b" className="nav-brand-dot" />
               </svg>
-            </div>
-            <div className="nav-brand-logo">
-              <span className="nav-logo-k">K</span>
-              <span className="nav-logo-d">D</span>
             </div>
           </button>
 
