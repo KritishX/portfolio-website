@@ -153,18 +153,7 @@
   margin-right: 0.22em;
 }
 
-.hero-name em {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-weight: 400;
-  font-size: 1.08em;
-  background: linear-gradient(135deg, #ff4b4b 0%, #9b1b30 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  display: inline-block;
-  transform: translateY(0.02em);
-}
+
 
 /* Role */
 .hero-role {
@@ -356,11 +345,7 @@
     margin-bottom: var(--space-md);
   }
 
-  .hero-surname {
-    font-size: 4.5rem;
-    margin-top: -0.4rem;
-    display: block;
-  }
+
 
   .hero-overline {
     font-size: 0.52rem;

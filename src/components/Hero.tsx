@@ -60,7 +60,7 @@ export default function Hero() {
               animate="visible"
               custom={1}
             >
-              <em>Dhital</em>
+              Dhital
             </motion.span>
           </span>
         </h1>
