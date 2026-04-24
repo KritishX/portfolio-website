@@ -5,7 +5,6 @@ import { Routes, Route, useLocation, useNavigationType } from 'react-router-dom'
 import LoadingScreen from './components/LoadingScreen'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
-import SacredGeometry from './components/SacredGeometry'
 import Home from './pages/Home'
 import Terms from './pages/Terms'
 import Privacy from './pages/Privacy'
@@ -67,8 +66,6 @@ export default function App() {
 
       {!loading && (
         <>
-          <SacredGeometry />
-
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
