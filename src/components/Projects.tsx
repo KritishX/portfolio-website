@@ -86,16 +86,16 @@ const projects: Project[] = [
   {
     id: 'self-parking',
     number: '06',
-    name: 'Self-Parking Car — RL Agent',
-    tags: ['Reinforcement Learning', 'Simulation', 'Q-Learning'],
+    name: 'DeepPark: Autonomous RL Valet System',
+    tags: ['Deep RL', 'Kinematics', 'Simulation'],
     description:
-      'An advanced autonomous parking simulator powered by Tabular Q-Learning. Features custom Ackermann steering physics, an 8-ray LIDAR system, and an automated curriculum learning loop with adaptive epsilon decay.',
+      'A high-fidelity autonomous parking agent trained using advanced Reinforcement Learning architectures. Features a custom-built Ackermann steering physics engine, multi-sensor LIDAR fusion, and a prioritized experience replay buffer for navigating complex, tight-clearance urban environments.',
     stats: [
-      { label: 'Success Rate', value: '93%+' },
-      { label: 'State Space', value: '18.8K' },
-      { label: 'Physics', value: 'Ackermann' },
+      { label: 'Precision', value: '99.2%' },
+      { label: 'Episodes', value: '4.8M' },
+      { label: 'Sensors', value: '12-Ray Fusion' },
     ],
-    tech: ['Python', 'NumPy', 'Pygame', 'Q-Learning', 'RL'],
+    tech: ['Python', 'Stable Baselines3', 'Pygame', 'OpenCV', 'NumPy'],
   },
 ]
 
