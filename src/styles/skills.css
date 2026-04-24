@@ -68,11 +68,26 @@
   top: 0;
   bottom: 0;
   width: 2px;
-  background: linear-gradient(to bottom, transparent, var(--crimson), transparent);
-  box-shadow: 0 0 15px var(--crimson);
+  background: linear-gradient(to bottom, transparent, #ffffff, var(--crimson), #ffffff, transparent);
+  box-shadow: 0 0 25px var(--crimson), 0 0 50px rgba(196, 30, 58, 0.3);
   z-index: 10;
   pointer-events: none;
-  opacity: 0.6;
+  opacity: 0.8;
+}
+
+.skills-scan-line::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  right: 1px;
+  width: 150px;
+  background: linear-gradient(to left, rgba(196, 30, 58, 0.1), transparent);
+}
+
+.skills-scan-line--secondary {
+  opacity: 0.3;
+  width: 1px;
+  box-shadow: 0 0 10px var(--crimson);
 }
 
 .skills-mosaic {

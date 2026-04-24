@@ -121,12 +121,18 @@ export default function Skills() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                {/* Technical Scanning Sweep during assembly */}
+                {/* Diagnostic Pulse Sweep — Double Pass */}
                 <motion.div 
                   className="skills-scan-line"
-                  initial={{ left: '-10%' }}
-                  animate={{ left: '110%' }}
-                  transition={{ duration: 1.2, ease: "easeInOut" }}
+                  initial={{ left: '-20%' }}
+                  animate={{ left: '120%' }}
+                  transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                />
+                <motion.div 
+                  className="skills-scan-line skills-scan-line--secondary"
+                  initial={{ left: '-20%' }}
+                  animate={{ left: '120%' }}
+                  transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
                 />
 
                 <div className="skills-mosaic">
