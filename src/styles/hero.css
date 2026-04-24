@@ -4,13 +4,13 @@
 
 .hero {
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   position: relative;
   overflow: hidden;
-  padding-top: 80px;
-  padding-bottom: 2vh;
+  padding-block: clamp(80px, 10vh, 120px);
 }
 
 /* Ambient background */
@@ -91,7 +91,6 @@
   padding-inline: var(--gutter);
   max-width: var(--container-max);
   margin-inline: auto;
-  margin-block: auto;
   width: 100%;
 }
 
@@ -269,7 +268,7 @@
 /* Scroll indicator — anchored to bottom of hero */
 .hero-bottom-stack {
   position: absolute;
-  bottom: 2.5rem;
+  bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
