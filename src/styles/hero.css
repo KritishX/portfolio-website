@@ -129,7 +129,10 @@
 
 .hero-name em {
   font-style: italic;
-  color: var(--crimson-bright);
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--crimson-bright) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Role */
