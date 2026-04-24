@@ -73,10 +73,10 @@ export default function Navigation() {
                 <defs>
                   <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#ff4b4b" />
-                    <stop offset="100%" stopColor="#9b1b30" />
+                    <stop offset="100%" stopColor="#c41e3a" />
                   </linearGradient>
                   <filter id="brandGlow" x="-50%" y="-50%" width="200%" height="200%">
-                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
+                    <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
                     <feMerge>
                       <feMergeNode in="coloredBlur"/>
                       <feMergeNode in="SourceGraphic"/>
@@ -86,16 +86,16 @@ export default function Navigation() {
                 <polygon 
                   points="16,4 28,26 4,26" 
                   stroke="url(#brandGrad)" 
-                  strokeWidth="2.5" 
+                  strokeWidth="1.25" 
                   strokeLinejoin="round"
-                  fill="rgba(196,30,58,0.15)" 
+                  fill="rgba(255,75,75,0.03)" 
                   filter="url(#brandGlow)"
                 />
                 <circle 
                   cx="16" 
                   cy="19" 
-                  r="4" 
-                  fill="#ff1e46" 
+                  r="3.5" 
+                  fill="#ff4b4b" 
                   filter="url(#brandGlow)"
                   className="nav-brand-dot"
                 />
