@@ -255,38 +255,32 @@
   position: relative;
 }
 
-/* The single unified glowing laser beam */
-.hero-scroll::after {
-  content: '';
-  position: absolute;
-  top: -20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 4px;
-  height: 50px;
-  background: linear-gradient(180deg, transparent, #ff4b4b, #9b1b30, transparent);
-  box-shadow: 0 0 12px #ff4b4b, 0 0 24px #9b1b30;
-  border-radius: 4px;
-  animation: scroll-laser-travel 2.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-  z-index: 3;
-  mix-blend-mode: screen;
-  pointer-events: none;
-}
-
-@keyframes scroll-laser-travel {
-  0% { top: -20px; opacity: 0; }
-  15% { opacity: 1; }
-  85% { opacity: 1; }
-  100% { top: calc(100% + 20px); opacity: 0; }
-}
-
 .hero-scroll-text {
   font-family: var(--font-mono);
   font-size: 0.52rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.25);
   writing-mode: vertical-rl;
+  
+  /* Text masking for smooth glow transition */
+  background: linear-gradient(180deg, 
+    var(--text-muted) 35%, 
+    #ff4b4b 47%, 
+    #ffffff 50%, 
+    #9b1b30 53%, 
+    var(--text-muted) 65%
+  );
+  background-size: 100% 300%;
+  background-position: 0% 100%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: scroll-text-shimmer 3s ease-in-out infinite;
+}
+
+@keyframes scroll-text-shimmer {
+  0% { background-position: 0% 100%; } /* Glow is above text */
+  25% { background-position: 0% 0%; }  /* Glow passes through to bottom */
+  100% { background-position: 0% 0%; } /* Wait for line animation */
 }
 
 .hero-scroll-line {
@@ -295,6 +289,28 @@
   background: rgba(255, 255, 255, 0.05);
   position: relative;
   border-radius: 2px;
+}
+
+.hero-scroll-line::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -1px;
+  width: 4px;
+  height: 40%;
+  background: linear-gradient(180deg, transparent, #ffffff, #ff4b4b, #9b1b30, transparent);
+  box-shadow: 0 0 10px #ff4b4b, 0 0 20px #9b1b30;
+  border-radius: 4px;
+  opacity: 0;
+  animation: scroll-line-drop 3s ease-in-out infinite;
+}
+
+@keyframes scroll-line-drop {
+  0% { top: -50%; opacity: 0; }
+  22% { top: -30%; opacity: 0; }
+  25% { top: -10%; opacity: 1; } /* Glow transfers from text to line */
+  60% { top: 100%; opacity: 0; }
+  100% { top: 100%; opacity: 0; }
 }
 
 @media (max-width: 768px) {
