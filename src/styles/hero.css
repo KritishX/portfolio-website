@@ -252,6 +252,32 @@
   align-items: center;
   gap: 10px;
   z-index: 2;
+  position: relative;
+}
+
+/* The single unified glowing laser beam */
+.hero-scroll::after {
+  content: '';
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 50px;
+  background: linear-gradient(180deg, transparent, #ff4b4b, #9b1b30, transparent);
+  box-shadow: 0 0 12px #ff4b4b, 0 0 24px #9b1b30;
+  border-radius: 4px;
+  animation: scroll-laser-travel 2.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+  z-index: 3;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+@keyframes scroll-laser-travel {
+  0% { top: -20px; opacity: 0; }
+  15% { opacity: 1; }
+  85% { opacity: 1; }
+  100% { top: calc(100% + 20px); opacity: 0; }
 }
 
 .hero-scroll-text {
@@ -259,18 +285,8 @@
   font-size: 0.52rem;
   letter-spacing: 0.4em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.25);
   writing-mode: vertical-rl;
-  opacity: 0.45;
-  animation: scroll-text-glow 2.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
-@keyframes scroll-text-glow {
-  0% { color: var(--text-muted); text-shadow: none; opacity: 0.45; }
-  15% { color: #ffffff; text-shadow: 0 0 10px #ff4b4b, 0 0 20px #ff4b4b; opacity: 1; }
-  30% { color: #ff4b4b; text-shadow: 0 0 8px #ff4b4b; opacity: 0.8; }
-  50% { color: var(--text-muted); text-shadow: none; opacity: 0.45; }
-  100% { color: var(--text-muted); text-shadow: none; opacity: 0.45; }
 }
 
 .hero-scroll-line {
@@ -279,26 +295,6 @@
   background: rgba(255, 255, 255, 0.05);
   position: relative;
   border-radius: 2px;
-}
-
-.hero-scroll-line::after {
-  content: '';
-  position: absolute;
-  top: -50%;
-  left: -1px;
-  width: 4px;
-  height: 40%;
-  background: linear-gradient(180deg, transparent, #ff4b4b, #9b1b30, transparent);
-  box-shadow: 0 0 10px #ff4b4b, 0 0 20px #9b1b30;
-  border-radius: 4px;
-  animation: scroll-travel 2.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
-}
-
-@keyframes scroll-travel {
-  0% { top: -40%; opacity: 0; }
-  30% { opacity: 1; }
-  70% { opacity: 1; }
-  100% { top: 100%; opacity: 0; }
 }
 
 @media (max-width: 768px) {
