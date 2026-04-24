@@ -138,7 +138,8 @@ export default function Projects() {
                     </div>
                   </div>
                   <div className="project-arrow">
-                    <ArrowUpRight />
+                    <ArrowUpRight className="arrow-current" />
+                    <ArrowUpRight className="arrow-next" />
                   </div>
                 </div>
               </div>

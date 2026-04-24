@@ -33,41 +33,35 @@
   flex-direction: column;
 }
 
-/* When the list is hovered, dim everything slightly */
-.projects-list:hover > div > .project-item {
-  opacity: 0.4;
-  transform: scale(0.99);
-}
-
 .project-item {
   position: relative;
   border-bottom: 1px solid var(--border-subtle);
-  transition: all 0.5s var(--ease-out-expo);
+  transition: all 0.4s var(--ease-out-expo);
   cursor: pointer;
   border-radius: var(--radius-md);
 }
 
-/* The specifically hovered item pops out */
-.projects-list > div > .project-item:hover {
-  opacity: 1;
-  transform: scale(1.02);
-  background: rgba(196, 30, 58, 0.06);
+.project-item:hover {
+  background: rgba(196, 30, 58, 0.04);
   border-color: transparent;
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(196, 30, 58, 0.1);
-  z-index: 10;
+  transform: scale(1.02);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), 0 0 15px rgba(196, 30, 58, 0.1);
+  z-index: 5;
 }
 
 .project-item-inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-xl);
   padding: var(--space-lg) var(--space-sm);
-  transition: padding var(--duration-slow) var(--ease-out-expo);
+  transition: padding 0.5s var(--ease-out-expo);
 }
 
-.projects-list > div > .project-item:hover .project-item-inner {
-  padding-inline: var(--space-2xl);
+.project-item:hover .project-item-inner {
+  padding-inline: var(--space-xl);
 }
 
 .project-number {
@@ -91,11 +85,12 @@
   font-weight: 500;
   letter-spacing: -0.015em;
   color: var(--text-primary);
-  transition: color var(--duration-fast);
+  transition: all 0.4s var(--ease-out-expo);
 }
 
 .project-item:hover .project-name {
   color: var(--crimson-bright);
+  transform: translateX(8px);
 }
 
 .project-tags {
@@ -121,46 +116,50 @@
 }
 
 .project-arrow {
-  width: 36px;
-  height: 36px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: all var(--duration-normal) var(--ease-out-expo);
+  transition: all 0.5s var(--ease-out-expo);
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
 }
 
-.project-arrow svg {
-  width: 14px;
-  height: 14px;
+.project-arrow .arrow-current,
+.project-arrow .arrow-next {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.project-arrow .arrow-current {
   color: var(--text-muted);
-  transition: all var(--duration-normal) var(--ease-out-expo);
+  transform: translate(0, 0);
+}
+
+.project-arrow .arrow-next {
+  color: var(--text-primary);
+  transform: translate(-150%, 150%);
 }
 
 .project-item:hover .project-arrow {
   background: var(--crimson);
   border-color: var(--crimson);
-  transform: rotate(-45deg);
+  transform: scale(1.15);
+  box-shadow: 0 0 20px rgba(196, 30, 58, 0.4);
 }
 
-.project-item:hover .project-arrow svg {
-  color: var(--text-primary);
+.project-item:hover .project-arrow .arrow-current {
+  transform: translate(150%, -150%);
 }
 
-.project-item::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(90deg, var(--crimson-glow), transparent 60%);
-  transform: translateX(-100%);
-  transition: transform var(--duration-slow) var(--ease-out-expo);
-  pointer-events: none;
-}
-
-.project-item:hover::before {
-  transform: translateX(0);
+.project-item:hover .project-arrow .arrow-next {
+  transform: translate(0, 0);
 }
 
 .project-expanded {
