@@ -58,21 +58,27 @@ export default function SacredGeometry() {
     }
 
     const drawDotGrid = (time: number) => {
-      const spacing = isMobile ? 60 : 80
+      const spacing = isMobile ? 80 : 100 // Increased spacing for performance
       const dotRadius = 1
       const cols = Math.ceil(width / spacing) + 1
       const rows = Math.ceil(height / spacing) + 1
+      
+      const centerX = width / 2
+      const centerY = height / 2
+      const maxDistSq = (width * width + height * height) / 4
 
       for (let r = 0; r < rows; r++) {
         for (let c = 0; c < cols; c++) {
           const x = c * spacing
           const y = r * spacing
-          const dist = Math.sqrt(
-            Math.pow(x - width / 2, 2) + Math.pow(y - height / 2, 2)
-          )
-          const maxDist = Math.sqrt(width * width + height * height) / 2
-          const opacity = Math.max(0, 0.08 - (dist / maxDist) * 0.06)
-          const pulse = Math.sin(time * 0.0005 + dist * 0.003) * 0.02
+          
+          // Use squared distance to avoid Math.sqrt
+          const dx = x - centerX
+          const dy = y - centerY
+          const distSq = dx * dx + dy * dy
+          
+          const opacity = Math.max(0, 0.08 - (distSq / maxDistSq) * 0.06)
+          const pulse = Math.sin(time * 0.0005 + (c + r) * 0.5) * 0.02 // Faster pulse math
 
           ctx.beginPath()
           ctx.arc(x, y, dotRadius, 0, Math.PI * 2)
