@@ -92,7 +92,7 @@ function StrangeMandala() {
     const drawHUD = (alpha: number) => {
       ctx.save()
       ctx.strokeStyle = '#ffffff'
-      ctx.globalAlpha = alpha * 0.8
+      ctx.globalAlpha = alpha * 0.9
       ctx.lineWidth = 1
       const bSize = 20
       const padding = 15
@@ -103,7 +103,8 @@ function StrangeMandala() {
       ctx.beginPath(); ctx.moveTo(padding, SIZE - padding - bSize); ctx.lineTo(padding, SIZE - padding); ctx.lineTo(padding + bSize, SIZE - padding); ctx.stroke()
       ctx.beginPath(); ctx.moveTo(SIZE - padding, SIZE - padding - bSize); ctx.lineTo(SIZE - padding, SIZE - padding); ctx.lineTo(SIZE - padding - bSize, SIZE - padding); ctx.stroke()
       
-      // Crosshairs
+      // Crosshairs with crimson core
+      ctx.strokeStyle = '#E8334D'
       const cLen = 10; const cGap = 40
       ctx.beginPath(); ctx.moveTo(cx, cy - cGap - cLen); ctx.lineTo(cx, cy - cGap); ctx.stroke()
       ctx.beginPath(); ctx.moveTo(cx, cy + cGap); ctx.lineTo(cx, cy + cGap + cLen); ctx.stroke()
@@ -200,7 +201,7 @@ function StrangeMandala() {
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: 260, height: 260, filter: 'drop-shadow(0 0 24px rgba(255,255,255,0.12))' }}
+      style={{ width: 260, height: 260, filter: 'drop-shadow(0 0 35px rgba(196,30,58,0.35))' }}
     />
   )
 }
