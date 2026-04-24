@@ -55,8 +55,13 @@ function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean })
         <motion.div 
           key={`${skill.name}-${i}`} 
           className="skill-pill"
-          layoutId={i < skills.length ? skill.name : undefined}
-          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          layoutId={i < skills.length ? `skill-${skill.name}` : undefined}
+          transition={{ 
+            type: "spring", 
+            stiffness: 400, 
+            damping: 35, 
+            mass: 0.8 
+          }}
         >
           <skill.icon className="skill-pill-icon" />
           <span className="skill-pill-name">{skill.name}</span>
@@ -69,6 +74,9 @@ function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean })
 
 export default function Skills() {
   const [isGrid, setIsGrid] = useState(false)
+
+  // Grouped skills for the "Audit" view
+  const categories = Array.from(new Set(allSkills.map(s => s.category)))
 
   return (
     <section className="skills section" id="skills">
@@ -105,43 +113,74 @@ export default function Skills() {
           </motion.button>
         </div>
 
-        <AnimatePresence mode="popLayout">
-          {isGrid ? (
-            <motion.div
-              key="grid"
-              className="skills-grid"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              {allSkills.map((skill) => (
+        <div className="skills-view-wrap">
+          <AnimatePresence mode="popLayout">
+            {isGrid ? (
+              <motion.div
+                key="grid"
+                className="skills-grid-view"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                {/* Technical Scanning Sweep during assembly */}
                 <motion.div 
-                  key={skill.name} 
-                  className="skill-pill"
-                  layoutId={skill.name}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <skill.icon className="skill-pill-icon" />
-                  <span className="skill-pill-name">{skill.name}</span>
-                  <span className="skill-pill-category">{skill.category}</span>
-                </motion.div>
-              ))}
-            </motion.div>
-          ) : (
-            <motion.div
-              key="marquee"
-              className="skills-marquee-wrap"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.4 }}
-            >
-              <MarqueeRow skills={skillsRow1} />
-              <MarqueeRow skills={skillsRow2} reverse />
-            </motion.div>
-          )}
-        </AnimatePresence>
+                  className="skills-scan-line"
+                  initial={{ left: '-10%' }}
+                  animate={{ left: '110%' }}
+                  transition={{ duration: 1.2, ease: "easeInOut" }}
+                />
+
+                <div className="skills-categories">
+                  {categories.map((cat, ci) => (
+                    <div key={cat} className="skills-cat-group">
+                      <motion.span 
+                        className="skills-cat-label"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: 0.2 + ci * 0.1 }}
+                      >
+                        {cat}
+                      </motion.span>
+                      <div className="skills-cat-list">
+                        {allSkills.filter(s => s.category === cat).map((skill) => (
+                          <motion.div 
+                            key={skill.name} 
+                            className="skill-pill"
+                            layoutId={`skill-${skill.name}`}
+                            transition={{ 
+                              type: "spring", 
+                              stiffness: 400, 
+                              damping: 35, 
+                              mass: 0.8 
+                            }}
+                          >
+                            <skill.icon className="skill-pill-icon" />
+                            <span className="skill-pill-name">{skill.name}</span>
+                            <span className="skill-pill-category">{skill.category}</span>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            ) : (
+              <motion.div
+                key="marquee"
+                className="skills-marquee-wrap"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <MarqueeRow skills={skillsRow1} />
+                <MarqueeRow skills={skillsRow2} reverse />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
     </section>
   )
