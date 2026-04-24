@@ -42,18 +42,18 @@ const projects: Project[] = [
     tech: ['DistilBERT', 'XGBoost', 'LightGBM', 'RabbitMQ', 'PyTorch'],
   },
   {
-    id: 'drone-navigation',
+    id: 'supply-chain',
     number: '03',
-    name: 'SkySense: Vision-Language-Action (VLA) Drone',
-    tags: ['VLM', 'Robotics', 'Path Planning'],
+    name: 'LogiGraph: Predictive Supply Chain Optimizer',
+    tags: ['Graph ML', 'Logistics', 'Operations Research'],
     description:
-      'An advanced autonomous drone system integrated with Vision-Language Models (VLM) for high-level mission reasoning. Enables zero-shot navigation and complex task execution through natural language commands in unstructured environments.',
+      'An enterprise-grade logistics optimization engine using Graph Neural Networks (GNN) to predict global supply chain bottlenecks. Integrates real-time freight telemetry with multi-objective optimization for dynamic route planning and inventory balancing.',
     stats: [
-      { label: 'Inference', value: '45ms' },
-      { label: 'Success', value: '94%' },
-      { label: 'VLM', value: 'LLaVA-v1.5' },
+      { label: 'Cost Savings', value: '18%+' },
+      { label: 'Network Size', value: '50K+ Nodes' },
+      { label: 'Latency', value: '<100ms' },
     ],
-    tech: ['Python', 'ROS2', 'Pybullet', 'OpenCV', 'LangChain'],
+    tech: ['PyTorch Geometric', 'Gurobi', 'Apache Spark', 'FastAPI', 'Docker'],
   },
   {
     id: 'hospital-system',
