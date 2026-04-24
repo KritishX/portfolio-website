@@ -9,15 +9,18 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [progress, setProgress] = useState(0)
 
   useEffect(() => {
-    const duration = 2400
+    const duration = 2200
     const start = Date.now()
     const tick = () => {
       const elapsed = Date.now() - start
       const p = Math.min(elapsed / duration, 1)
-      // Ease-out curve for progress
-      setProgress(1 - Math.pow(1 - p, 3))
-      if (p < 1) requestAnimationFrame(tick)
-      else setTimeout(onComplete, 300)
+      const eased = 1 - Math.pow(1 - p, 3)
+      setProgress(eased)
+      if (p < 1) {
+        requestAnimationFrame(tick)
+      } else {
+        setTimeout(onComplete, 600)
+      }
     }
     requestAnimationFrame(tick)
   }, [onComplete])
@@ -26,74 +29,56 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
     <AnimatePresence>
       <motion.div
         className="loading-screen"
-        exit={{ opacity: 0, scale: 1.02 }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
       >
-        {/* Sacred Geometry Mandala */}
-        <motion.div
-          className="loading-mandala"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        >
-          <svg viewBox="0 0 120 120" fill="none">
-            {/* Outer circle */}
-            <circle
-              cx="60" cy="60" r="55"
-              className="mandala-ring mandala-ring--outer"
-            />
-            {/* Inner circle */}
-            <circle
-              cx="60" cy="60" r="38"
-              className="mandala-ring mandala-ring--inner"
-            />
-            {/* Upward triangle - representing mountains/Nepal */}
-            <polygon
-              points="60,18 95,72 25,72"
-              className="mandala-triangle"
-            />
-            {/* Downward triangle - creating Sri Yantra intersection */}
-            <polygon
-              points="60,102 25,48 95,48"
-              className="mandala-triangle mandala-triangle--inv"
-            />
-            {/* Center dot */}
-            <circle cx="60" cy="60" r="3" className="mandala-dot" />
-            {/* Small accent dots at vertices */}
-            <circle cx="60" cy="18" r="1.5" className="mandala-dot" />
-            <circle cx="60" cy="102" r="1.5" className="mandala-dot" />
-          </svg>
-        </motion.div>
+        {/* Center content */}
+        <div className="loading-center">
+          {/* Mandala */}
+          <motion.div
+            className="loading-mandala"
+            initial={{ opacity: 0, scale: 0.7, rotate: -15 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <svg viewBox="0 0 120 120" fill="none">
+              {/* Outer ring — draws in */}
+              <circle cx="60" cy="60" r="55" className="mandala-ring mandala-ring--outer" />
+              {/* Inner ring */}
+              <circle cx="60" cy="60" r="38" className="mandala-ring mandala-ring--inner" />
+              {/* Upward triangle */}
+              <polygon points="60,18 95,72 25,72" className="mandala-triangle" />
+              {/* Downward triangle */}
+              <polygon points="60,102 25,48 95,48" className="mandala-triangle mandala-triangle--inv" />
+              {/* Center dot */}
+              <circle cx="60" cy="60" r="3" className="mandala-dot" />
+              {/* Vertex dots */}
+              <circle cx="60" cy="18" r="1.5" className="mandala-dot" />
+              <circle cx="60" cy="102" r="1.5" className="mandala-dot" />
+            </svg>
+          </motion.div>
 
-        {/* Name */}
-        <motion.div
-          className="loading-name"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        >
-          KRITISH DHITAL
-        </motion.div>
+          {/* Name */}
+          <motion.div
+            className="loading-name"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="loading-name-first">Kritish</span>
+            <span className="loading-name-last"> Dhital</span>
+          </motion.div>
 
-        {/* Status text */}
-        <motion.div
-          className="loading-text"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 0.9 }}
-        >
-          Initializing Experience
-        </motion.div>
-
-        {/* Location */}
-        <motion.div
-          className="loading-location"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.1 }}
-        >
-          Kathmandu, Nepal
-        </motion.div>
+          {/* Tagline */}
+          <motion.p
+            className="loading-tagline"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.7, delay: 0.9 }}
+          >
+            Full Stack AI/ML Developer
+          </motion.p>
+        </div>
 
         {/* Mountain silhouette */}
         <div className="loading-mountain">
@@ -113,6 +98,16 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
             style={{ scaleX: progress }}
           />
         </div>
+
+        {/* Progress percentage */}
+        <motion.div
+          className="loading-percent"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+        >
+          {Math.round(progress * 100)}
+        </motion.div>
       </motion.div>
     </AnimatePresence>
   )
