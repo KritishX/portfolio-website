@@ -1,7 +1,7 @@
 import { useState, useCallback, useEffect } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import Lenis from 'lenis'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, useNavigationType } from 'react-router-dom'
 import LoadingScreen from './components/LoadingScreen'
 import Navigation from './components/Navigation'
 import Footer from './components/Footer'
@@ -41,11 +41,15 @@ export default function App() {
     }
   }, [])
 
-  // Sync Lenis with route changes
+  const navType = useNavigationType()
+  
+  // Sync Lenis with route changes — only scroll to top on NEW page visits, not 'POP' (back/forward)
   useEffect(() => {
-    window.scrollTo(0, 0)
-    ;(window as any).lenis?.scrollTo(0, { immediate: true })
-  }, [location.pathname])
+    if (navType !== 'POP') {
+      window.scrollTo(0, 0)
+      ;(window as any).lenis?.scrollTo(0, { immediate: true })
+    }
+  }, [location.pathname, navType])
 
   const handleLoadComplete = useCallback(() => {
     setLoading(false)

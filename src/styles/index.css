@@ -111,7 +111,7 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
-  overscroll-behavior: none;
+  overscroll-behavior: auto;
 }
 
 body {
@@ -120,7 +120,7 @@ body {
   color: var(--text-primary);
   background-color: var(--bg-primary);
   line-height: 1.6;
-  overscroll-behavior: none;
+  overscroll-behavior: auto;
   overflow-x: hidden;
   min-height: 100vh;
 }
