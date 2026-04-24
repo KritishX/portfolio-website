@@ -91,8 +91,8 @@ function StrangeMandala() {
 
     const drawHUD = (alpha: number) => {
       ctx.save()
-      ctx.strokeStyle = '#E8334D'
-      ctx.globalAlpha = alpha
+      ctx.strokeStyle = '#ffffff'
+      ctx.globalAlpha = alpha * 0.8
       ctx.lineWidth = 1
       const bSize = 20
       const padding = 15
@@ -200,7 +200,7 @@ function StrangeMandala() {
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: 260, height: 260, filter: 'drop-shadow(0 0 24px rgba(196,30,58,0.4))' }}
+      style={{ width: 260, height: 260, filter: 'drop-shadow(0 0 24px rgba(255,255,255,0.12))' }}
     />
   )
 }

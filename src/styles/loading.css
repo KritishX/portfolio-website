@@ -47,15 +47,32 @@
 /* Name below mandala */
 .loading-name {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 5vw, 2.8rem);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: var(--text-primary);
-  line-height: 1;
+  font-size: clamp(2rem, 6vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    110deg, 
+    #ffffff 0%, 
+    #ffffff 42%, 
+    var(--crimson-bright) 50%, 
+    #ffffff 58%, 
+    #ffffff 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: loading-subtle-drift 8s ease-in-out infinite;
   display: flex;
   align-items: center;
-  gap: 8px;
-  margin-top: -12px;
+  gap: 0.22em;
+  margin-top: -10px;
+}
+
+@keyframes loading-subtle-drift {
+  0% { background-position: -50% center; }
+  50% { background-position: 50% center; }
+  100% { background-position: -50% center; }
 }
 
 .loading-name-first {
@@ -63,20 +80,17 @@
 }
 
 .loading-name-last {
-  font-family: 'Playfair Display', serif;
-  font-style: italic;
-  font-weight: 400;
-  background: linear-gradient(135deg, #ff4b4b 0%, #9b1b30 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-family: inherit;
+  font-style: inherit;
+  font-weight: inherit;
 }
 
 /* Tagline */
 .loading-tagline {
-  font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.35em;
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  font-weight: 400;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
   opacity: 0.8;
@@ -88,10 +102,11 @@
   bottom: var(--space-xl);
   right: var(--gutter);
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
+  font-size: 0.58rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
   color: var(--text-muted);
-  opacity: 0.4;
+  opacity: 0.5;
 }
 
 /* Progress bar */
