@@ -1,6 +1,6 @@
 import { motion, useInView } from 'framer-motion'
 import { useRef, useEffect, useState } from 'react'
-import profileImg from '../assets/profile.jpg'
+import profileImg from '../assets/Snapseed (3).jpg'
 
 // Animated counter hook
 function useCounter(target: number, duration: number = 1.5) {
