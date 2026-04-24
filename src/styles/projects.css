@@ -1,5 +1,5 @@
 /* ============================================
-   PROJECTS — Spatial Interactive Showcase
+   PROJECTS — Editorial List
    ============================================ */
 .projects {
   background: var(--bg-secondary);
@@ -8,22 +8,24 @@
 }
 
 .projects-header {
-  margin-bottom: var(--space-xl);
+  margin-bottom: var(--space-2xl);
 }
 
 .projects-title {
   font-family: var(--font-display);
   font-size: clamp(2rem, 5vw, 3.5rem);
   font-weight: 500;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
 }
 
 .projects-subtitle {
-  font-size: 1rem;
-  color: var(--text-secondary);
+  font-size: 0.95rem;
+  color: var(--text-muted);
   margin-top: var(--space-md);
-  max-width: 480px;
+  max-width: 440px;
+  line-height: 1.7;
+  letter-spacing: 0.01em;
 }
 
 .projects-list {
@@ -47,7 +49,7 @@
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: var(--space-xl);
-  padding: var(--space-xl) 0;
+  padding: var(--space-lg) 0;
   transition: padding var(--duration-normal) var(--ease-out-expo);
 }
 
@@ -57,22 +59,24 @@
 
 .project-number {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.65rem;
   color: var(--text-muted);
-  min-width: 32px;
+  min-width: 28px;
+  letter-spacing: 0.08em;
+  opacity: 0.5;
 }
 
 .project-info {
   display: flex;
   flex-direction: column;
-  gap: var(--space-xs);
+  gap: 6px;
 }
 
 .project-name {
   font-family: var(--font-display);
-  font-size: clamp(1.3rem, 3vw, 2.2rem);
+  font-size: clamp(1.2rem, 2.5vw, 2rem);
   font-weight: 500;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   color: var(--text-primary);
   transition: color var(--duration-fast);
 }
@@ -89,20 +93,25 @@
 
 .project-tag {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--text-muted);
   padding: 2px 8px;
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
+  transition: border-color var(--duration-fast);
+}
+
+.project-item:hover .project-tag {
+  border-color: rgba(196, 30, 58, 0.2);
 }
 
 .project-arrow {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
-  border: 1px solid var(--border-medium);
+  border: 1px solid var(--border-subtle);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -111,8 +120,8 @@
 }
 
 .project-arrow svg {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   color: var(--text-muted);
   transition: all var(--duration-normal) var(--ease-out-expo);
 }
@@ -131,7 +140,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, var(--crimson-glow), transparent);
+  background: linear-gradient(90deg, var(--crimson-glow), transparent 60%);
   transform: translateX(-100%);
   transition: transform var(--duration-slow) var(--ease-out-expo);
   pointer-events: none;
@@ -156,8 +165,8 @@
 }
 
 .project-expanded-desc {
-  font-size: 1rem;
-  line-height: 1.8;
+  font-size: 0.95rem;
+  line-height: 1.85;
   color: var(--text-secondary);
 }
 
@@ -169,15 +178,15 @@
 
 .project-expanded-stat-label {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  letter-spacing: 0.15em;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
 .project-expanded-stat-value {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 500;
   color: var(--crimson-bright);
 }
@@ -191,8 +200,8 @@
 
 .project-expanded-tech-item {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
-  padding: 4px 12px;
+  font-size: 0.68rem;
+  padding: 3px 10px;
   background: var(--bg-surface);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-full);
@@ -203,7 +212,7 @@
   .project-item-inner {
     grid-template-columns: auto 1fr auto;
     gap: var(--space-md);
-    padding: var(--space-lg) 0;
+    padding: var(--space-md) 0;
   }
   .project-expanded-inner {
     grid-template-columns: 1fr;

@@ -10,14 +10,16 @@
   z-index: 100;
   padding: var(--space-lg) var(--gutter);
   transition: background var(--duration-normal) var(--ease-out-quart),
-              backdrop-filter var(--duration-normal) var(--ease-out-quart);
+              backdrop-filter var(--duration-normal) var(--ease-out-quart),
+              padding var(--duration-normal) var(--ease-out-quart);
 }
 
 .nav--scrolled {
-  background: rgba(10, 10, 15, 0.85);
-  backdrop-filter: blur(20px) saturate(1.5);
-  -webkit-backdrop-filter: blur(20px) saturate(1.5);
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(24px) saturate(1.8);
+  -webkit-backdrop-filter: blur(24px) saturate(1.8);
   border-bottom: 1px solid var(--border-subtle);
+  padding-block: var(--space-md);
 }
 
 .nav-inner {
@@ -33,11 +35,16 @@
   display: flex;
   align-items: center;
   gap: var(--space-sm);
+  transition: opacity var(--duration-fast);
+}
+
+.nav-brand:hover {
+  opacity: 0.75;
 }
 
 .nav-brand-mark {
-  width: 32px;
-  height: 32px;
+  width: 28px;
+  height: 28px;
   position: relative;
   display: flex;
   align-items: center;
@@ -51,25 +58,26 @@
 
 .nav-brand-name {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 500;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
+  color: var(--text-primary);
 }
 
 /* Nav Links */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: var(--space-xl);
+  gap: var(--space-2xl);
 }
 
 .nav-link {
   font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   font-weight: 400;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--text-secondary);
+  color: var(--text-muted);
   position: relative;
   padding: var(--space-xs) 0;
   transition: color var(--duration-fast) var(--ease-out-quart);
@@ -97,21 +105,21 @@
 /* Nav CTA */
 .nav-cta {
   font-family: var(--font-mono);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 500;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--crimson-bright);
+  color: var(--text-primary);
   padding: var(--space-sm) var(--space-lg);
   border: 1px solid var(--crimson);
   border-radius: var(--radius-full);
   transition: all var(--duration-normal) var(--ease-out-expo);
+  background: transparent;
 }
 
 .nav-cta:hover {
   background: var(--crimson);
-  color: var(--text-primary);
-  box-shadow: var(--shadow-crimson);
+  box-shadow: 0 4px 20px rgba(196, 30, 58, 0.3);
 }
 
 /* Mobile menu toggle */
@@ -124,8 +132,8 @@
 }
 
 .nav-toggle-line {
-  width: 24px;
-  height: 1.5px;
+  width: 22px;
+  height: 1px;
   background: var(--text-primary);
   border-radius: 2px;
   transition: all var(--duration-normal) var(--ease-out-expo);
@@ -133,7 +141,7 @@
 }
 
 .nav-toggle--open .nav-toggle-line:nth-child(1) {
-  transform: translateY(6.5px) rotate(45deg);
+  transform: translateY(6px) rotate(45deg);
 }
 
 .nav-toggle--open .nav-toggle-line:nth-child(2) {
@@ -142,28 +150,7 @@
 }
 
 .nav-toggle--open .nav-toggle-line:nth-child(3) {
-  transform: translateY(-6.5px) rotate(-45deg);
-}
-
-/* Nepal flag in nav */
-.nav-flag {
-  display: flex;
-  align-items: center;
-  flex-shrink: 0;
-  margin-left: var(--space-md);
-}
-
-.nav-flag img {
-  width: 48px;
-  height: auto;
-  border-radius: 3px;
-  opacity: 0.95;
-  transition: opacity var(--duration-fast), transform var(--duration-fast);
-}
-
-.nav-flag:hover img {
-  opacity: 1;
-  transform: scale(1.05);
+  transform: translateY(-6px) rotate(-45deg);
 }
 
 /* Mobile right container */
@@ -178,19 +165,24 @@
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(10, 10, 15, 0.97);
+  background: rgba(0, 0, 0, 0.97);
   backdrop-filter: blur(40px);
   -webkit-backdrop-filter: blur(40px);
   z-index: 99;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: var(--space-2xl);
+  gap: var(--space-3xl);
 }
 
 .nav-mobile-overlay .nav-link {
-  font-size: 1rem;
-  letter-spacing: 0.2em;
+  font-size: 0.9rem;
+  letter-spacing: 0.25em;
+  color: var(--text-secondary);
+}
+
+.nav-mobile-overlay .nav-cta {
+  margin-top: var(--space-md);
 }
 
 @media (max-width: 768px) {
@@ -209,9 +201,5 @@
 
   .nav-mobile-overlay--open {
     display: flex;
-  }
-
-  .nav-flag img {
-    width: 32px;
   }
 }

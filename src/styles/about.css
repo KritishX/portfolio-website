@@ -7,8 +7,8 @@
 
 .about-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-xl);
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-4xl);
   align-items: center;
 }
 
@@ -29,6 +29,11 @@
   height: 100%;
   object-fit: cover;
   object-position: center top;
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.about-image-wrap:hover img {
+  transform: scale(1.03);
 }
 
 .about-image-wrap::after {
@@ -43,14 +48,19 @@
 /* Decorative frame offset */
 .about-image-frame {
   position: absolute;
-  top: 12px;
-  left: 12px;
-  right: -12px;
-  bottom: -12px;
+  top: 16px;
+  left: 16px;
+  right: -16px;
+  bottom: -16px;
   border: 1px solid var(--crimson);
   border-radius: var(--radius-lg);
-  opacity: 0.3;
+  opacity: 0.2;
   pointer-events: none;
+  transition: opacity var(--duration-slow);
+}
+
+.about-image-col:hover .about-image-frame {
+  opacity: 0.4;
 }
 
 /* Content column */
@@ -62,9 +72,10 @@
 
 .about-heading {
   font-family: var(--font-display);
-  font-size: clamp(2rem, 4vw, 3rem);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
   font-weight: 500;
-  line-height: 1.1;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
 }
 
 .about-heading em {
@@ -73,9 +84,9 @@
 }
 
 .about-text {
-  font-size: clamp(1rem, 1.3vw, 1.15rem);
-  line-height: 1.85;
-  color: var(--text-secondary);
+  font-size: clamp(0.95rem, 1.2vw, 1.05rem);
+  line-height: 1.9;
+  color: var(--text-muted);
   max-width: 520px;
 }
 
@@ -83,9 +94,10 @@
 .about-stats {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-lg);
-  padding-top: var(--space-md);
+  gap: var(--space-xl);
+  padding-top: var(--space-xl);
   border-top: 1px solid var(--border-subtle);
+  margin-top: var(--space-sm);
 }
 
 .about-stat {
@@ -96,60 +108,38 @@
 
 .about-stat-value {
   font-family: var(--font-display);
-  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  font-size: clamp(1.5rem, 2.5vw, 2rem);
   font-weight: 500;
-  color: var(--crimson-bright);
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
 }
 
 .about-stat-label {
   font-family: var(--font-mono);
-  font-size: 0.65rem;
+  font-size: 0.62rem;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   color: var(--text-muted);
 }
 
-/* Nepal badge in about */
-.about-nepal-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: var(--space-sm);
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  padding: var(--space-sm) var(--space-lg);
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-full);
-  width: fit-content;
-}
-
-.about-nepal-tag img {
-  width: 16px;
-  height: auto;
-}
-
 @media (max-width: 768px) {
   .about-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-xl);
+    gap: var(--space-2xl);
   }
   .about-image-wrap {
     aspect-ratio: 3/4;
-    max-height: 480px;
+    max-height: 440px;
     width: 100%;
-    max-width: 380px;
+    max-width: 340px;
     margin-inline: auto;
   }
   .about-image-frame { display: none; }
   .about-stats {
-    grid-template-columns: 1fr;
-    gap: var(--space-lg);
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-md);
   }
-  .about-stat {
-    align-items: center;
-    text-align: center;
+  .about-stat-value {
+    font-size: 1.4rem;
   }
 }

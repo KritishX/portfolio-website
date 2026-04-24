@@ -10,7 +10,7 @@ const lineVariants = {
 }
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
+  hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1, y: 0,
     transition: { duration: 0.7, delay: 0.5 + i * 0.15, ease: [0.16, 1, 0.3, 1] as any }
@@ -31,12 +31,12 @@ export default function Hero() {
         {/* Overline */}
         <motion.div
           className="hero-overline"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
         >
           <span className="hero-overline-dot" />
-          Full Stack AI/ML Developer
+          Computer Engineer &amp; AI/ML Developer
         </motion.div>
 
         {/* Name — two lines with stagger reveal */}
@@ -73,9 +73,8 @@ export default function Hero() {
           animate="visible"
           custom={0}
         >
-          <strong>Full Stack AI/ML Developer</strong> & <strong>Computer Engineer</strong>
-          <br />
-          Building intelligent systems at the intersection of machine learning and vision.
+          Building <strong>intelligent systems</strong> at the intersection of
+          machine learning, computer vision, and full-stack engineering.
         </motion.p>
 
         {/* CTAs */}
@@ -100,20 +99,18 @@ export default function Hero() {
             LinkedIn
           </a>
         </motion.div>
-      </div>
 
-      {/* Bottom Stack */}
-      <div className="hero-bottom-stack">
-        {/* Scroll indicator */}
-        {/* Scroll indicator */}
+        {/* Scroll indicator — inline with content */}
         <motion.div
-          className="hero-scroll"
+          className="hero-bottom-stack"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
+          transition={{ delay: 1.6, duration: 1 }}
         >
-          <span className="hero-scroll-text">Scroll</span>
-          <span className="hero-scroll-line" />
+          <div className="hero-scroll">
+            <span className="hero-scroll-text">Scroll</span>
+            <span className="hero-scroll-line" />
+          </div>
         </motion.div>
       </div>
     </section>
