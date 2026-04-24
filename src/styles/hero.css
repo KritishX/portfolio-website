@@ -103,7 +103,7 @@
 /* Name */
 .hero-name {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 12vw, 11rem);
+  font-size: clamp(2.2rem, 10vw, 8.5rem);
   font-weight: 500;
   line-height: 0.9;
   letter-spacing: -0.04em;
