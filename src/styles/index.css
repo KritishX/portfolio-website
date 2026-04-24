@@ -250,7 +250,6 @@ ul, ol {
 .section {
   padding-block: var(--space-3xl);
   position: relative;
-  scroll-margin-top: 100px;
 }
 
 @media (max-width: 768px) {
