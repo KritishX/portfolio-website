@@ -141,25 +141,26 @@
   background: linear-gradient(
     90deg, 
     var(--crimson-deep) 0%, 
-    var(--crimson) 25%, 
-    #ffffff 50%, 
-    var(--crimson) 75%, 
+    var(--crimson-deep) 45%, 
+    rgba(255, 255, 255, 0.4) 50%, 
+    var(--crimson-deep) 55%, 
     var(--crimson-deep) 100%
   );
-  background-size: 200% auto;
+  background-size: 400% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 0 25px rgba(196, 30, 58, 0.4));
-  animation: gradient-fog 8s ease-in-out infinite;
+  animation: tracking-shimmer 10s ease-in-out infinite;
   margin-bottom: var(--space-xl);
   text-align: center;
 }
 
-@keyframes gradient-fog {
-  0% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-  100% { background-position: 0% center; }
+@keyframes tracking-shimmer {
+  0% { background-position: 150% center; } /* Start off-screen right */
+  40% { background-position: 82% center; }  /* Reaches 't' in Kritish */
+  60% { background-position: 82% center; }  /* Lingers precisely at 't' */
+  100% { background-position: 150% center; } /* Recedes back right */
 }
 
 .hero-name-line {
