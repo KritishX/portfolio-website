@@ -173,12 +173,12 @@ ul, ol {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: var(--bg-hover);
+  background: linear-gradient(180deg, var(--bg-primary), #ff4b4b, #9b1b30, var(--bg-primary));
   border-radius: var(--radius-full);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--text-muted);
+  background: linear-gradient(180deg, var(--bg-primary), #ff6b6b, #c41e3a, var(--bg-primary));
 }
 
 /* --- Typography Scale --- */
