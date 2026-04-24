@@ -44,7 +44,7 @@ const projects: Project[] = [
   {
     id: 'drone-navigation',
     number: '03',
-    name: 'LLM-Integrated Drone: Vision-Language Navigation',
+    name: 'SkySense: Vision-Language-Action (VLA) Drone',
     tags: ['VLM', 'Robotics', 'Path Planning'],
     description:
       'An advanced autonomous drone system integrated with Vision-Language Models (VLM) for high-level mission reasoning. Enables zero-shot navigation and complex task execution through natural language commands in unstructured environments.',
