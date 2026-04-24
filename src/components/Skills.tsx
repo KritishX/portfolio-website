@@ -52,21 +52,11 @@ function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean })
   return (
     <div className={`skills-marquee ${reverse ? 'skills-marquee--reverse' : ''}`}>
       {doubled.map((skill, i) => (
-        <motion.div 
-          key={`${skill.name}-${i}`} 
-          className="skill-pill"
-          layoutId={i < skills.length ? `skill-${skill.name}` : undefined}
-          transition={{ 
-            type: "spring", 
-            stiffness: 400, 
-            damping: 35, 
-            mass: 0.8 
-          }}
-        >
+        <div key={`${skill.name}-${i}`} className="skill-pill">
           <skill.icon className="skill-pill-icon" />
           <span className="skill-pill-name">{skill.name}</span>
           <span className="skill-pill-category">{skill.category}</span>
-        </motion.div>
+        </div>
       ))}
     </div>
   )
@@ -130,16 +120,17 @@ export default function Skills() {
                 />
 
                 <div className="skills-mosaic">
-                  {allSkills.map((skill) => (
+                  {allSkills.map((skill, i) => (
                     <motion.div 
                       key={skill.name} 
                       className="skill-pill"
-                      layoutId={`skill-${skill.name}`}
+                      initial={{ opacity: 0, scale: 0.8, y: 15 }}
+                      animate={{ opacity: 1, scale: 1, y: 0 }}
                       transition={{ 
                         type: "spring", 
-                        stiffness: 400, 
-                        damping: 35, 
-                        mass: 0.8 
+                        stiffness: 350, 
+                        damping: 25, 
+                        delay: i * 0.04 
                       }}
                     >
                       <skill.icon className="skill-pill-icon" />
