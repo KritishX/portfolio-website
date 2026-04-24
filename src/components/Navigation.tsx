@@ -68,13 +68,11 @@ export default function Navigation() {
         <div className="nav-inner">
           {/* Brand */}
           <button className="nav-brand" onClick={() => (window as any).lenis?.scrollTo(0)}>
-            <div className="nav-brand-mark">
-              <svg viewBox="0 0 32 32" fill="none">
-                <polygon points="16,2 28,26 4,26" stroke="var(--crimson)" strokeWidth="1.5" fill="none" />
-                <circle cx="16" cy="18" r="4" fill="var(--crimson)" opacity="0.8" />
-              </svg>
+            <div className="nav-brand-logo">
+              <span className="nav-logo-k">K</span>
+              <span className="nav-logo-d">D</span>
+              <span className="nav-logo-dot">.</span>
             </div>
-            <span className="nav-brand-name">KD</span>
           </button>
 
           {/* Desktop links + flag */}

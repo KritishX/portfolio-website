@@ -42,27 +42,34 @@
   opacity: 0.75;
 }
 
-.nav-brand-mark {
-  width: 28px;
-  height: 28px;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.nav-brand-mark svg {
-  width: 100%;
-  height: 100%;
-}
-
-.nav-brand-name {
+.nav-brand-logo {
   font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 600;
+  font-size: 1.45rem;
+  font-weight: 700;
   font-style: italic;
-  letter-spacing: 0.02em;
+  display: flex;
+  align-items: baseline;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.nav-logo-k {
   color: var(--text-primary);
+}
+
+.nav-logo-d {
+  background: linear-gradient(135deg, var(--text-primary) 0%, var(--crimson-bright) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.nav-logo-dot {
+  color: var(--crimson-bright);
+  font-size: 1.8rem;
+  line-height: 0;
+  margin-left: 2px;
+  text-shadow: 0 0 12px var(--crimson);
 }
 
 /* Nav Links */
