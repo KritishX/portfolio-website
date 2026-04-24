@@ -44,19 +44,18 @@
   height: 260px;
 }
 
-/* Name centered inside mandala */
-.loading-name-center {
-  position: absolute;
+/* Name below mandala */
+.loading-name {
   font-family: var(--font-display);
-  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
   font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--text-primary);
   line-height: 1;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 4px;
+  gap: 8px;
+  margin-top: -12px;
 }
 
 .loading-name-first {

@@ -127,8 +127,9 @@
 .nav-toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
-  padding: var(--space-sm);
+  gap: 6px;
+  padding: 12px;
+  margin-right: -12px;
   z-index: 101;
 }
 
@@ -177,13 +178,16 @@
 }
 
 .nav-mobile-overlay .nav-link {
-  font-size: 0.9rem;
-  letter-spacing: 0.25em;
-  color: var(--text-secondary);
+  font-size: 1.1rem;
+  letter-spacing: 0.2em;
+  color: var(--text-primary);
+  padding: var(--space-md) var(--space-xl);
 }
 
 .nav-mobile-overlay .nav-cta {
-  margin-top: var(--space-md);
+  margin-top: var(--space-xl);
+  font-size: 0.85rem;
+  padding: 1rem 2.5rem;
 }
 
 @media (max-width: 768px) {

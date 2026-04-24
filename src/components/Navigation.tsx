@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useNavigate, useLocation } from 'react-router-dom'
 
 export default function Navigation() {
   const [scrolled, setScrolled] = useState(false)
@@ -22,8 +23,24 @@ export default function Navigation() {
     return () => { document.body.style.overflow = '' }
   }, [mobileOpen])
 
+  const navigate = useNavigate()
+  const location = useLocation()
+
   const scrollTo = (id: string) => {
     setMobileOpen(false)
+
+    // If we're not on the home page, navigate there first
+    if (location.pathname !== '/') {
+      navigate('/')
+      setTimeout(() => {
+        const lenis = (window as any).lenis
+        const el = document.getElementById(id)
+        if (lenis && el) lenis.scrollTo(el, { immediate: false })
+        else if (el) el.scrollIntoView({ behavior: 'smooth' })
+      }, 150)
+      return
+    }
+
     const lenis = (window as any).lenis
     const el = document.getElementById(id)
     

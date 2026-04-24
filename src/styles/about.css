@@ -139,10 +139,15 @@
   }
   .about-image-frame { display: none; }
   .about-stats {
-    grid-template-columns: repeat(3, 1fr);
-    gap: var(--space-md);
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    padding-block: var(--space-lg);
+  }
+  .about-stat {
+    align-items: center;
+    text-align: center;
   }
   .about-stat-value {
-    font-size: 1.4rem;
+    font-size: 1.8rem;
   }
 }
