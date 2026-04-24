@@ -31,29 +31,32 @@
   mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 15%,
-    black 85%,
+    black 20%,
+    black 80%,
     transparent 100%
   );
   -webkit-mask-image: linear-gradient(
     to right,
     transparent 0%,
-    black 15%,
-    black 85%,
+    black 20%,
+    black 80%,
     transparent 100%
   );
+  padding-block: var(--space-md);
 }
 
 .skills-marquee {
   display: flex;
   width: max-content;
   gap: var(--space-xl);
-  animation: marquee-scroll 45s linear infinite; /* Slower for more premium feel */
+  /* Row 1 Speed: Slow & Heavy */
+  animation: marquee-scroll 60s linear infinite;
 }
 
 .skills-marquee--reverse {
   animation-direction: reverse;
-  animation-duration: 50s;
+  /* Row 2 Speed: Faster for Parallax depth */
+  animation-duration: 45s;
 }
 
 .skills-marquee:hover {
@@ -65,40 +68,54 @@
   to { transform: translateX(-50%); }
 }
 
-/* High-Fidelity Glass Skill pill */
+/* High-Fidelity Glass Skill pill with Scanline Texture */
 .skill-pill {
   display: inline-flex;
   align-items: center;
   gap: var(--space-md);
-  padding: 0.8rem 1.6rem;
-  background: rgba(255, 255, 255, 0.02);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: var(--radius-full);
+  padding: 0.9rem 1.8rem;
+  background: rgba(255, 255, 255, 0.015);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px; /* Slightly geometric for technical feel */
   white-space: nowrap;
-  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
   cursor: pointer;
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
 }
 
+/* Technical Scanline effect */
+.skill-pill::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  opacity: 0.3;
+}
+
 .skill-pill::before {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(circle at center, rgba(196, 30, 58, 0.15), transparent 70%);
+  background: radial-gradient(circle at center, rgba(196, 30, 58, 0.2), transparent 75%);
   opacity: 0;
   transition: opacity 0.5s ease;
 }
 
 .skill-pill:hover {
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(196, 30, 58, 0.4);
-  transform: translateY(-4px) scale(1.05);
-  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5),
-              0 0 20px rgba(196, 30, 58, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(196, 30, 58, 0.5);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.6),
+              0 0 25px rgba(196, 30, 58, 0.15);
 }
 
 .skill-pill:hover::before {
@@ -106,26 +123,27 @@
 }
 
 .skill-pill-icon {
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   color: var(--text-muted);
   transition: all 0.5s ease;
   z-index: 1;
 }
 
 .skill-pill:hover .skill-pill-icon {
-  color: #ffffff;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.5));
-  transform: rotate(5deg);
+  color: var(--crimson-bright);
+  filter: drop-shadow(0 0 10px rgba(196, 30, 58, 0.6));
+  transform: scale(1.1);
 }
 
 .skill-pill-name {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.7);
   transition: color 0.5s ease;
   z-index: 1;
+  letter-spacing: 0.02em;
 }
 
 .skill-pill:hover .skill-pill-name {
@@ -134,16 +152,16 @@
 
 .skill-pill-category {
   font-family: var(--font-mono);
-  font-size: 0.58rem;
-  letter-spacing: 0.15em;
+  font-size: 0.55rem;
+  letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.3);
-  margin-left: 4px;
+  color: rgba(255, 255, 255, 0.25);
+  margin-left: 6px;
   z-index: 1;
 }
 
 .skill-pill:hover .skill-pill-category {
-  color: rgba(196, 30, 58, 0.8);
+  color: rgba(196, 30, 58, 0.9);
 }
 
 /* Category divider in marquee */
