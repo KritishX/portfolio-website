@@ -141,26 +141,30 @@
   background: linear-gradient(
     90deg, 
     var(--crimson-deep) 0%, 
-    var(--crimson-deep) 45%, 
-    rgba(255, 255, 255, 0.4) 50%, 
-    var(--crimson-deep) 55%, 
+    #ffffff 20%, 
+    var(--crimson-deep) 40%, 
     var(--crimson-deep) 100%
   );
-  background-size: 400% auto;
+  background-size: 300% auto;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  filter: drop-shadow(0 0 25px rgba(196, 30, 58, 0.4));
-  animation: tracking-shimmer 10s ease-in-out infinite;
+  filter: drop-shadow(0 0 30px rgba(196, 30, 58, 0.4));
+  animation: 
+    name-pulse 6s ease-in-out infinite,
+    surface-glint 12s cubic-bezier(0.16, 1, 0.3, 1) infinite;
   margin-bottom: var(--space-xl);
   text-align: center;
 }
 
-@keyframes tracking-shimmer {
-  0% { background-position: 150% center; } /* Start off-screen right */
-  40% { background-position: 82% center; }  /* Reaches 't' in Kritish */
-  60% { background-position: 82% center; }  /* Lingers precisely at 't' */
-  100% { background-position: 150% center; } /* Recedes back right */
+@keyframes name-pulse {
+  0%, 100% { opacity: 0.85; filter: drop-shadow(0 0 20px rgba(196, 30, 58, 0.3)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 40px rgba(196, 30, 58, 0.5)); }
+}
+
+@keyframes surface-glint {
+  0% { background-position: 200% center; }
+  15%, 100% { background-position: -100% center; }
 }
 
 .hero-name-line {
