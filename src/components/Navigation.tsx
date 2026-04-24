@@ -83,18 +83,21 @@ export default function Navigation() {
                     </feMerge>
                   </filter>
                 </defs>
-                <polygon 
-                  points="16,4 28,26 4,26" 
-                  stroke="url(#brandGrad)" 
-                  strokeWidth="1.25" 
-                  strokeLinejoin="round"
-                  fill="rgba(255,75,75,0.03)" 
-                  filter="url(#brandGlow)"
-                />
+                
+                {/* Outer scope ring */}
+                <circle cx="16" cy="16" r="15" stroke="url(#brandGrad)" strokeWidth="1" opacity="0.3" strokeDasharray="3 4" />
+                
+                {/* Precision crosshairs */}
+                <path d="M16 -2 L16 7 M16 25 L16 34 M-2 16 L7 16 M25 16 L34 16" stroke="url(#brandGrad)" strokeWidth="1.5" strokeLinecap="round" filter="url(#brandGlow)" />
+                
+                {/* Inner focus ring */}
+                <circle cx="16" cy="16" r="8" stroke="url(#brandGrad)" strokeWidth="1.25" opacity="0.8" />
+                
+                {/* Pulsing core */}
                 <circle 
                   cx="16" 
-                  cy="19" 
-                  r="3.5" 
+                  cy="16" 
+                  r="2.5" 
                   fill="#ff4b4b" 
                   filter="url(#brandGlow)"
                   className="nav-brand-dot"

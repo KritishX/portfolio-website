@@ -62,7 +62,7 @@
 }
 
 .nav-brand-dot {
-  transform-origin: 16px 19px;
+  transform-origin: 16px 16px;
   animation: logo-pulse 4s ease-in-out infinite;
 }
 
