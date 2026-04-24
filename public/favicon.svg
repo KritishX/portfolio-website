@@ -1,30 +1,33 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40">
   <defs>
     <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#E8334D" />
-      <stop offset="100%" stop-color="#D4A853" />
+      <stop offset="0%" stop-color="#ff4b4b" />
+      <stop offset="100%" stop-color="#9b1b30" />
     </linearGradient>
-    <filter id="brandGlow">
-      <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+    <filter id="brandGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
       <feMerge>
         <feMergeNode in="coloredBlur"/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
-  <rect width="32" height="32" rx="8" fill="#050505" />
-  <polygon 
-    points="16,6 26,24 6,24" 
-    stroke="url(#brandGrad)" 
-    stroke-width="2" 
-    stroke-linejoin="round"
-    fill="rgba(196,30,58,0.15)" 
-  />
-  <circle 
-    cx="16" 
-    cy="18" 
-    r="3.5" 
-    fill="#E8334D" 
-    filter="url(#brandGlow)"
-  />
+  <rect width="40" height="40" rx="10" fill="#050505" />
+  <g transform="translate(4, 4)">
+    <polygon 
+      points="16,4 28,26 4,26" 
+      stroke="url(#brandGrad)" 
+      stroke-width="2.5" 
+      stroke-linejoin="round"
+      fill="rgba(196,30,58,0.15)" 
+      filter="url(#brandGlow)"
+    />
+    <circle 
+      cx="16" 
+      cy="19" 
+      r="4" 
+      fill="#ff1e46" 
+      filter="url(#brandGlow)"
+    />
+  </g>
 </svg>

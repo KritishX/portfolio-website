@@ -69,14 +69,14 @@ export default function Navigation() {
           {/* Brand */}
           <button className="nav-brand" onClick={() => (window as any).lenis?.scrollTo(0)}>
             <div className="nav-brand-mark">
-              <svg viewBox="0 0 32 32" fill="none">
+              <svg viewBox="-4 -4 40 40" fill="none">
                 <defs>
                   <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="var(--crimson-bright)" />
-                    <stop offset="100%" stopColor="var(--gold)" />
+                    <stop offset="0%" stopColor="#ff4b4b" />
+                    <stop offset="100%" stopColor="#9b1b30" />
                   </linearGradient>
-                  <filter id="brandGlow">
-                    <feGaussianBlur stdDeviation="1.5" result="coloredBlur"/>
+                  <filter id="brandGlow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur stdDeviation="2.5" result="coloredBlur"/>
                     <feMerge>
                       <feMergeNode in="coloredBlur"/>
                       <feMergeNode in="SourceGraphic"/>
@@ -86,15 +86,16 @@ export default function Navigation() {
                 <polygon 
                   points="16,4 28,26 4,26" 
                   stroke="url(#brandGrad)" 
-                  strokeWidth="2" 
+                  strokeWidth="2.5" 
                   strokeLinejoin="round"
-                  fill="rgba(196,30,58,0.06)" 
+                  fill="rgba(196,30,58,0.15)" 
+                  filter="url(#brandGlow)"
                 />
                 <circle 
                   cx="16" 
                   cy="19" 
-                  r="3.5" 
-                  fill="var(--crimson-bright)" 
+                  r="4" 
+                  fill="#ff1e46" 
                   filter="url(#brandGlow)"
                   className="nav-brand-dot"
                 />
