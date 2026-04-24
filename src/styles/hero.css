@@ -262,6 +262,15 @@
   color: var(--text-muted);
   writing-mode: vertical-rl;
   opacity: 0.45;
+  animation: scroll-text-glow 2.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+
+@keyframes scroll-text-glow {
+  0% { color: var(--text-muted); text-shadow: none; opacity: 0.45; }
+  15% { color: #ffffff; text-shadow: 0 0 10px #ff4b4b, 0 0 20px #ff4b4b; opacity: 1; }
+  30% { color: #ff4b4b; text-shadow: 0 0 8px #ff4b4b; opacity: 0.8; }
+  50% { color: var(--text-muted); text-shadow: none; opacity: 0.45; }
+  100% { color: var(--text-muted); text-shadow: none; opacity: 0.45; }
 }
 
 .hero-scroll-line {
