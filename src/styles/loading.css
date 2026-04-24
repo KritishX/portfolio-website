@@ -63,8 +63,13 @@
 }
 
 .loading-name-last {
+  font-family: 'Playfair Display', serif;
   font-style: italic;
-  color: var(--crimson-bright);
+  font-weight: 400;
+  background: linear-gradient(135deg, #ff4b4b 0%, #9b1b30 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 /* Tagline */
@@ -102,19 +107,42 @@
 
 .loading-progress-bar {
   height: 100%;
-  background: linear-gradient(90deg, var(--crimson-deep), var(--crimson-bright), var(--gold));
+  background: linear-gradient(90deg, var(--crimson-deep), var(--crimson-bright));
   transform-origin: left;
+  position: relative;
+}
+
+.loading-progress-bar::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, #ff4b4b);
+  box-shadow: 10px 0 20px rgba(196, 30, 58, 0.6);
 }
 
 /* Mountain silhouette */
 .loading-mountain {
   position: absolute;
-  bottom: 2px;
+  bottom: 0;
   left: 0;
   width: 100%;
-  height: 72px;
-  opacity: 0.055;
+  height: 120px;
+  opacity: 0.1;
   pointer-events: none;
+}
+
+.loading-mountain-back {
+  color: var(--text-muted);
+  opacity: 0.4;
+}
+
+.loading-mountain-front {
+  color: var(--text-muted);
+  opacity: 0.8;
 }
 
 .loading-mountain svg {

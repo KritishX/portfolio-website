@@ -256,11 +256,18 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
 
         {/* Mountain silhouette */}
         <div className="loading-mountain">
-          <svg viewBox="0 0 1440 80" preserveAspectRatio="none">
+          <svg viewBox="0 0 1440 100" preserveAspectRatio="none">
+            {/* Back range */}
             <path
-              d="M0,80 L0,60 L120,35 L200,50 L320,20 L400,40 L500,10 L580,30 L660,5 L720,25 L800,15 L900,35 L980,8 L1060,30 L1140,12 L1220,38 L1300,22 L1380,45 L1440,30 L1440,80 Z"
+              className="loading-mountain-back"
+              d="M0,100 L0,70 L180,30 L360,60 L540,10 L720,50 L900,20 L1080,70 L1260,30 L1440,80 L1440,100 Z"
               fill="currentColor"
-              style={{ color: 'var(--text-muted)' }}
+            />
+            {/* Front range */}
+            <path
+              className="loading-mountain-front"
+              d="M0,100 L0,85 L120,55 L240,75 L360,40 L480,65 L600,30 L720,55 L840,40 L960,65 L1080,25 L1200,55 L1320,35 L1440,60 L1440,100 Z"
+              fill="currentColor"
             />
           </svg>
         </div>
