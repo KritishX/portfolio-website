@@ -95,18 +95,20 @@ export default function About() {
             </h2>
 
             <p className="about-text">
-              I’m Kritish — an AI/ML Architect and Computer Engineer dedicated to 
-              synthesizing intelligent systems that transcend theoretical benchmarks. 
-              My expertise spans from orchestrating high-throughput speech AI 
-              platforms to developing self-evolving reinforcement learning agents, 
-              prioritizing the fusion of surgical engineering with creative intuition.
+              I’m Kritish — a <strong>Full Stack AI/ML Developer & Computer Engineer</strong> dedicated 
+              to building intelligent systems that solve real-world challenges. My work 
+              spans the full spectrum of AI, from architecting high-performance 
+              speech recognition platforms to developing self-learning autonomous 
+              agents. I focus on merging technical rigor with creative engineering 
+              to deliver smart, scalable solutions that drive tangible impact.
             </p>
 
             <p className="about-text">
-              Operating from Kathmandu, my perspective is defined by <strong>engineering for resilience</strong>. 
-              I thrive at the frontier of real-world constraints — specializing in 
-              resource-efficient intelligence and the development of high-fidelity solutions 
-              that translate complex machine logic into tangible human impact.
+              Based in Kathmandu, I specialize in <strong>Engineering for Resilience</strong>. 
+              I thrive on building high-quality AI within real-world constraints — 
+              optimizing for efficiency, navigating diverse languages, and ensuring 
+              that advanced machine learning delivers clear value to businesses 
+              and users alike.
             </p>
 
             {/* Stats with animated counters */}
