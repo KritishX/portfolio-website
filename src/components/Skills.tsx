@@ -1,7 +1,9 @@
-import { motion } from 'framer-motion'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   Brain, Code2, Database, Cloud, Eye, Terminal,
-  Cpu, Layers, GitBranch, Boxes, Workflow, BarChart3
+  Cpu, Layers, GitBranch, Boxes, Workflow, BarChart3,
+  LayoutGrid, ArrowRightLeft
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -41,6 +43,8 @@ const skillsRow2: Skill[] = [
   { name: 'Vite', category: 'Tooling', icon: Cpu },
 ]
 
+const allSkills = [...skillsRow1, ...skillsRow2]
+
 function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean }) {
   // Duplicate for seamless loop
   const doubled = [...skills, ...skills]
@@ -59,22 +63,81 @@ function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean })
 }
 
 export default function Skills() {
+  const [isGrid, setIsGrid] = useState(false)
+
   return (
     <section className="skills section" id="skills">
-      <motion.div
-        className="skills-header"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, margin: '-80px' }}
-        transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <span className="section-label">Capabilities</span>
-        <h2 className="skills-title">Tools of the craft</h2>
-      </motion.div>
+      <div className="skills-container">
+        <div className="skills-header-row">
+          <motion.div
+            className="skills-header"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-80px' }}
+            transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <span className="section-label">Capabilities</span>
+            <h2 className="skills-title">Tools of the craft</h2>
+          </motion.div>
 
-      <div className="skills-marquee-wrap">
-        <MarqueeRow skills={skillsRow1} />
-        <MarqueeRow skills={skillsRow2} reverse />
+          <motion.button 
+            className="skills-toggle"
+            onClick={() => setIsGrid(!isGrid)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            {isGrid ? (
+              <>
+                <ArrowRightLeft size={14} />
+                <span>Marquee</span>
+              </>
+            ) : (
+              <>
+                <LayoutGrid size={14} />
+                <span>View All</span>
+              </>
+            )}
+          </motion.button>
+        </div>
+
+        <AnimatePresence mode="wait">
+          {isGrid ? (
+            <motion.div
+              key="grid"
+              className="skills-grid"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+            >
+              {allSkills.map((skill, i) => (
+                <motion.div 
+                  key={skill.name} 
+                  className="skill-pill"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: i * 0.02 }}
+                >
+                  <skill.icon className="skill-pill-icon" />
+                  <span className="skill-pill-name">{skill.name}</span>
+                  <span className="skill-pill-category">{skill.category}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          ) : (
+            <motion.div
+              key="marquee"
+              className="skills-marquee-wrap"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <MarqueeRow skills={skillsRow1} />
+              <MarqueeRow skills={skillsRow2} reverse />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </section>
   )
