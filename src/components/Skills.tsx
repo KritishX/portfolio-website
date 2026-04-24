@@ -111,13 +111,6 @@ export default function Skills() {
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.5 }}
               >
-                {/* Refined Surgical Scan — Single Deliberate Pass */}
-                <motion.div 
-                  className="skills-scan-line"
-                  initial={{ left: '-20%' }}
-                  animate={{ left: '120%' }}
-                  transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-                />
 
                 <div className="skills-mosaic">
                   {allSkills.map((skill, i) => (

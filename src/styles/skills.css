@@ -63,26 +63,6 @@
   padding-block: var(--space-md);
 }
 
-.skills-scan-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: linear-gradient(to bottom, transparent, var(--crimson), transparent);
-  box-shadow: 0 0 25px var(--crimson), 0 0 50px rgba(196, 30, 58, 0.2);
-  z-index: 10;
-  pointer-events: none;
-  opacity: 0.7;
-}
-
-.skills-scan-line::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  right: 1px;
-  width: 120px;
-  background: linear-gradient(to left, rgba(196, 30, 58, 0.08), transparent);
-}
 
 .skills-mosaic {
   display: flex;
