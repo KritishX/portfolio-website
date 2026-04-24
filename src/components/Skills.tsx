@@ -75,9 +75,6 @@ function MarqueeRow({ skills, reverse }: { skills: Skill[]; reverse?: boolean })
 export default function Skills() {
   const [isGrid, setIsGrid] = useState(false)
 
-  // Grouped skills for the "Audit" view
-  const categories = Array.from(new Set(allSkills.map(s => s.category)))
-
   return (
     <section className="skills section" id="skills">
       <div className="skills-container">
@@ -118,7 +115,7 @@ export default function Skills() {
             {isGrid ? (
               <motion.div
                 key="grid"
-                className="skills-grid-view"
+                className="skills-grid-symmetric"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -132,37 +129,23 @@ export default function Skills() {
                   transition={{ duration: 1.2, ease: "easeInOut" }}
                 />
 
-                <div className="skills-categories">
-                  {categories.map((cat, ci) => (
-                    <div key={cat} className="skills-cat-group">
-                      <motion.span 
-                        className="skills-cat-label"
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: 0.2 + ci * 0.1 }}
-                      >
-                        {cat}
-                      </motion.span>
-                      <div className="skills-cat-list">
-                        {allSkills.filter(s => s.category === cat).map((skill) => (
-                          <motion.div 
-                            key={skill.name} 
-                            className="skill-pill"
-                            layoutId={`skill-${skill.name}`}
-                            transition={{ 
-                              type: "spring", 
-                              stiffness: 400, 
-                              damping: 35, 
-                              mass: 0.8 
-                            }}
-                          >
-                            <skill.icon className="skill-pill-icon" />
-                            <span className="skill-pill-name">{skill.name}</span>
-                            <span className="skill-pill-category">{skill.category}</span>
-                          </motion.div>
-                        ))}
-                      </div>
-                    </div>
+                <div className="skills-mosaic">
+                  {allSkills.map((skill, i) => (
+                    <motion.div 
+                      key={skill.name} 
+                      className="skill-pill"
+                      layoutId={`skill-${skill.name}`}
+                      transition={{ 
+                        type: "spring", 
+                        stiffness: 400, 
+                        damping: 35, 
+                        mass: 0.8 
+                      }}
+                    >
+                      <skill.icon className="skill-pill-icon" />
+                      <span className="skill-pill-name">{skill.name}</span>
+                      <span className="skill-pill-category">{skill.category}</span>
+                    </motion.div>
                   ))}
                 </div>
               </motion.div>
