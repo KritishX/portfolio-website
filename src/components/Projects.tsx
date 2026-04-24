@@ -44,20 +44,34 @@ const projects: Project[] = [
   {
     id: 'drone-navigation',
     number: '03',
-    name: 'Autonomous Drone Navigation: Dynamic Pathfinding',
-    tags: ['Robotics', 'SLAM', 'Path Planning'],
+    name: 'LLM-Integrated Drone: Vision-Language Navigation',
+    tags: ['VLM', 'Robotics', 'Path Planning'],
     description:
-      'A 3D navigation system for autonomous drones using Simultaneous Localization and Mapping (SLAM). Implements A* and Dijkstra algorithms for real-time trajectory optimization and obstacle avoidance in complex, dynamic environments.',
+      'An advanced autonomous drone system integrated with Vision-Language Models (VLM) for high-level mission reasoning. Enables zero-shot navigation and complex task execution through natural language commands in unstructured environments.',
     stats: [
-      { label: 'Map Res', value: '0.1m' },
-      { label: 'Drift', value: '<0.5%' },
-      { label: 'Response', value: '15ms' },
+      { label: 'Inference', value: '45ms' },
+      { label: 'Success', value: '94%' },
+      { label: 'VLM', value: 'LLaVA-v1.5' },
     ],
-    tech: ['Python', 'Pybullet', 'OpenCV', 'ROS2', 'NumPy'],
+    tech: ['Python', 'ROS2', 'Pybullet', 'OpenCV', 'LangChain'],
+  },
+  {
+    id: 'hospital-system',
+    number: '04',
+    name: 'MedFlow: Enterprise Hospital Management Suite',
+    tags: ['Full Stack', 'Automation', 'HealthTech'],
+    description:
+      'A comprehensive, automated hospital ecosystem controlling end-to-end clinical and administrative workflows. Features real-time resource synchronization, automated patient triaging, and a high-availability backend for critical care management.',
+    stats: [
+      { label: 'Efficiency', value: '+35%' },
+      { label: 'Uptime', value: '99.99%' },
+      { label: 'Scale', value: '500+ Beds' },
+    ],
+    tech: ['React', 'Node.js', 'PostgreSQL', 'Docker', 'scikit-learn'],
   },
   {
     id: 'anomaly-detection',
-    number: '04',
+    number: '05',
     name: 'Unsupervised Anomaly Detection (ViT-DINO)',
     tags: ['Computer Vision', 'ViT-DINO', 'Industrial AI'],
     description:
@@ -71,7 +85,7 @@ const projects: Project[] = [
   },
   {
     id: 'self-parking',
-    number: '05',
+    number: '06',
     name: 'Self-Parking Car — RL Agent',
     tags: ['Reinforcement Learning', 'Simulation', 'Q-Learning'],
     description:
