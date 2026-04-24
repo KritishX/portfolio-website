@@ -62,7 +62,8 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: loading-subtle-drift 8s ease-in-out infinite;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.08));
+  animation: loading-subtle-drift 15s ease-in-out infinite;
   display: flex;
   align-items: center;
   gap: 0.22em;
