@@ -231,7 +231,9 @@
 .hero-cta-primary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-sm);
+  min-width: 180px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 500;
@@ -265,7 +267,9 @@
 .hero-cta-secondary {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: var(--space-sm);
+  min-width: 180px;
   font-family: var(--font-mono);
   font-size: 0.72rem;
   font-weight: 400;
