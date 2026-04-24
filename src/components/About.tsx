@@ -110,9 +110,9 @@ export default function About() {
 
             {/* Stats with animated counters */}
             <div className="about-stats">
-              <AnimatedStat value={15} suffix="+" label="Projects Shipped" />
-              <AnimatedStat value={4} suffix="+" label="AI Domains" />
-              <AnimatedStat value={10} suffix="K+" label="Daily API Calls" />
+              <AnimatedStat value={15} suffix="+" label="End-to-End Solutions" />
+              <AnimatedStat value={4} suffix="+" label="AI Specializations" />
+              <AnimatedStat value={10} suffix="K+" label="Daily Inferences" />
             </div>
           </motion.div>
         </motion.div>
