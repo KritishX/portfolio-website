@@ -51,29 +51,29 @@
   font-weight: 600;
   letter-spacing: -0.02em;
   background: linear-gradient(
-    110deg, 
+    -45deg, 
     #ffffff 0%, 
     #ffffff 42%, 
-    var(--crimson-bright) 50%, 
+    var(--crimson) 50%, 
     #ffffff 58%, 
     #ffffff 100%
   );
-  background-size: 200% auto;
+  background-size: 400% 400%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.08));
-  animation: loading-subtle-drift 15s ease-in-out infinite;
+  animation: loading-molten-flow 25s ease infinite;
   display: flex;
   align-items: center;
   gap: 0.22em;
   margin-top: -10px;
 }
 
-@keyframes loading-subtle-drift {
-  0% { background-position: -50% center; }
-  50% { background-position: 50% center; }
-  100% { background-position: -50% center; }
+@keyframes loading-molten-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .loading-name-first {
