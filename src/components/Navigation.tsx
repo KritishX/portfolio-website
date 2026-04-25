@@ -7,6 +7,7 @@ export default function Navigation() {
   const [mobileOpen, setMobileOpen] = useState(false)
 
   useEffect(() => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const lenis = (window as any).lenis
     if (!lenis) return
 
@@ -33,14 +34,16 @@ export default function Navigation() {
     if (location.pathname !== '/') {
       navigate('/')
       setTimeout(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const lenis = (window as any).lenis
         const el = document.getElementById(id)
-        if (lenis && el) lenis.scrollTo(el, { offset: -60, immediate: false })
+        if (lenis && el) lenis.scrollTo(el, { offset: -92, immediate: false })
         else if (el) el.scrollIntoView({ behavior: 'smooth' })
       }, 250)
       return
     }
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const lenis = (window as any).lenis
     const el = document.getElementById(id)
     
@@ -67,6 +70,7 @@ export default function Navigation() {
       >
         <div className="nav-inner">
           {/* Brand */}
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <button className="nav-brand" onClick={() => (window as any).lenis?.scrollTo(0)}>
             <div className="nav-brand-mark">
               <svg viewBox="-4 -4 40 40" fill="none">

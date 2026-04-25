@@ -29,6 +29,7 @@ const sections = [
 export default function Privacy() {
   useEffect(() => {
     window.scrollTo(0, 0)
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ;(window as any).lenis?.scrollTo(0, { immediate: true })
   }, [])
 

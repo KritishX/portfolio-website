@@ -29,6 +29,7 @@ export default function App() {
     })
 
     // Attach to window for access in other components
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     ;(window as any).lenis = lenis
 
     let rafId: number
@@ -42,6 +43,7 @@ export default function App() {
     return () => {
       lenis.destroy()
       cancelAnimationFrame(rafId)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       delete (window as any).lenis
     }
   }, [])
@@ -52,6 +54,7 @@ export default function App() {
   useEffect(() => {
     if (navType !== 'POP') {
       window.scrollTo(0, 0)
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       ;(window as any).lenis?.scrollTo(0, { immediate: true })
     }
   }, [location.pathname, navType])

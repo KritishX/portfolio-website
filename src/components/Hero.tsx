@@ -5,6 +5,7 @@ const lineVariants = {
   hidden: { y: '110%' },
   visible: (i: number) => ({
     y: 0,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     transition: { duration: 0.9, delay: 0.15 + i * 0.12, ease: [0.16, 1, 0.3, 1] as any }
   })
 }
@@ -13,6 +14,7 @@ const fadeUp = {
   hidden: { opacity: 0, y: 20 },
   visible: (i: number) => ({
     opacity: 1, y: 0,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     transition: { duration: 0.7, delay: 0.5 + i * 0.15, ease: [0.16, 1, 0.3, 1] as any }
   })
 }

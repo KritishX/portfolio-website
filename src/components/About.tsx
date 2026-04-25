@@ -1,5 +1,5 @@
 import { motion, useInView } from 'framer-motion'
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState, useCallback } from 'react'
 import profileImg from '../assets/Snapseed (3).jpg'
 
 // Animated counter hook
@@ -20,7 +20,8 @@ function useCounter(target: number, duration: number = 1.5) {
     requestAnimationFrame(step)
   }, [started, target, duration])
 
-  return { count, start: () => setStarted(true) }
+  const start = useCallback(() => setStarted(true), [])
+  return { count, start }
 }
 
 function AnimatedStat({ value, label, suffix = '' }: { value: number; label: string; suffix?: string }) {
@@ -30,7 +31,7 @@ function AnimatedStat({ value, label, suffix = '' }: { value: number; label: str
 
   useEffect(() => {
     if (inView) start()
-  }, [inView])
+  }, [inView, start])
 
   return (
     <div className="about-stat" ref={ref}>
