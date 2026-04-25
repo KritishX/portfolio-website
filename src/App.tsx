@@ -20,10 +20,12 @@ export default function App() {
     }
 
     const lenis = new Lenis({
-      lerp: 0.1, // Faster, more responsive interpolation
+      duration: 1.4,
+      easing: (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t)),
+      lerp: 0.1, 
       smoothWheel: true,
       wheelMultiplier: 1.0, 
-      touchMultiplier: 2.0,
+      touchMultiplier: 1.8,
     })
 
     // Attach to window for access in other components
