@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Brain, Code2, Database, Cloud, Eye, Terminal,
   Cpu, Layers, GitBranch, Boxes, Workflow, BarChart3,
-  LayoutGrid, ArrowRightLeft
+  LayoutGrid, ArrowRightLeft, Globe, Zap, Settings, MessageSquare
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -26,6 +26,10 @@ const skillsRow1: Skill[] = [
   { name: 'Node.js', category: 'Runtime', icon: Terminal },
   { name: 'scikit-learn', category: 'ML', icon: BarChart3 },
   { name: 'GCP', category: 'Cloud', icon: Cloud },
+  { name: 'Pydantic', category: 'Data', icon: Workflow },
+  { name: 'SQLAlchemy', category: 'ORM', icon: Database },
+  { name: 'Redis', category: 'Cache', icon: Database },
+  { name: 'MLflow', category: 'MLOps', icon: GitBranch },
 ]
 
 const skillsRow2: Skill[] = [
@@ -41,6 +45,10 @@ const skillsRow2: Skill[] = [
   { name: 'Pandas', category: 'Data', icon: Database },
   { name: 'Linux', category: 'OS', icon: Terminal },
   { name: 'Vite', category: 'Tooling', icon: Cpu },
+  { name: 'AWS', category: 'Cloud', icon: Cloud },
+  { name: 'Kubernetes', category: 'DevOps', icon: Boxes },
+  { name: 'Tailwind CSS', category: 'Styles', icon: LayoutGrid },
+  { name: 'W&B', category: 'Tracking', icon: BarChart3 },
 ]
 
 const allSkills = [...skillsRow1, ...skillsRow2]

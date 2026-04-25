@@ -35,7 +35,7 @@ export default function Navigation() {
       setTimeout(() => {
         const lenis = (window as any).lenis
         const el = document.getElementById(id)
-        if (lenis && el) lenis.scrollTo(el, { offset: -60, immediate: false })
+        if (lenis && el) lenis.scrollTo(el, { offset: -110, immediate: false })
         else if (el) el.scrollIntoView({ behavior: 'smooth' })
       }, 250)
       return
@@ -45,7 +45,7 @@ export default function Navigation() {
     const el = document.getElementById(id)
     
     if (lenis && el) {
-      lenis.scrollTo(el, { offset: -60 })
+      lenis.scrollTo(el, { offset: -110 })
     } else if (el) {
       el.scrollIntoView({ behavior: 'smooth' })
     }
