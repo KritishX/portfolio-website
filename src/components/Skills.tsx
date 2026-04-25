@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import {
   Brain, Code2, Database, Cloud, Eye, Terminal,
   Cpu, Layers, GitBranch, Boxes, Workflow, BarChart3,
-  LayoutGrid, ArrowRightLeft, Globe, Zap, Settings, MessageSquare
+  LayoutGrid, ArrowRightLeft
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
